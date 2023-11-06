@@ -122,13 +122,13 @@ Para crear un proyecto en R, podes seguir estos pasos en RStudio:
     Existente) si ya tienes un directorio existente que deseas convertir
     en un proyecto.
 
-4.  Luego, podes especificar la ubicación del directorio y el nombre
-    del proyecto.
+4.  Luego, podes especificar la ubicación del directorio y el nombre del
+    proyecto.
 
 5.  Haz clic en "Create Project" (Crear Proyecto) y se abrirá una nueva
     instancia de RStudio configurada para tu proyecto.
 
-### ¿Cómo Clonar un Repositorio en Git? 
+### ¿Cómo Clonar un Repositorio en Git?
 
 Clonar un repositorio en Git significa copiar un repositorio remoto
 (generalmente alojado en GitHub o en otro servidor) en tu computadora
@@ -167,9 +167,9 @@ R.
 
 ## Crear un "Chunk" en R Markdown
 
-Un "chunk" es un bloque de código R que podes ejecutar en un documento
-R Markdown. podes insertar un chunk utilizando tres comillas invertidas
-y la etiqueta `{r}` o con ctrl+alt+i . Por ejemplo:
+Un "chunk" es un bloque de código R que podes ejecutar en un documento R
+Markdown. podes insertar un chunk utilizando tres comillas invertidas y
+la etiqueta `{r}` o con ctrl+alt+i . Por ejemplo:
 
 ```{r}
 # Esto es un chunk de código R
@@ -189,6 +189,8 @@ A continuación, realizaremos algunas operaciones básicas en R:
 # Esto es un comentario en R
 x <- 5 # Asignación de un valor a una variable
 y <- 10
+
+rm(y) #Para borrar los objetos del entorno
 ```
 
 ### Operaciones matemáticas
@@ -196,8 +198,9 @@ y <- 10
 R es como una calculadora
 
 ```{r}
+y <- 12
 # Suma de variables
-z <- x + y
+z <- x * y
 print(paste("La suma de x y y es:", z))
 ```
 
@@ -208,6 +211,7 @@ valores del mismo tipo. podes crear un vector utilizando la función
 `c()`.
 
 ```{r}
+# podes correr el codigo con CTRL+ENTER o con el boton
 # Crear un vector
 mi_vector <- c(1, 2, 3, 4, 5)
 
@@ -217,16 +221,27 @@ suma <- sum(mi_vector)
 # Calcular la media
 media <- mean(mi_vector)
 
-cat("Suma: ", suma, "\n")
+mediana <- median(mi_vector)
+
+#cat permite imprimir valores
+cat("El resultado es", suma, "\n")
 cat("Media: ", media, "\n")
+
+# Crear un objeto puede ser con la asignacion <- o = 
+
+Nombre <- c("Ariana","Martina")
+Nombres = c("Ariana","Martina","Joaquin")
+
+#comparacion
+Nombre == Nombres
 ```
 
-## Operadores en R
+\## Operadores en R
 
 R ofrece varios tipos de operadores:
 
 -   **Asignación**: Se utiliza para asignar valores a variables. El
-    operador más común es `<-`.
+    operador más común es `<-` o `=`.
 
 -   **Operadores Aritméticos**: Se utilizan para realizar operaciones
     matemáticas, como `+`, `-`, `*`, `/`, entre otros.
@@ -261,8 +276,8 @@ class(texto)  # Verificar el tipo de objeto (character)
 
 ```{r}
 # Crear un objeto logical
-verdadero <- TRUE
-falso <- FALSE
+verdadero <- TRUE #T
+falso <- FALSE #F
 class(verdadero)  # Verificar el tipo de objeto (logical)
 ```
 
@@ -274,6 +289,13 @@ entero <- 2L
 class(entero)  # Verificar el tipo de objeto (integer)
 ```
 
+-   **Tipo Fecha**
+
+```{r}
+fecha <- as.Date("01/01/2023")
+class(fecha)
+```
+
 Ahora, mostraremos cómo convertir entre estos tipos de objetos
 utilizando las funciones as.numeric, as.character y as.logical:
 
@@ -282,6 +304,7 @@ utilizando las funciones as.numeric, as.character y as.logical:
 ```{r}
 # Convertir character a numeric
 texto <- "123.45"
+class(texto)
 numero <- as.numeric(texto)
 class(numero)  # Verificar el tipo de objeto (numeric)
 ```
@@ -291,6 +314,7 @@ class(numero)  # Verificar el tipo de objeto (numeric)
 ```{r}
 # Convertir numeric a character
 numero <- 123.45
+class(numero) 
 texto <- as.character(numero)
 class(texto)  # Verificar el tipo de objeto (character)
 ```
@@ -304,12 +328,23 @@ logico <- as.logical(numero)
 class(logico)  # Verificar el tipo de objeto (logical)
 ```
 
+**Conversion a factor**
+
+```{r}
+#convertir a factor
+
+genero <- c("F","M","F","M","F","M","F","M","F","M","F","M","F","M","F","M")
+class(genero)
+genero <- as.factor(genero)
+class(genero)
+```
+
 ## Funciones en R
 
 Lo que vimos recién, `as.factor()` y `as.character()` son funciones. Las
 funciones son bloques de código reutilizables que realizan tareas
-específicas. R tiene muchas funciones incorporadas y también podes
-crear las tuyas propias.
+específicas. R tiene muchas funciones incorporadas y también podes crear
+las tuyas propias.
 
 #### Suma
 
@@ -326,6 +361,8 @@ suma_resultado
 vector <- c(1, 2, 3, 4, 5)
 media_resultado <- mean(vector)
 media_resultado
+
+print(paste("hola como estas"))
 ```
 
 ## Librerías en R
@@ -341,14 +378,22 @@ utiliza `library(nombre_del_paquete)`.
 ```{r}
 #install.packages("tidyverse")
 library(tidyverse)
+
+#%>%
 ```
 
 ## Práctica
 
-1.  Crear dos objetos y asignarles: a uno nombres y a otro edad
+1.  Crear dos `objetos` y asignarles: a uno **nombres** y a otro
+    ***cuit***
 
 ```{r}
 # consigna 1
+empresas <- c("Cachafaz","Coca","adiddas","Pepsi","16")
+empresas
+
+cuit <- c(2,3,4,5,6,7)
+cuit
 ```
 
 2.  Para las dos variables creadas en el punto anterior, verificar la
@@ -356,10 +401,18 @@ library(tidyverse)
 
 ```{r}
 # consigna 2
+class(empresas)
+class(cuit)
 ```
 
-3.  Convertir el objeto nombres en uno de tipo numérico. ¿Qué sucede?
+3.  Convertir el objeto empresas en uno de tipo numérico. ¿Qué sucede?
 
 ```{r}
 # consigna 3
+
+empresas <- as.numeric(empresas)
+empresas
+
+cuit <- as.character(cuit)
+cuit
 ```
