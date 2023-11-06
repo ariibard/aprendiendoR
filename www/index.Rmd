@@ -97,8 +97,8 @@ datos
 Después de instalar R y RStudio, abriremos RStudio y exploraremos su
 entorno de trabajo, que consta de cuatro paneles principales:
 
-1.  **Script**: Donde puedes escribir y guardar tu código R.
-2.  **Console**: Donde puedes ejecutar comandos de R directamente.
+1.  **Script**: Donde podes escribir y guardar tu código R.
+2.  **Console**: Donde podes ejecutar comandos de R directamente.
 3.  **Environment**: Muestra las variables y objetos en tu espacio de
     trabajo.
 4.  **Plots/Files/Packages/Help**: Paneles para gestionar gráficos,
@@ -110,7 +110,7 @@ En R, un proyecto es una estructura organizada que permite trabajar de
 manera eficiente porque crea una carpeta donde se alojan todos los
 archivos que vamos a utilizar en nuestro trabajo.
 
-Para crear un proyecto en R, puedes seguir estos pasos en RStudio:
+Para crear un proyecto en R, podes seguir estos pasos en RStudio:
 
 1.  Abre RStudio.
 
@@ -122,7 +122,7 @@ Para crear un proyecto en R, puedes seguir estos pasos en RStudio:
     Existente) si ya tienes un directorio existente que deseas convertir
     en un proyecto.
 
-4.  Luego, puedes especificar la ubicación del directorio y el nombre
+4.  Luego, podes especificar la ubicación del directorio y el nombre
     del proyecto.
 
 5.  Haz clic en "Create Project" (Crear Proyecto) y se abrirá una nueva
@@ -153,7 +153,7 @@ Pasos para clonar un repositorio en Git:
     de alojamiento de Git.
 
 6.  En el campo "Project directory name" (Nombre del directorio del
-    proyecto), puedes especificar el nombre de la carpeta local donde se
+    proyecto), podes especificar el nombre de la carpeta local donde se
     clonará el repositorio. Por defecto, RStudio utilizará el nombre del
     repositorio.
 
@@ -167,8 +167,8 @@ R.
 
 ## Crear un "Chunk" en R Markdown
 
-Un "chunk" es un bloque de código R que puedes ejecutar en un documento
-R Markdown. Puedes insertar un chunk utilizando tres comillas invertidas
+Un "chunk" es un bloque de código R que podes ejecutar en un documento
+R Markdown. podes insertar un chunk utilizando tres comillas invertidas
 y la etiqueta `{r}` o con ctrl+alt+i . Por ejemplo:
 
 ```{r}
@@ -204,7 +204,7 @@ print(paste("La suma de x y y es:", z))
 ### Vectores
 
 En R, un vector es una estructura de datos que almacena una secuencia de
-valores del mismo tipo. Puedes crear un vector utilizando la función
+valores del mismo tipo. podes crear un vector utilizando la función
 `c()`.
 
 ```{r}
@@ -308,7 +308,7 @@ class(logico)  # Verificar el tipo de objeto (logical)
 
 Lo que vimos recién, `as.factor()` y `as.character()` son funciones. Las
 funciones son bloques de código reutilizables que realizan tareas
-específicas. R tiene muchas funciones incorporadas y también puedes
+específicas. R tiene muchas funciones incorporadas y también podes
 crear las tuyas propias.
 
 #### Suma
@@ -331,7 +331,7 @@ media_resultado
 ## Librerías en R
 
 Las Librerías (o paquetes) en R son conjuntos de funciones y datos
-adicionales que extienden las capacidades de R. Puedes instalar y cargar
+adicionales que extienden las capacidades de R. Podes instalar y cargar
 bibliotecas para acceder a funcionalidades adicionales.
 
 Para instalar una biblioteca, utiliza la función
