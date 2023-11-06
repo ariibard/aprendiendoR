@@ -1,0 +1,41 @@
+---
+title: "Práctica Clase 1"
+author: "Martina"
+date: "`r Sys.Date()`"
+lang: "es"
+output:
+  rmdformats::robobook:
+    lightbox: TRUE
+    highlight: tango
+    toc: 3
+    number-sections: TRUE
+    code-folding: show
+    code_download: TRUE
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+1.  Crear dos objetos y asignarles: a uno nombres y a otro edad
+
+```{r}
+# consigna 1
+```
+
+2.  Para las dos variables creadas en el punto anterior, verificar la
+    clase o el tipo de objeto:
+
+```{r}
+# consigna 2
+```
+
+3.  Convertir el objeto nombres en uno de tipo numérico. ¿Qué sucede?
+
+```{r}
+# consigna 3
+```
