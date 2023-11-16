@@ -1,6 +1,6 @@
 ---
 title: "Introducción al uso de R"
-author: "Ariana Bard"
+author: "Ariana Bardauil"
 date: "`r Sys.Date()`"
 lang: "es"
 output:
@@ -417,37 +417,78 @@ cuit <- as.character(cuit)
 cuit
 ```
 
-# Clase 2
+# Clase 2 - Introducción a Tidyverse
 
-En esta segunda clase, profundizaremos en las estructuras de objetos en R, aprenderemos cómo importar y exportar datos, y exploraremos las capacidades de tidyverse para el análisis de datos.
+En esta segunda clase, profundizaremos en las estructuras de objetos en
+R, aprenderemos cómo importar y exportar datos, y exploraremos las
+capacidades de tidyverse para el análisis de datos.
 
 ### Estructuras de datos
 
-En R, hay varias estructuras de objetos que permiten almacenar y manipular datos de manera eficiente:
+En R, hay varias estructuras de objetos que permiten almacenar y
+manipular datos de manera eficiente. Un vector es una secuencia de
+valores del mismo tipo. Si vemos `mi_vector` y observamos la clase,
+vemos que si ponemos números y texto adentro va a tomar todos como
+"caracter". Además, dentro de un vector podemos poner objetos ya creados
+previamente.
 
-Vector: Un vector es una secuencia de valores del mismo tipo. Son del mismo tipo que los datos que contienen
+NOTA: Para correr de a 1 linea de código podes apretar CTRL+ENTER
+
 ```{r}
 # Objetos
-Nombre <- "Ariana"
+Nombre <- "Martina"
 
 # Vectores
-mi_vector <- c(1, 2, 3, 4, 5)
+mi_vector <- c(1, 2, 3, 4, 5,Nombre)
 
+# Para borrar el entorno
+rm(Nombre)
+
+# Creamos un vector con caracteres y uno con números
 paises <- c("Argentina", "Brasil", "Uruguay")
 
 numeros <- c(1,2,3)
+
 class(numeros)
 class(paises)
+class(mi_vector)
+```
 
+Las **matrices** son estructuras bidimensionales de elementos del mismo
+tipo organizados en filas y columnas. Todos los elementos de una matriz
+deben ser del mismo tipo de datos (numéricos, caracteres, etc.)
+
+```{r}
 # Creación de una matriz
 mi_matriz <- matrix(1:6, nrow = 2, ncol = 3)
+mi_matriz
+```
 
+**Data frame**: Es similar a una matriz, pero puede contener columnas
+con diferentes tipos de datos. Es la estructura más utilizada para
+almacenar conjuntos de datos tabulares, como una hoja de cálculo, donde
+cada columna puede ser de un tipo diferente.
+
+```{r}
 # Creación de un data frame
 mi_data_frame <- data.frame(
   Nombre = c("Ana", "Carlos", "Eva"),
   Edad = c(25, 30, 22)
 )
 
+# Otra forma de crear data frame
+plantas <- c("Lavanda","Menta","Pino","Potus")
+tipo <- c("Aromatica","Decorativa","Arbol","De interior")
+tamano <- c("Grande","Chica","Super Grande", "Mini")
+
+plantitas <- data.frame(plantas,tipo, tamano) #as.data.frame
+```
+
+**Lista:** Es una estructura que puede contener elementos de diferentes
+tipos (números, cadenas, otras listas, etc.) organizados en una
+secuencia y pueden tener diferentes longitudes.
+
+```{r}
 # Creación de una lista
 mi_lista <- list(
   Nombres = c("Ariana", "Martina"),
@@ -455,48 +496,59 @@ mi_lista <- list(
 )
 ```
 
-
-
-
 ## Importación y exportación
 
 ### Importación
 
-En R, puedes importar datos desde diferentes tipos de archivos, como CSV, Excel, y más. Utilizamos funciones de paquetes como read.csv, read.xlsx 
+En R, puedes importar datos desde diferentes tipos de archivos, como
+CSV, Excel, y más. Utilizamos funciones de paquetes como read.csv,
+read.xlsx
 
 Desde una **url**:
 
 ```{r}
-#Librería readr para importar archivos: 
-#install.packages("readr")
-library(readr)
-library(readxl)
+
 
 #Defino url
 url <- ("https://datosabiertos.desarrollosocial.gob.ar/dataset/d45687c0-f2ba-41d9-9989-0ad9799308ae/resource/c5c925e0-7ce0-41e5-b3ff-8ebb51d4be72/download/potenciar-trabajo-titulares-2022-10-01.csv")
-potenciar_trabajo <- read_csv(url)
+
+potenciar_trabajo <- read.csv(url)
+
+
+
 
 
 
 ```
 
-*Dato*: Si no sabes o recordas los argumentos de una función, podes llamar a la función `help()` que trae la documentación de la función:
+### Para trabajar con sheets de google
+
+```{r}
+# Para trabajar con sheets de google library(googlesheets4)
+library(googlesheets4)
+
+#gs4_auth() 
+#recomendaciones <- read_sheet("link del google sheet")
+```
+
+Si no sabes o recordas los argumentos de una función, podes llamar a la
+función `help()` que trae la documentación de la función:
 
 ```{r}
 
-help(read_csv)
+#help(read_csv)
 #?read_csv
+#??read_sheet
 
 ```
 
 Desde archivo **csv**:
 
 ```{r}
-potenciar_trabajo <- read_csv("data/potenciar-trabajo-titulares-activos-2022-10-01.csv")
+potenciar_trabajo <- read.csv("data/potenciar-trabajo-titulares-2022-10-01.csv")
 
+#?read_csv
 ```
-
-También pueden descargarse desde files 
 
 Desde archivo **.sav**:
 
@@ -521,12 +573,13 @@ precios_combustibles <-  read_excel("data/precios_res1_2018.xlsx")
 
 ### Exportación
 
-También, puedo querer exportar los datos trabajados en R a otros formato:
+También, puedo querer exportar los datos trabajados en R a otros
+formato:
 
 A un archivo **.csv**:
 
 ```{r}
-write.csv(mi_data_frame, paste0("../data/", clase, "/mi_data_frame.csv"), row.names = F, fileEncoding = "UTF-8")
+write.csv(plantitas, paste0("data/df_plantas.csv"), row.names = F, fileEncoding = "UTF-8")
 ```
 
 A un archivo **.xlsx**:
@@ -535,24 +588,40 @@ A un archivo **.xlsx**:
 #install.packages(openxlsx)
 library(openxlsx)
 
-write.xlsx(mi_data_frame,paste0("../data/", clase, "/mi_data_frame.xlsx"), rowNames = F)
+write.xlsx(plantitas,"data/plantitas.xlsx", rowNames = F)
+
+
+library(writexl)
+
+# Para exportar a una carpeta anterior a la de mi directorio 
+#write_xlsx(plantitas, "~/Github/aprendiendoR/practica/plantitas.xlsx")
 ```
 
 A un archivo **.sav**:
 
 ```{r}
+
+# Otra forma de armar el path 
+
+carpeta <- "data/"
+nombre_archivo <- "mi_data_frame.sav"
+
+#paste0()
 #library(haven)
-write_sav(mi_data_frame, paste0("../data/", clase, "/mi_data_frame.sav"))
+write_sav(mi_data_frame, paste0(carpeta,nombre_archivo))
 
 ```
 
-Por supuesto que hay otros formatos en los que se pueden importar y exportar datos desde R. Pueden encontrar más información [aquí](https://r-coder.com/exportar-datos-r/) o [aquí](https://myrbooksp.netlify.app/import.html).
+Otras formas de exportar podes encontrarlas
+[aquí](https://r-coder.com/exportar-datos-r/) o
+[aquí](https://myrbooksp.netlify.app/import.html).
 
 ## Resumen de los datos
 
-Antes de extraer datos, es posible explorar los distintos objetos y acceder a ellos.
+Es una buena práctica antes de comenzar a analizar, graficar, etc, ver
+la estructura de los datos
 
-Para conocer la estructura del objeto podemos usar `str()`:
+Para conocerla podemos usar `str()`:
 
 ```{r}
 #df
@@ -573,10 +642,7 @@ names(mi_data_frame)
 #Se puede modificar el nombre de las columnas con la misma función: 
 
 names(mi_data_frame) <- c("Nombres", "Edades")
-names(registro)
 
-#Lista
-names(listado)
 
 ```
 
@@ -606,7 +672,8 @@ unique(potenciar_trabajo$provincia)
 duplicated(mi_data_frame$Nombres)
 ```
 
-El `$` permite acceder a un subconjunto o elemento de un df o de una lista. También se pueden acceder a través de `[[]]`.
+El `$` permite acceder a un subconjunto o elemento de un df o de una
+lista. También se pueden acceder a través de `[[]]`.
 
 ```{r}
 
@@ -614,7 +681,8 @@ unique(potenciar_trabajo[["provincia"]])
 
 ```
 
-Por último, se pueden ver la cantidad de categorías de una variable con `lenght()` o `distinct()` (esta última pertenece a la libería Dplyr, incluida en el paquete Tidyverse que veremos más adelante).
+Por último, se pueden ver la cantidad de categorías de una variable con
+`lenght()` o `distinct()`
 
 ```{r}
 
@@ -626,12 +694,16 @@ distinct(potenciar_trabajo, provincia)
 
 ```
 
-
 ## Tidyverse
 
+Tidyverse es un conjunto de paquetes en R diseñados para facilitar la
+manipulación, visualización y análisis de datos. Está basado en un
+enfoque coherente y se centra en la creación de código claro y legible
+
+Incluye varios paquetes clave, como dplyr, ggplot2, tidyr, readr, entre
+otros. Cada uno de estos paquetes se centra en una tarea específica,
+como manipulación de datos, visualización, lectura de datos y más.
 [documentación](https://www.tidyverse.org/packages/).
-
-
 
 ```{r}
 #install.packages("tidyverse")
@@ -639,13 +711,37 @@ library(tidyverse)
 
 ```
 
-Vamos a seguir trabajando con el dataframe del potenciar trabajo. 
+Vamos a seguir trabajando con el dataframe del potenciar trabajo.
+
+El paquete `Janitor` es una herramienta útil en R que se utiliza para
+limpiar y preprocesar datos de una manera efectiva. Su principal
+objetivo es facilitar la limpieza y organización de conjuntos de datos
+de una manera más rápida y sencilla. Muchas veces los formularios o df
+vienen con nombres de columnas con caracteres especiales o espacios lo
+que dificulta un poco su manipulación. La función `clean_names()` de
+este paquete permite resolver ese problema.
 
 ```{r}
 #install.package("janitor")
-library(janitor) #Janitor nos permite limpiar los nombres de las variables
+library(janitor)  #Janitor nos permite limpiar los nombres de las variables
 
-#Importo
+# Ejemplo de janitor
+"Nombres DE persoñas?? " <- c("Ariana","Martina")
+"Cantidad de computaDORAS?" <- c("1","3")
+
+df_compus <- data.frame(`Cantidad de computaDORAS?`,`Nombres DE persoñas?? `)
+
+#Observamos el antes
+df_compus
+
+
+df_compus <- df_compus %>% 
+  clean_names()
+
+# Observamos el despues
+df_compus
+
+
 
 potenciar_trabajo_clean <-potenciar_trabajo%>% 
   clean_names() #limpiamos los nombres para no tener errores por los caracteres
@@ -662,11 +758,23 @@ colnames(potenciar_trabajo)
 
 ### Select()
 
-
+Permite seleccionar columnas específicas de un conjunto de datos. Puedes
+especificar las columnas que quieres mantener usando sus nombres o
+utilizando funciones como **`starts_with()`**, **`ends_with()`**,
+**`contains()`**, entre otras
 
 ```{r}
 titulares <- potenciar_trabajo %>% 
   select(provincia, titulares, periodo)
+
+
+titulares <- potenciar_trabajo %>% 
+  select(starts_with("prov"), # empieza con
+         contains("titulares"), # contiene
+         ends_with("riodo")) %>% # termina con
+  # Si observamos me trajo tambien provincia_id 
+  #Esto se debe a que buscó todas las variables que comienzan con prov
+  select(-provincia_id) # con el simbolo - deselecionamos variables
 
 #también podríamos acceder mediante el índice, el orden de esas columnas: 
 
@@ -679,29 +787,44 @@ gc() #limpia la memoria
 #rm(list=ls())
 ```
 
+### Filter()
 
-
-## Filter()
-
-
+Se usa para seleccionar filas específicas de un conjunto de datos según
+ciertos criterios o condiciones. Por ejemplo, puedes filtrar filas donde
+una variable sea mayor que cierto valor o cumpla una condición lógica.
 
 ```{r}
+
 buenos_aires <- titulares %>% filter(provincia == "Buenos Aires")
+
+sin_buenos_aires <- titulares %>% filter(!str_detect(provincia,"Buenos Aires|[Cc]or| ester")) #stringr
+
+#regex 
+
+#?str_detect
+
+write.xlsx(buenos_aires, "data/buenos_aires_potenciar.xlsx")
 ```
 
-
+`%in%` Se utiliza para buscar todo lo que coincide con lo que está
+dentro de
 
 ```{r}
 
-provincias_noa<-c("Jujuy", "Salta", "Tucumán", "Catamarca", "La Rioja", "Santiago del Estero")
+provincias_noa <- c("Jujuy", "Salta", "Tucumán", "Catamarca", "La Rioja", "Santiago del Estero")
 
 noa <- titulares %>% filter(provincia%in%provincias_noa)
+
+#titulares %>% filter(month(periodo) == 03 )
+#titulares %>% filter(titulares > 100 )
 head(noa)
 ```
 
 ## Arrange()
 
-
+Ordena las filas de un conjunto de datos basándose en una o más
+columnas. Puedes ordenar de forma ascendente o descendente usando el
+argumento **`desc()`**.
 
 ```{r}
 #orden ascendente
@@ -717,7 +840,9 @@ buenos_aires
 
 ## Mutate()
 
-
+Crea nuevas columnas o modifica las existentes, aplicando operaciones a
+los datos existentes. Puedes calcular nuevos valores o transformar
+columnas existentes con diferentes funciones.
 
 ```{r}
 buenos_aires <- buenos_aires %>% 
@@ -732,36 +857,106 @@ select(buenos_aires, provincia, porcentaje_por_provincia)
 
 ## Group_by() y summarise()
 
+1.  **`summarise()` / `summarize()`:** Se usa para resumir datos,
+    calcular estadísticas resumidas como la media, la suma, el recuento,
+    etc., para grupos específicos de datos.
 
+2.  **`group_by()`:** Se utiliza junto con otras funciones para realizar
+    operaciones por grupos. Agrupa los datos según una o más variables
+    para realizar cálculos y operaciones específicas en cada grupo.
 
 ```{r}
 #cantidad de filas por año
-potenciar_por_ano <- buenos_aires %>% group_by(periodo) %>% summarise(barrios_creados = sum(titulares))
-total_anual
+potenciar_por_ano <- buenos_aires %>% group_by(year(periodo)) %>% summarise(titulares = sum(titulares))
 
-#promedio 
-buenos_aires_total <- buenos_aires %>% group_by(provincia) %>% summarise(total = sum(titulares))
-flias
+potenciar_por_ano
+#total 
+total_por_provincia <- titulares %>% 
+  mutate(ano = year(periodo)) %>% group_by(provincia, ano) %>% summarise(total = sum(titulares))
 
+total_por_provincia
+
+# n()
+titulares %>% 
+  group_by(periodo) %>% 
+  summarise(N = n())
 ```
 
-La función `n()` del paquere `dplyr` permite contar el número de observaciones en un grupo
+La función `n()` del paquere `dplyr` permite contar el número de
+observaciones en un grupo
 
 ## Rename()
 
-
+La función **`rename()`** en el paquete **`dplyr`** se utiliza para
+cambiar los nombres de las columnas de un conjunto de datos. Permite
+renombrar una o varias columnas de manera sencilla y clara.
 
 ```{r}
 #nombre nuevo = nombre a cambiar
 
+buenos_aires <- buenos_aires %>% 
+  rename("fecha" = periodo)
+
 ```
+
+**Pipes `%>%`:** Aunque no es una función de **`dplyr`**, el uso de
+pipes es común en combinación con **`dplyr`**. Permiten encadenar
+operaciones de manera más legible y eficiente, facilitando la
+manipulación de datos en pasos secuenciales
 
 ## Gráficos
 
+El paquete "esquisse" es una herramienta diseñada para facilitar la
+exploración y visualización interactiva de conjuntos de datos en R,
+especialmente útil para usuarios que prefieren interfaces gráficas
+
 ```{r}
-#esquisse::esquisser(unidades_inclusion_urbana)
+
+#install.packages("esquisse")
+#esquisse::esquisser(potenciar_trabajo)
+
+ggplot(potenciar_trabajo) +
+  aes(x = periodo, weight = titulares) +
+  geom_bar(fill = "#FF69B4") +
+  labs(
+    title = "Potenciar trabajo por periodo",
+    subtitle = "Subtitulo",
+    caption = "Fuente: Datos abiertos"
+  ) +
+  coord_flip() +
+  ggthemes::theme_base() +
+  theme(
+    plot.title = element_text(size = 22L,
+    face = "bold",
+    hjust = 0.5)
+  )
 ```
 
+## Práctica
 
-# Práctica
+Recordá realizarlo en la carpeta prácticas!
 
+1.   Elige un dataset. Puedes elegirlo de cualquier sitio web. Por
+    ejemplo: datos.gob.ar
+
+2.  Importa el archivo y genera un objeto que lo contenga
+
+    ```{r}
+    # read.csv()
+
+
+    ```
+
+3.  Crea una nueva columna o generá una sumarización agrupada
+
+    ```{r}
+    # mutate()
+    # group_by() y summarise()
+
+    ```
+
+4.  Con el uso de esquisse, genera un gráfico
+
+    ```{r}
+    #esquisse::esquisser()
+    ```

@@ -1,5 +1,5 @@
 ---
-title: "Práctica Clase 1"
+title: "Prácticas"
 author: "Martina"
 date: "`r Sys.Date()`"
 lang: "es"
@@ -20,6 +20,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Clase 1 
 
 1.  Crear dos objetos y asignarles: a uno nombres y a otro edad
 
@@ -39,3 +40,32 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 # consigna 3
 ```
+
+# Clase 2
+
+Recordá realizarlo en la carpeta prácticas!
+
+1.   Elige un dataset. Puedes elegirlo de cualquier sitio web. Por
+    ejemplo: datos.gob.ar
+
+2.  Importa el archivo y genera un objeto que lo contenga
+
+    ```{r}
+    # read.csv()
+
+
+    ```
+
+3.  Crea una nueva columna o generá una sumarización agrupada
+
+    ```{r}
+    # mutate()
+    # group_by() y summarise()
+
+    ```
+
+4.  Con el uso de esquisse, genera un gráfico
+
+    ```{r}
+    #esquisse::esquisser()
+    ```

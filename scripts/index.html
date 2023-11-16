@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
 
-        <meta name="author" content="Ariana Bard" />
+        <meta name="author" content="Ariana Bardauil" />
     
-        <meta name="date" content="2023-11-06" />
+        <meta name="date" content="2023-11-16" />
     
     <title>Introducción al uso de R</title>
 
@@ -1963,13 +1963,39 @@ margin-left: 0 !important;
           <li><a href="#librerías-en-r" id="toc-librerías-en-r">Librerías en R</a></li>
           <li><a href="#práctica" id="toc-práctica">Práctica</a></li>
           </ul></li>
+          <li><a href="#clase-2---introducción-a-tidyverse" id="toc-clase-2---introducción-a-tidyverse">Clase 2 -
+          Introducción a Tidyverse</a>
+          <ul>
+          <li><a href="#estructuras-de-datos" id="toc-estructuras-de-datos">Estructuras de datos</a></li>
+          <li><a href="#importación-y-exportación" id="toc-importación-y-exportación">Importación y
+          exportación</a>
+          <ul>
+          <li><a href="#importación" id="toc-importación">Importación</a></li>
+          <li><a href="#para-trabajar-con-sheets-de-google" id="toc-para-trabajar-con-sheets-de-google">Para trabajar con
+          sheets de google</a></li>
+          <li><a href="#exportación" id="toc-exportación">Exportación</a></li>
+          </ul></li>
+          <li><a href="#resumen-de-los-datos" id="toc-resumen-de-los-datos">Resumen de los datos</a></li>
+          <li><a href="#tidyverse" id="toc-tidyverse">Tidyverse</a>
+          <ul>
+          <li><a href="#select" id="toc-select">Select()</a></li>
+          <li><a href="#filter" id="toc-filter">Filter()</a></li>
+          </ul></li>
+          <li><a href="#arrange" id="toc-arrange">Arrange()</a></li>
+          <li><a href="#mutate" id="toc-mutate">Mutate()</a></li>
+          <li><a href="#group_by-y-summarise" id="toc-group_by-y-summarise">Group_by() y
+          summarise()</a></li>
+          <li><a href="#rename" id="toc-rename">Rename()</a></li>
+          <li><a href="#gráficos" id="toc-gráficos">Gráficos</a></li>
+          <li><a href="#práctica-1" id="toc-práctica-1">Práctica</a></li>
+          </ul></li>
           </ul>
         </nav>
         <ul class="authors">
           <li class="divider"></li>
                                 <li><span><i class="glyphicon glyphicon-user"></i> Ariana
-Bard</span></li>
-                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 2023-11-06</span></li>
+Bardauil</span></li>
+                                         <li><span><i class="glyphicon glyphicon-calendar"></i> 2023-11-16</span></li>
                   </ul>     
       </div>
       <div class="book-body fixed">
@@ -2360,9 +2386,1358 @@ sucede?</li>
 <pre><code>## [1] &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot;</code></pre>
 </div>
 </div>
+<div id="clase-2---introducción-a-tidyverse" class="section level1">
+<h1>Clase 2 - Introducción a Tidyverse</h1>
+<p>En esta segunda clase, profundizaremos en las estructuras de objetos
+en R, aprenderemos cómo importar y exportar datos, y exploraremos las
+capacidades de tidyverse para el análisis de datos.</p>
+<div id="estructuras-de-datos" class="section level3">
+<h3>Estructuras de datos</h3>
+<p>En R, hay varias estructuras de objetos que permiten almacenar y
+manipular datos de manera eficiente. Un vector es una secuencia de
+valores del mismo tipo. Si vemos <code>mi_vector</code> y observamos la
+clase, vemos que si ponemos números y texto adentro va a tomar todos
+como “caracter”. Además, dentro de un vector podemos poner objetos ya
+creados previamente.</p>
+<p>NOTA: Para correr de a 1 linea de código podes apretar CTRL+ENTER</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" tabindex="-1"></a><span class="co"># Objetos</span></span>
+<span id="cb60-2"><a href="#cb60-2" tabindex="-1"></a>Nombre <span class="ot">&lt;-</span> <span class="st">&quot;Martina&quot;</span></span>
+<span id="cb60-3"><a href="#cb60-3" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" tabindex="-1"></a><span class="co"># Vectores</span></span>
+<span id="cb60-5"><a href="#cb60-5" tabindex="-1"></a>mi_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>,Nombre)</span>
+<span id="cb60-6"><a href="#cb60-6" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" tabindex="-1"></a><span class="co"># Para borrar el entorno</span></span>
+<span id="cb60-8"><a href="#cb60-8" tabindex="-1"></a><span class="fu">rm</span>(Nombre)</span>
+<span id="cb60-9"><a href="#cb60-9" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="#cb60-10" tabindex="-1"></a><span class="co"># Creamos un vector con caracteres y uno con números</span></span>
+<span id="cb60-11"><a href="#cb60-11" tabindex="-1"></a>paises <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Brasil&quot;</span>, <span class="st">&quot;Uruguay&quot;</span>)</span>
+<span id="cb60-12"><a href="#cb60-12" tabindex="-1"></a></span>
+<span id="cb60-13"><a href="#cb60-13" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb60-14"><a href="#cb60-14" tabindex="-1"></a></span>
+<span id="cb60-15"><a href="#cb60-15" tabindex="-1"></a><span class="fu">class</span>(numeros)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" tabindex="-1"></a><span class="fu">class</span>(paises)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" tabindex="-1"></a><span class="fu">class</span>(mi_vector)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Las <strong>matrices</strong> son estructuras bidimensionales de
+elementos del mismo tipo organizados en filas y columnas. Todos los
+elementos de una matriz deben ser del mismo tipo de datos (numéricos,
+caracteres, etc.)</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" tabindex="-1"></a><span class="co"># Creación de una matriz</span></span>
+<span id="cb66-2"><a href="#cb66-2" tabindex="-1"></a>mi_matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" tabindex="-1"></a>mi_matriz</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<p><strong>Data frame</strong>: Es similar a una matriz, pero puede
+contener columnas con diferentes tipos de datos. Es la estructura más
+utilizada para almacenar conjuntos de datos tabulares, como una hoja de
+cálculo, donde cada columna puede ser de un tipo diferente.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" tabindex="-1"></a><span class="co"># Creación de un data frame</span></span>
+<span id="cb68-2"><a href="#cb68-2" tabindex="-1"></a>mi_data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb68-3"><a href="#cb68-3" tabindex="-1"></a>  <span class="at">Nombre =</span> <span class="fu">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Carlos&quot;</span>, <span class="st">&quot;Eva&quot;</span>),</span>
+<span id="cb68-4"><a href="#cb68-4" tabindex="-1"></a>  <span class="at">Edad =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>)</span>
+<span id="cb68-5"><a href="#cb68-5" tabindex="-1"></a>)</span>
+<span id="cb68-6"><a href="#cb68-6" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="#cb68-7" tabindex="-1"></a><span class="co"># Otra forma de crear data frame</span></span>
+<span id="cb68-8"><a href="#cb68-8" tabindex="-1"></a>plantas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lavanda&quot;</span>,<span class="st">&quot;Menta&quot;</span>,<span class="st">&quot;Pino&quot;</span>,<span class="st">&quot;Potus&quot;</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" tabindex="-1"></a>tipo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Aromatica&quot;</span>,<span class="st">&quot;Decorativa&quot;</span>,<span class="st">&quot;Arbol&quot;</span>,<span class="st">&quot;De interior&quot;</span>)</span>
+<span id="cb68-10"><a href="#cb68-10" tabindex="-1"></a>tamano <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Grande&quot;</span>,<span class="st">&quot;Chica&quot;</span>,<span class="st">&quot;Super Grande&quot;</span>, <span class="st">&quot;Mini&quot;</span>)</span>
+<span id="cb68-11"><a href="#cb68-11" tabindex="-1"></a></span>
+<span id="cb68-12"><a href="#cb68-12" tabindex="-1"></a>plantitas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(plantas,tipo, tamano) <span class="co">#as.data.frame</span></span></code></pre></div>
+<p><strong>Lista:</strong> Es una estructura que puede contener
+elementos de diferentes tipos (números, cadenas, otras listas, etc.)
+organizados en una secuencia y pueden tener diferentes longitudes.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" tabindex="-1"></a><span class="co"># Creación de una lista</span></span>
+<span id="cb69-2"><a href="#cb69-2" tabindex="-1"></a>mi_lista <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb69-3"><a href="#cb69-3" tabindex="-1"></a>  <span class="at">Nombres =</span> <span class="fu">c</span>(<span class="st">&quot;Ariana&quot;</span>, <span class="st">&quot;Martina&quot;</span>),</span>
+<span id="cb69-4"><a href="#cb69-4" tabindex="-1"></a>  <span class="at">Cuit =</span> <span class="fu">c</span>(<span class="dv">12345</span>, <span class="dv">67890</span>)</span>
+<span id="cb69-5"><a href="#cb69-5" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="importación-y-exportación" class="section level2">
+<h2>Importación y exportación</h2>
+<div id="importación" class="section level3">
+<h3>Importación</h3>
+<p>En R, puedes importar datos desde diferentes tipos de archivos, como
+CSV, Excel, y más. Utilizamos funciones de paquetes como read.csv,
+read.xlsx</p>
+<p>Desde una <strong>url</strong>:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" tabindex="-1"></a><span class="co">#Defino url</span></span>
+<span id="cb70-2"><a href="#cb70-2" tabindex="-1"></a>url <span class="ot">&lt;-</span> (<span class="st">&quot;https://datosabiertos.desarrollosocial.gob.ar/dataset/d45687c0-f2ba-41d9-9989-0ad9799308ae/resource/c5c925e0-7ce0-41e5-b3ff-8ebb51d4be72/download/potenciar-trabajo-titulares-2022-10-01.csv&quot;</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" tabindex="-1"></a>potenciar_trabajo <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url)</span></code></pre></div>
+</div>
+<div id="para-trabajar-con-sheets-de-google" class="section level3">
+<h3>Para trabajar con sheets de google</h3>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" tabindex="-1"></a><span class="co"># Para trabajar con sheets de google library(googlesheets4)</span></span>
+<span id="cb71-2"><a href="#cb71-2" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb71-3"><a href="#cb71-3" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="#cb71-4" tabindex="-1"></a><span class="co">#gs4_auth() </span></span>
+<span id="cb71-5"><a href="#cb71-5" tabindex="-1"></a><span class="co">#recomendaciones &lt;- read_sheet(&quot;link del google sheet&quot;)</span></span></code></pre></div>
+<p>Si no sabes o recordas los argumentos de una función, podes llamar a
+la función <code>help()</code> que trae la documentación de la
+función:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" tabindex="-1"></a><span class="co">#help(read_csv)</span></span>
+<span id="cb72-2"><a href="#cb72-2" tabindex="-1"></a><span class="co">#?read_csv</span></span>
+<span id="cb72-3"><a href="#cb72-3" tabindex="-1"></a><span class="co">#??read_sheet</span></span></code></pre></div>
+<p>Desde archivo <strong>csv</strong>:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" tabindex="-1"></a>potenciar_trabajo <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/potenciar-trabajo-titulares-2022-10-01.csv&quot;</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" tabindex="-1"></a><span class="co">#?read_csv</span></span></code></pre></div>
+<p>Desde archivo <strong>.sav</strong>:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" tabindex="-1"></a><span class="co"># install.packages(&quot;haven&quot;)</span></span>
+<span id="cb74-2"><a href="#cb74-2" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb74-3"><a href="#cb74-3" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="#cb74-4" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">&quot;data/Base.sav&quot;</span>)</span></code></pre></div>
+<p>Desde archivo <strong>.xlsx</strong>:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" tabindex="-1"></a><span class="co"># install.packages(&quot;readxl&quot;)</span></span>
+<span id="cb75-2"><a href="#cb75-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb75-3"><a href="#cb75-3" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="#cb75-4" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="#cb75-5" tabindex="-1"></a>precios_combustibles <span class="ot">&lt;-</span>  <span class="fu">read_excel</span>(<span class="st">&quot;data/precios_res1_2018.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="exportación" class="section level3">
+<h3>Exportación</h3>
+<p>También, puedo querer exportar los datos trabajados en R a otros
+formato:</p>
+<p>A un archivo <strong>.csv</strong>:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" tabindex="-1"></a><span class="fu">write.csv</span>(plantitas, <span class="fu">paste0</span>(<span class="st">&quot;data/df_plantas.csv&quot;</span>), <span class="at">row.names =</span> F, <span class="at">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+<p>A un archivo <strong>.xlsx</strong>:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" tabindex="-1"></a><span class="co">#install.packages(openxlsx)</span></span>
+<span id="cb77-2"><a href="#cb77-2" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb77-3"><a href="#cb77-3" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" tabindex="-1"></a><span class="fu">write.xlsx</span>(plantitas,<span class="st">&quot;data/plantitas.xlsx&quot;</span>, <span class="at">rowNames =</span> F)</span>
+<span id="cb77-5"><a href="#cb77-5" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" tabindex="-1"></a></span>
+<span id="cb77-7"><a href="#cb77-7" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb77-8"><a href="#cb77-8" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="#cb77-9" tabindex="-1"></a><span class="co"># Para exportar a una carpeta anterior a la de mi directorio </span></span>
+<span id="cb77-10"><a href="#cb77-10" tabindex="-1"></a><span class="co">#write_xlsx(plantitas, &quot;~/Github/aprendiendoR/practica/plantitas.xlsx&quot;)</span></span></code></pre></div>
+<p>A un archivo <strong>.sav</strong>:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" tabindex="-1"></a><span class="co"># Otra forma de armar el path </span></span>
+<span id="cb78-2"><a href="#cb78-2" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="#cb78-3" tabindex="-1"></a>carpeta <span class="ot">&lt;-</span> <span class="st">&quot;data/&quot;</span></span>
+<span id="cb78-4"><a href="#cb78-4" tabindex="-1"></a>nombre_archivo <span class="ot">&lt;-</span> <span class="st">&quot;mi_data_frame.sav&quot;</span></span>
+<span id="cb78-5"><a href="#cb78-5" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="#cb78-6" tabindex="-1"></a><span class="co">#paste0()</span></span>
+<span id="cb78-7"><a href="#cb78-7" tabindex="-1"></a><span class="co">#library(haven)</span></span>
+<span id="cb78-8"><a href="#cb78-8" tabindex="-1"></a><span class="fu">write_sav</span>(mi_data_frame, <span class="fu">paste0</span>(carpeta,nombre_archivo))</span></code></pre></div>
+<p>Otras formas de exportar podes encontrarlas <a href="https://r-coder.com/exportar-datos-r/">aquí</a> o <a href="https://myrbooksp.netlify.app/import.html">aquí</a>.</p>
+</div>
+</div>
+<div id="resumen-de-los-datos" class="section level2">
+<h2>Resumen de los datos</h2>
+<p>Es una buena práctica antes de comenzar a analizar, graficar, etc,
+ver la estructura de los datos</p>
+<p>Para conocerla podemos usar <code>str()</code>:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" tabindex="-1"></a><span class="co">#df</span></span>
+<span id="cb79-2"><a href="#cb79-2" tabindex="-1"></a><span class="fu">str</span>(potenciar_trabajo)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    4769 obs. of  8 variables:
+##  $ periodo        : chr  &quot;2020-12-01&quot; &quot;2020-12-01&quot; &quot;2020-12-01&quot; &quot;2020-12-01&quot; ...
+##  $ provincia      : chr  &quot;Buenos Aires&quot; &quot;Buenos Aires&quot; &quot;Buenos Aires&quot; &quot;Buenos Aires&quot; ...
+##  $ provincia_id   : int  6 6 6 6 6 6 6 6 6 6 ...
+##  $ departamento   : chr  &quot;25 de Mayo&quot; &quot;9 de Julio&quot; &quot;Adolfo Alsina&quot; &quot;Adolfo Gonzales Chaves&quot; ...
+##  $ departamento_id: int  6854 6588 6007 6014 6021 6028 6077 6035 6042 6049 ...
+##  $ municipio      : chr  &quot;25 De Mayo&quot; &quot;9 De Julio&quot; &quot;Adolfo Alsina&quot; &quot;Adolfo Gonzales Chaves&quot; ...
+##  $ municipio_id   : int  68540854 65880588 60070007 60140014 60210021 60280028 60770077 60350035 60420042 60490049 ...
+##  $ titulares      : int  379 209 346 248 139 20469 185 12612 250 478 ...</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" tabindex="-1"></a><span class="co">#vector</span></span>
+<span id="cb81-2"><a href="#cb81-2" tabindex="-1"></a><span class="fu">str</span>(paises)</span></code></pre></div>
+<pre><code>##  chr [1:3] &quot;Argentina&quot; &quot;Brasil&quot; &quot;Uruguay&quot;</code></pre>
+<p>Podes acceder a los nombres de los elementos con
+<code>names()</code>:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" tabindex="-1"></a><span class="co">#DF</span></span>
+<span id="cb83-2"><a href="#cb83-2" tabindex="-1"></a><span class="fu">names</span>(mi_data_frame)</span></code></pre></div>
+<pre><code>## [1] &quot;Nombre&quot; &quot;Edad&quot;</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" tabindex="-1"></a><span class="co">#Se puede modificar el nombre de las columnas con la misma función: </span></span>
+<span id="cb85-2"><a href="#cb85-2" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="#cb85-3" tabindex="-1"></a><span class="fu">names</span>(mi_data_frame) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Nombres&quot;</span>, <span class="st">&quot;Edades&quot;</span>)</span></code></pre></div>
+<p>Acceder a las primeras y últimas filas con <code>head()</code>y
+<code>tail()</code>:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" tabindex="-1"></a><span class="co">#primeras filas</span></span>
+<span id="cb86-2"><a href="#cb86-2" tabindex="-1"></a><span class="fu">head</span>(potenciar_trabajo)</span></code></pre></div>
+<pre><code>##      periodo    provincia provincia_id           departamento departamento_id
+## 1 2020-12-01 Buenos Aires            6             25 de Mayo            6854
+## 2 2020-12-01 Buenos Aires            6             9 de Julio            6588
+## 3 2020-12-01 Buenos Aires            6          Adolfo Alsina            6007
+## 4 2020-12-01 Buenos Aires            6 Adolfo Gonzales Chaves            6014
+## 5 2020-12-01 Buenos Aires            6                Alberti            6021
+## 6 2020-12-01 Buenos Aires            6        Almirante Brown            6028
+##                municipio municipio_id titulares
+## 1             25 De Mayo     68540854       379
+## 2             9 De Julio     65880588       209
+## 3          Adolfo Alsina     60070007       346
+## 4 Adolfo Gonzales Chaves     60140014       248
+## 5                Alberti     60210021       139
+## 6        Almirante Brown     60280028     20469</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" tabindex="-1"></a><span class="co">#ultimas filas</span></span>
+<span id="cb88-2"><a href="#cb88-2" tabindex="-1"></a><span class="fu">tail</span>(potenciar_trabajo)</span></code></pre></div>
+<pre><code>##         periodo provincia provincia_id departamento departamento_id
+## 4764 2022-12-01   Tucumán           90      Trancas           90112
+## 4765 2022-12-01   Tucumán           90      Trancas           90112
+## 4766 2022-12-01   Tucumán           90  Yerba Buena           90119
+## 4767 2022-12-01   Tucumán           90  Yerba Buena           90119
+## 4768 2022-12-01   Tucumán           90  Yerba Buena           90119
+## 4769 2022-12-01   Tucumán           90  Yerba Buena           90119
+##          municipio municipio_id titulares
+## 4764         Tapia    901120104         6
+## 4765       Trancas    901120106       536
+## 4766 Cevil Redondo    901190019       263
+## 4767    San Javier    901190087        29
+## 4768 Villa Carmela    901190113        34
+## 4769   Yerba Buena    901190112       590</code></pre>
+<p>Obtener un resumen con <code>summary()</code>:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" tabindex="-1"></a><span class="fu">summary</span>(potenciar_trabajo)</span></code></pre></div>
+<pre><code>##    periodo           provincia          provincia_id   departamento      
+##  Length:4769        Length:4769        Min.   : 2.00   Length:4769       
+##  Class :character   Class :character   1st Qu.:14.00   Class :character  
+##  Mode  :character   Mode  :character   Median :42.00   Mode  :character  
+##                                        Mean   :46.31                     
+##                                        3rd Qu.:82.00                     
+##                                        Max.   :94.00                     
+##  departamento_id  municipio          municipio_id         titulares       
+##  Min.   : 2001   Length:4769        Min.   :    90014   Min.   :     1.0  
+##  1st Qu.:14154   Class :character   1st Qu.:141540062   1st Qu.:     5.0  
+##  Median :42035   Mode  :character   Median :420350026   Median :    28.0  
+##  Mean   :46410                      Mean   :463560172   Mean   :   759.1  
+##  3rd Qu.:82021                      3rd Qu.:820210255   3rd Qu.:   165.0  
+##  Max.   :94014                      Max.   :940140003   Max.   :100003.0</code></pre>
+<p>Y acceder a los valores únicos o distintos con
+<code>unique()</code>:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" tabindex="-1"></a><span class="fu">unique</span>(potenciar_trabajo<span class="sc">$</span>provincia)</span></code></pre></div>
+<pre><code>##  [1] &quot;Buenos Aires&quot;           &quot;Catamarca&quot;              &quot;Chaco&quot;                 
+##  [4] &quot;Chubut&quot;                 &quot;Ciudad de Buenos Aires&quot; &quot;Corrientes&quot;            
+##  [7] &quot;Córdoba&quot;                &quot;Entre Ríos&quot;             &quot;Formosa&quot;               
+## [10] &quot;Jujuy&quot;                  &quot;La Pampa&quot;               &quot;La Rioja&quot;              
+## [13] &quot;Mendoza&quot;                &quot;Misiones&quot;               &quot;Neuquén&quot;               
+## [16] &quot;Río Negro&quot;              &quot;Salta&quot;                  &quot;San Juan&quot;              
+## [19] &quot;San Luis&quot;               &quot;Santa Cruz&quot;             &quot;Santa Fe&quot;              
+## [22] &quot;Santiago del Estero&quot;    &quot;Tierra del Fuego&quot;       &quot;Tucumán&quot;               
+## [25] &quot;CÃ³rdoba&quot;               &quot;Entre RÃ­os&quot;            &quot;TucumÃ¡n&quot;</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" tabindex="-1"></a><span class="fu">duplicated</span>(mi_data_frame<span class="sc">$</span>Nombres)</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE</code></pre>
+<p>El <code>$</code> permite acceder a un subconjunto o elemento de un
+df o de una lista. También se pueden acceder a través de
+<code>[[]]</code>.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" tabindex="-1"></a><span class="fu">unique</span>(potenciar_trabajo[[<span class="st">&quot;provincia&quot;</span>]])</span></code></pre></div>
+<pre><code>##  [1] &quot;Buenos Aires&quot;           &quot;Catamarca&quot;              &quot;Chaco&quot;                 
+##  [4] &quot;Chubut&quot;                 &quot;Ciudad de Buenos Aires&quot; &quot;Corrientes&quot;            
+##  [7] &quot;Córdoba&quot;                &quot;Entre Ríos&quot;             &quot;Formosa&quot;               
+## [10] &quot;Jujuy&quot;                  &quot;La Pampa&quot;               &quot;La Rioja&quot;              
+## [13] &quot;Mendoza&quot;                &quot;Misiones&quot;               &quot;Neuquén&quot;               
+## [16] &quot;Río Negro&quot;              &quot;Salta&quot;                  &quot;San Juan&quot;              
+## [19] &quot;San Luis&quot;               &quot;Santa Cruz&quot;             &quot;Santa Fe&quot;              
+## [22] &quot;Santiago del Estero&quot;    &quot;Tierra del Fuego&quot;       &quot;Tucumán&quot;               
+## [25] &quot;CÃ³rdoba&quot;               &quot;Entre RÃ­os&quot;            &quot;TucumÃ¡n&quot;</code></pre>
+<p>Por último, se pueden ver la cantidad de categorías de una variable
+con <code>lenght()</code> o <code>distinct()</code></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb98-2"><a href="#cb98-2" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="#cb98-3" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(potenciar_trabajo<span class="sc">$</span>provincia)) </span></code></pre></div>
+<pre><code>## [1] 27</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" tabindex="-1"></a><span class="fu">distinct</span>(potenciar_trabajo, provincia)</span></code></pre></div>
+<pre><code>##                 provincia
+## 1            Buenos Aires
+## 2               Catamarca
+## 3                   Chaco
+## 4                  Chubut
+## 5  Ciudad de Buenos Aires
+## 6              Corrientes
+## 7                 Córdoba
+## 8              Entre Ríos
+## 9                 Formosa
+## 10                  Jujuy
+## 11               La Pampa
+## 12               La Rioja
+## 13                Mendoza
+## 14               Misiones
+## 15                Neuquén
+## 16              Río Negro
+## 17                  Salta
+## 18               San Juan
+## 19               San Luis
+## 20             Santa Cruz
+## 21               Santa Fe
+## 22    Santiago del Estero
+## 23       Tierra del Fuego
+## 24                Tucumán
+## 25               CÃ³rdoba
+## 26            Entre RÃ­os
+## 27               TucumÃ¡n</code></pre>
+</div>
+<div id="tidyverse" class="section level2">
+<h2>Tidyverse</h2>
+<p>Tidyverse es un conjunto de paquetes en R diseñados para facilitar la
+manipulación, visualización y análisis de datos. Está basado en un
+enfoque coherente y se centra en la creación de código claro y
+legible</p>
+<p>Incluye varios paquetes clave, como dplyr, ggplot2, tidyr, readr,
+entre otros. Cada uno de estos paquetes se centra en una tarea
+específica, como manipulación de datos, visualización, lectura de datos
+y más. <a href="https://www.tidyverse.org/packages/">documentación</a>.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb102-2"><a href="#cb102-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Vamos a seguir trabajando con el dataframe del potenciar trabajo.</p>
+<p>El paquete <code>Janitor</code> es una herramienta útil en R que se
+utiliza para limpiar y preprocesar datos de una manera efectiva. Su
+principal objetivo es facilitar la limpieza y organización de conjuntos
+de datos de una manera más rápida y sencilla. Muchas veces los
+formularios o df vienen con nombres de columnas con caracteres
+especiales o espacios lo que dificulta un poco su manipulación. La
+función <code>clean_names()</code> de este paquete permite resolver ese
+problema.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" tabindex="-1"></a><span class="co">#install.package(&quot;janitor&quot;)</span></span>
+<span id="cb103-2"><a href="#cb103-2" tabindex="-1"></a><span class="fu">library</span>(janitor)  <span class="co">#Janitor nos permite limpiar los nombres de las variables</span></span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" tabindex="-1"></a><span class="co"># Ejemplo de janitor</span></span>
+<span id="cb106-2"><a href="#cb106-2" tabindex="-1"></a><span class="st">&quot;Nombres DE persoñas?? &quot;</span> <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Ariana&quot;</span>,<span class="st">&quot;Martina&quot;</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" tabindex="-1"></a><span class="st">&quot;Cantidad de computaDORAS?&quot;</span> <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>,<span class="st">&quot;3&quot;</span>)</span>
+<span id="cb106-4"><a href="#cb106-4" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="#cb106-5" tabindex="-1"></a>df_compus <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Cantidad de computaDORAS?</span><span class="st">`</span>,<span class="st">`</span><span class="at">Nombres DE persoñas?? </span><span class="st">`</span>)</span>
+<span id="cb106-6"><a href="#cb106-6" tabindex="-1"></a></span>
+<span id="cb106-7"><a href="#cb106-7" tabindex="-1"></a><span class="co">#Observamos el antes</span></span>
+<span id="cb106-8"><a href="#cb106-8" tabindex="-1"></a>df_compus</span></code></pre></div>
+<pre><code>##   Cantidad.de.computaDORAS. Nombres.DE.persoñas...
+## 1                         1                 Ariana
+## 2                         3                Martina</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" tabindex="-1"></a>df_compus <span class="ot">&lt;-</span> df_compus <span class="sc">%&gt;%</span> </span>
+<span id="cb108-2"><a href="#cb108-2" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span>
+<span id="cb108-3"><a href="#cb108-3" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="#cb108-4" tabindex="-1"></a><span class="co"># Observamos el despues</span></span>
+<span id="cb108-5"><a href="#cb108-5" tabindex="-1"></a>df_compus</span></code></pre></div>
+<pre><code>##   cantidad_de_computa_doras nombres_de_personas
+## 1                         1              Ariana
+## 2                         3             Martina</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" tabindex="-1"></a>potenciar_trabajo_clean <span class="ot">&lt;-</span>potenciar_trabajo<span class="sc">%&gt;%</span> </span>
+<span id="cb110-2"><a href="#cb110-2" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="co">#limpiamos los nombres para no tener errores por los caracteres</span></span></code></pre></div>
+<p>Podemos ver las columnas como aprendimos:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" tabindex="-1"></a><span class="fu">colnames</span>(potenciar_trabajo)</span></code></pre></div>
+<pre><code>## [1] &quot;periodo&quot;         &quot;provincia&quot;       &quot;provincia_id&quot;    &quot;departamento&quot;   
+## [5] &quot;departamento_id&quot; &quot;municipio&quot;       &quot;municipio_id&quot;    &quot;titulares&quot;</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" tabindex="-1"></a><span class="co">#names(barrios_populares)</span></span></code></pre></div>
+<div id="select" class="section level3">
+<h3>Select()</h3>
+<p>Permite seleccionar columnas específicas de un conjunto de datos.
+Puedes especificar las columnas que quieres mantener usando sus nombres
+o utilizando funciones como <strong><code>starts_with()</code></strong>,
+<strong><code>ends_with()</code></strong>,
+<strong><code>contains()</code></strong>, entre otras</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" tabindex="-1"></a>titulares <span class="ot">&lt;-</span> potenciar_trabajo <span class="sc">%&gt;%</span> </span>
+<span id="cb114-2"><a href="#cb114-2" tabindex="-1"></a>  <span class="fu">select</span>(provincia, titulares, periodo)</span>
+<span id="cb114-3"><a href="#cb114-3" tabindex="-1"></a></span>
+<span id="cb114-4"><a href="#cb114-4" tabindex="-1"></a></span>
+<span id="cb114-5"><a href="#cb114-5" tabindex="-1"></a>titulares <span class="ot">&lt;-</span> potenciar_trabajo <span class="sc">%&gt;%</span> </span>
+<span id="cb114-6"><a href="#cb114-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;prov&quot;</span>), <span class="co"># empieza con</span></span>
+<span id="cb114-7"><a href="#cb114-7" tabindex="-1"></a>         <span class="fu">contains</span>(<span class="st">&quot;titulares&quot;</span>), <span class="co"># contiene</span></span>
+<span id="cb114-8"><a href="#cb114-8" tabindex="-1"></a>         <span class="fu">ends_with</span>(<span class="st">&quot;riodo&quot;</span>)) <span class="sc">%&gt;%</span> <span class="co"># termina con</span></span>
+<span id="cb114-9"><a href="#cb114-9" tabindex="-1"></a>  <span class="co"># Si observamos me trajo tambien provincia_id </span></span>
+<span id="cb114-10"><a href="#cb114-10" tabindex="-1"></a>  <span class="co">#Esto se debe a que buscó todas las variables que comienzan con prov</span></span>
+<span id="cb114-11"><a href="#cb114-11" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>provincia_id) <span class="co"># con el simbolo - deselecionamos variables</span></span>
+<span id="cb114-12"><a href="#cb114-12" tabindex="-1"></a></span>
+<span id="cb114-13"><a href="#cb114-13" tabindex="-1"></a><span class="co">#también podríamos acceder mediante el índice, el orden de esas columnas: </span></span>
+<span id="cb114-14"><a href="#cb114-14" tabindex="-1"></a></span>
+<span id="cb114-15"><a href="#cb114-15" tabindex="-1"></a>titulares_dos <span class="ot">&lt;-</span> potenciar_trabajo <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>)</span>
+<span id="cb114-16"><a href="#cb114-16" tabindex="-1"></a></span>
+<span id="cb114-17"><a href="#cb114-17" tabindex="-1"></a><span class="fu">rm</span>(titulares_dos)</span>
+<span id="cb114-18"><a href="#cb114-18" tabindex="-1"></a></span>
+<span id="cb114-19"><a href="#cb114-19" tabindex="-1"></a><span class="fu">gc</span>() <span class="co">#limpia la memoria</span></span></code></pre></div>
+<pre><code>##           used (Mb) gc trigger  (Mb) max used  (Mb)
+## Ncells 1246023 66.6    2091500 111.7  2091500 111.7
+## Vcells 2173309 16.6    8388608  64.0  3954452  30.2</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" tabindex="-1"></a><span class="co">#rm(list=ls())</span></span></code></pre></div>
+</div>
+<div id="filter" class="section level3">
+<h3>Filter()</h3>
+<p>Se usa para seleccionar filas específicas de un conjunto de datos
+según ciertos criterios o condiciones. Por ejemplo, puedes filtrar filas
+donde una variable sea mayor que cierto valor o cumpla una condición
+lógica.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" tabindex="-1"></a>buenos_aires <span class="ot">&lt;-</span> titulares <span class="sc">%&gt;%</span> <span class="fu">filter</span>(provincia <span class="sc">==</span> <span class="st">&quot;Buenos Aires&quot;</span>)</span>
+<span id="cb117-2"><a href="#cb117-2" tabindex="-1"></a></span>
+<span id="cb117-3"><a href="#cb117-3" tabindex="-1"></a>sin_buenos_aires <span class="ot">&lt;-</span> titulares <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(provincia,<span class="st">&quot;Buenos Aires|[Cc]or| ester&quot;</span>)) <span class="co">#stringr</span></span>
+<span id="cb117-4"><a href="#cb117-4" tabindex="-1"></a></span>
+<span id="cb117-5"><a href="#cb117-5" tabindex="-1"></a><span class="co">#regex </span></span>
+<span id="cb117-6"><a href="#cb117-6" tabindex="-1"></a></span>
+<span id="cb117-7"><a href="#cb117-7" tabindex="-1"></a><span class="co">#?str_detect</span></span>
+<span id="cb117-8"><a href="#cb117-8" tabindex="-1"></a></span>
+<span id="cb117-9"><a href="#cb117-9" tabindex="-1"></a><span class="fu">write.xlsx</span>(buenos_aires, <span class="st">&quot;data/buenos_aires_potenciar.xlsx&quot;</span>)</span></code></pre></div>
+<p><code>%in%</code> Se utiliza para buscar todo lo que coincide con lo
+que está dentro de</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" tabindex="-1"></a>provincias_noa <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Jujuy&quot;</span>, <span class="st">&quot;Salta&quot;</span>, <span class="st">&quot;Tucumán&quot;</span>, <span class="st">&quot;Catamarca&quot;</span>, <span class="st">&quot;La Rioja&quot;</span>, <span class="st">&quot;Santiago del Estero&quot;</span>)</span>
+<span id="cb118-2"><a href="#cb118-2" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="#cb118-3" tabindex="-1"></a>noa <span class="ot">&lt;-</span> titulares <span class="sc">%&gt;%</span> <span class="fu">filter</span>(provincia<span class="sc">%in%</span>provincias_noa)</span>
+<span id="cb118-4"><a href="#cb118-4" tabindex="-1"></a></span>
+<span id="cb118-5"><a href="#cb118-5" tabindex="-1"></a><span class="co">#titulares %&gt;% filter(month(periodo) == 03 )</span></span>
+<span id="cb118-6"><a href="#cb118-6" tabindex="-1"></a><span class="co">#titulares %&gt;% filter(titulares &gt; 100 )</span></span>
+<span id="cb118-7"><a href="#cb118-7" tabindex="-1"></a><span class="fu">head</span>(noa)</span></code></pre></div>
+<pre><code>##   provincia titulares    periodo
+## 1 Catamarca        20 2020-12-01
+## 2 Catamarca         1 2020-12-01
+## 3 Catamarca         3 2020-12-01
+## 4 Catamarca         4 2020-12-01
+## 5 Catamarca        95 2020-12-01
+## 6 Catamarca        62 2020-12-01</code></pre>
+</div>
+</div>
+<div id="arrange" class="section level2">
+<h2>Arrange()</h2>
+<p>Ordena las filas de un conjunto de datos basándose en una o más
+columnas. Puedes ordenar de forma ascendente o descendente usando el
+argumento <strong><code>desc()</code></strong>.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" tabindex="-1"></a><span class="co">#orden ascendente</span></span>
+<span id="cb120-2"><a href="#cb120-2" tabindex="-1"></a>buenos_aires <span class="ot">&lt;-</span> buenos_aires <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(periodo)</span>
+<span id="cb120-3"><a href="#cb120-3" tabindex="-1"></a><span class="fu">head</span>(buenos_aires)</span></code></pre></div>
+<pre><code>##      provincia titulares    periodo
+## 1 Buenos Aires       379 2020-12-01
+## 2 Buenos Aires       209 2020-12-01
+## 3 Buenos Aires       346 2020-12-01
+## 4 Buenos Aires       248 2020-12-01
+## 5 Buenos Aires       139 2020-12-01
+## 6 Buenos Aires     20469 2020-12-01</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" tabindex="-1"></a><span class="co">#orden descendente</span></span>
+<span id="cb122-2"><a href="#cb122-2" tabindex="-1"></a>buenos_aires <span class="ot">&lt;-</span> buenos_aires <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(periodo))</span>
+<span id="cb122-3"><a href="#cb122-3" tabindex="-1"></a>buenos_aires</span></code></pre></div>
+<pre><code>##        provincia titulares    periodo
+## 1   Buenos Aires       725 2022-12-01
+## 2   Buenos Aires       509 2022-12-01
+## 3   Buenos Aires       485 2022-12-01
+## 4   Buenos Aires       487 2022-12-01
+## 5   Buenos Aires       178 2022-12-01
+## 6   Buenos Aires     33589 2022-12-01
+## 7   Buenos Aires       355 2022-12-01
+## 8   Buenos Aires     19732 2022-12-01
+## 9   Buenos Aires       358 2022-12-01
+## 10  Buenos Aires       930 2022-12-01
+## 11  Buenos Aires      3623 2022-12-01
+## 12  Buenos Aires       558 2022-12-01
+## 13  Buenos Aires      1061 2022-12-01
+## 14  Buenos Aires       265 2022-12-01
+## 15  Buenos Aires     24294 2022-12-01
+## 16  Buenos Aires      5757 2022-12-01
+## 17  Buenos Aires       350 2022-12-01
+## 18  Buenos Aires      1005 2022-12-01
+## 19  Buenos Aires      2043 2022-12-01
+## 20  Buenos Aires      2507 2022-12-01
+## 21  Buenos Aires        92 2022-12-01
+## 22  Buenos Aires       511 2022-12-01
+## 23  Buenos Aires        99 2022-12-01
+## 24  Buenos Aires       186 2022-12-01
+## 25  Buenos Aires       324 2022-12-01
+## 26  Buenos Aires      5193 2022-12-01
+## 27  Buenos Aires       718 2022-12-01
+## 28  Buenos Aires      1119 2022-12-01
+## 29  Buenos Aires      2193 2022-12-01
+## 30  Buenos Aires       478 2022-12-01
+## 31  Buenos Aires       488 2022-12-01
+## 32  Buenos Aires       212 2022-12-01
+## 33  Buenos Aires       252 2022-12-01
+## 34  Buenos Aires       350 2022-12-01
+## 35  Buenos Aires       219 2022-12-01
+## 36  Buenos Aires       397 2022-12-01
+## 37  Buenos Aires      6266 2022-12-01
+## 38  Buenos Aires      8906 2022-12-01
+## 39  Buenos Aires     19984 2022-12-01
+## 40  Buenos Aires       923 2022-12-01
+## 41  Buenos Aires     14380 2022-12-01
+## 42  Buenos Aires     48778 2022-12-01
+## 43  Buenos Aires       228 2022-12-01
+## 44  Buenos Aires      1463 2022-12-01
+## 45  Buenos Aires        53 2022-12-01
+## 46  Buenos Aires       203 2022-12-01
+## 47  Buenos Aires       157 2022-12-01
+## 48  Buenos Aires        41 2022-12-01
+## 49  Buenos Aires       260 2022-12-01
+## 50  Buenos Aires       168 2022-12-01
+## 51  Buenos Aires       568 2022-12-01
+## 52  Buenos Aires        47 2022-12-01
+## 53  Buenos Aires       404 2022-12-01
+## 54  Buenos Aires       110 2022-12-01
+## 55  Buenos Aires     23832 2022-12-01
+## 56  Buenos Aires      6373 2022-12-01
+## 57  Buenos Aires     18663 2022-12-01
+## 58  Buenos Aires       351 2022-12-01
+## 59  Buenos Aires        82 2022-12-01
+## 60  Buenos Aires       127 2022-12-01
+## 61  Buenos Aires       146 2022-12-01
+## 62  Buenos Aires      7105 2022-12-01
+## 63  Buenos Aires      4693 2022-12-01
+## 64  Buenos Aires     21198 2022-12-01
+## 65  Buenos Aires      1560 2022-12-01
+## 66  Buenos Aires      2611 2022-12-01
+## 67  Buenos Aires    100003 2022-12-01
+## 68  Buenos Aires     45061 2022-12-01
+## 69  Buenos Aires     22129 2022-12-01
+## 70  Buenos Aires        65 2022-12-01
+## 71  Buenos Aires       165 2022-12-01
+## 72  Buenos Aires       306 2022-12-01
+## 73  Buenos Aires       683 2022-12-01
+## 74  Buenos Aires       175 2022-12-01
+## 75  Buenos Aires      1321 2022-12-01
+## 76  Buenos Aires     41543 2022-12-01
+## 77  Buenos Aires      3574 2022-12-01
+## 78  Buenos Aires       315 2022-12-01
+## 79  Buenos Aires       297 2022-12-01
+## 80  Buenos Aires     11376 2022-12-01
+## 81  Buenos Aires       386 2022-12-01
+## 82  Buenos Aires      4558 2022-12-01
+## 83  Buenos Aires      2391 2022-12-01
+## 84  Buenos Aires     20272 2022-12-01
+## 85  Buenos Aires       175 2022-12-01
+## 86  Buenos Aires       104 2022-12-01
+## 87  Buenos Aires     31413 2022-12-01
+## 88  Buenos Aires      7102 2022-12-01
+## 89  Buenos Aires      1017 2022-12-01
+## 90  Buenos Aires      1914 2022-12-01
+## 91  Buenos Aires      1453 2022-12-01
+## 92  Buenos Aires      1143 2022-12-01
+## 93  Buenos Aires       290 2022-12-01
+## 94  Buenos Aires        56 2022-12-01
+## 95  Buenos Aires      2626 2022-12-01
+## 96  Buenos Aires       151 2022-12-01
+## 97  Buenos Aires     12575 2022-12-01
+## 98  Buenos Aires       391 2022-12-01
+## 99  Buenos Aires     10368 2022-12-01
+## 100 Buenos Aires       264 2022-12-01
+## 101 Buenos Aires       125 2022-12-01
+## 102 Buenos Aires     35825 2022-12-01
+## 103 Buenos Aires       822 2022-12-01
+## 104 Buenos Aires       163 2022-12-01
+## 105 Buenos Aires       357 2022-12-01
+## 106 Buenos Aires       391 2022-12-01
+## 107 Buenos Aires       492 2022-12-01
+## 108 Buenos Aires       277 2022-12-01
+## 109 Buenos Aires       285 2022-12-01
+## 110 Buenos Aires        77 2022-12-01
+## 111 Buenos Aires       364 2022-12-01
+## 112 Buenos Aires       608 2022-12-01
+## 113 Buenos Aires       261 2022-12-01
+## 114 Buenos Aires        51 2022-12-01
+## 115 Buenos Aires      5302 2022-12-01
+## 116 Buenos Aires      5377 2022-12-01
+## 117 Buenos Aires     14729 2022-12-01
+## 118 Buenos Aires      4182 2022-12-01
+## 119 Buenos Aires      1723 2022-12-01
+## 120 Buenos Aires      6329 2022-12-01
+## 121 Buenos Aires       182 2022-12-01
+## 122 Buenos Aires      3140 2022-12-01
+## 123 Buenos Aires        95 2022-12-01
+## 124 Buenos Aires     11878 2022-12-01
+## 125 Buenos Aires        18 2022-12-01
+## 126 Buenos Aires        97 2022-12-01
+## 127 Buenos Aires       381 2022-12-01
+## 128 Buenos Aires       534 2022-12-01
+## 129 Buenos Aires        54 2022-12-01
+## 130 Buenos Aires     10111 2022-12-01
+## 131 Buenos Aires      2994 2022-12-01
+## 132 Buenos Aires       614 2022-12-01
+## 133 Buenos Aires      2887 2022-12-01
+## 134 Buenos Aires      2203 2022-12-01
+## 135 Buenos Aires       682 2021-12-01
+## 136 Buenos Aires       463 2021-12-01
+## 137 Buenos Aires       509 2021-12-01
+## 138 Buenos Aires       488 2021-12-01
+## 139 Buenos Aires       186 2021-12-01
+## 140 Buenos Aires     32577 2021-12-01
+## 141 Buenos Aires       332 2021-12-01
+## 142 Buenos Aires     19335 2021-12-01
+## 143 Buenos Aires       372 2021-12-01
+## 144 Buenos Aires       883 2021-12-01
+## 145 Buenos Aires      3391 2021-12-01
+## 146 Buenos Aires       532 2021-12-01
+## 147 Buenos Aires      1012 2021-12-01
+## 148 Buenos Aires       246 2021-12-01
+## 149 Buenos Aires     23334 2021-12-01
+## 150 Buenos Aires      5465 2021-12-01
+## 151 Buenos Aires       339 2021-12-01
+## 152 Buenos Aires      1012 2021-12-01
+## 153 Buenos Aires      1905 2021-12-01
+## 154 Buenos Aires      2343 2021-12-01
+## 155 Buenos Aires        75 2021-12-01
+## 156 Buenos Aires       542 2021-12-01
+## 157 Buenos Aires       103 2021-12-01
+## 158 Buenos Aires       211 2021-12-01
+## 159 Buenos Aires       248 2021-12-01
+## 160 Buenos Aires      4872 2021-12-01
+## 161 Buenos Aires       711 2021-12-01
+## 162 Buenos Aires      1150 2021-12-01
+## 163 Buenos Aires      2072 2021-12-01
+## 164 Buenos Aires       511 2021-12-01
+## 165 Buenos Aires       429 2021-12-01
+## 166 Buenos Aires       204 2021-12-01
+## 167 Buenos Aires       176 2021-12-01
+## 168 Buenos Aires       351 2021-12-01
+## 169 Buenos Aires        99 2021-12-01
+## 170 Buenos Aires       395 2021-12-01
+## 171 Buenos Aires      5941 2021-12-01
+## 172 Buenos Aires      8834 2021-12-01
+## 173 Buenos Aires     18674 2021-12-01
+## 174 Buenos Aires       589 2021-12-01
+## 175 Buenos Aires     13932 2021-12-01
+## 176 Buenos Aires     46508 2021-12-01
+## 177 Buenos Aires       215 2021-12-01
+## 178 Buenos Aires      1423 2021-12-01
+## 179 Buenos Aires        59 2021-12-01
+## 180 Buenos Aires       201 2021-12-01
+## 181 Buenos Aires       159 2021-12-01
+## 182 Buenos Aires        41 2021-12-01
+## 183 Buenos Aires       231 2021-12-01
+## 184 Buenos Aires       156 2021-12-01
+## 185 Buenos Aires       608 2021-12-01
+## 186 Buenos Aires        49 2021-12-01
+## 187 Buenos Aires       407 2021-12-01
+## 188 Buenos Aires        93 2021-12-01
+## 189 Buenos Aires     22828 2021-12-01
+## 190 Buenos Aires      6012 2021-12-01
+## 191 Buenos Aires     17246 2021-12-01
+## 192 Buenos Aires       355 2021-12-01
+## 193 Buenos Aires       126 2021-12-01
+## 194 Buenos Aires       120 2021-12-01
+## 195 Buenos Aires       148 2021-12-01
+## 196 Buenos Aires      6080 2021-12-01
+## 197 Buenos Aires      4219 2021-12-01
+## 198 Buenos Aires     20881 2021-12-01
+## 199 Buenos Aires      1624 2021-12-01
+## 200 Buenos Aires      2427 2021-12-01
+## 201 Buenos Aires     90754 2021-12-01
+## 202 Buenos Aires     43889 2021-12-01
+## 203 Buenos Aires     20049 2021-12-01
+## 204 Buenos Aires        53 2021-12-01
+## 205 Buenos Aires       178 2021-12-01
+## 206 Buenos Aires       341 2021-12-01
+## 207 Buenos Aires       696 2021-12-01
+## 208 Buenos Aires       179 2021-12-01
+## 209 Buenos Aires      1297 2021-12-01
+## 210 Buenos Aires     39459 2021-12-01
+## 211 Buenos Aires      3310 2021-12-01
+## 212 Buenos Aires       298 2021-12-01
+## 213 Buenos Aires       302 2021-12-01
+## 214 Buenos Aires     11205 2021-12-01
+## 215 Buenos Aires       392 2021-12-01
+## 216 Buenos Aires      4148 2021-12-01
+## 217 Buenos Aires      2224 2021-12-01
+## 218 Buenos Aires     18508 2021-12-01
+## 219 Buenos Aires       181 2021-12-01
+## 220 Buenos Aires       108 2021-12-01
+## 221 Buenos Aires     29306 2021-12-01
+## 222 Buenos Aires      7031 2021-12-01
+## 223 Buenos Aires       979 2021-12-01
+## 224 Buenos Aires      1816 2021-12-01
+## 225 Buenos Aires      1325 2021-12-01
+## 226 Buenos Aires      1089 2021-12-01
+## 227 Buenos Aires       263 2021-12-01
+## 228 Buenos Aires        64 2021-12-01
+## 229 Buenos Aires      2378 2021-12-01
+## 230 Buenos Aires       156 2021-12-01
+## 231 Buenos Aires     12047 2021-12-01
+## 232 Buenos Aires       385 2021-12-01
+## 233 Buenos Aires     10036 2021-12-01
+## 234 Buenos Aires       275 2021-12-01
+## 235 Buenos Aires       124 2021-12-01
+## 236 Buenos Aires     34096 2021-12-01
+## 237 Buenos Aires       707 2021-12-01
+## 238 Buenos Aires       182 2021-12-01
+## 239 Buenos Aires       411 2021-12-01
+## 240 Buenos Aires       376 2021-12-01
+## 241 Buenos Aires       492 2021-12-01
+## 242 Buenos Aires       275 2021-12-01
+## 243 Buenos Aires       274 2021-12-01
+## 244 Buenos Aires        90 2021-12-01
+## 245 Buenos Aires       361 2021-12-01
+## 246 Buenos Aires       607 2021-12-01
+## 247 Buenos Aires       268 2021-12-01
+## 248 Buenos Aires        52 2021-12-01
+## 249 Buenos Aires      5171 2021-12-01
+## 250 Buenos Aires      5215 2021-12-01
+## 251 Buenos Aires     14440 2021-12-01
+## 252 Buenos Aires      3707 2021-12-01
+## 253 Buenos Aires      1595 2021-12-01
+## 254 Buenos Aires      6137 2021-12-01
+## 255 Buenos Aires       204 2021-12-01
+## 256 Buenos Aires      3029 2021-12-01
+## 257 Buenos Aires        97 2021-12-01
+## 258 Buenos Aires     11411 2021-12-01
+## 259 Buenos Aires        31 2021-12-01
+## 260 Buenos Aires        82 2021-12-01
+## 261 Buenos Aires       334 2021-12-01
+## 262 Buenos Aires       498 2021-12-01
+## 263 Buenos Aires        52 2021-12-01
+## 264 Buenos Aires      9640 2021-12-01
+## 265 Buenos Aires      2768 2021-12-01
+## 266 Buenos Aires       547 2021-12-01
+## 267 Buenos Aires      2758 2021-12-01
+## 268 Buenos Aires      2269 2021-12-01
+## 269 Buenos Aires       379 2020-12-01
+## 270 Buenos Aires       209 2020-12-01
+## 271 Buenos Aires       346 2020-12-01
+## 272 Buenos Aires       248 2020-12-01
+## 273 Buenos Aires       139 2020-12-01
+## 274 Buenos Aires     20469 2020-12-01
+## 275 Buenos Aires       185 2020-12-01
+## 276 Buenos Aires     12612 2020-12-01
+## 277 Buenos Aires       250 2020-12-01
+## 278 Buenos Aires       478 2020-12-01
+## 279 Buenos Aires      1760 2020-12-01
+## 280 Buenos Aires       281 2020-12-01
+## 281 Buenos Aires       666 2020-12-01
+## 282 Buenos Aires       124 2020-12-01
+## 283 Buenos Aires     15524 2020-12-01
+## 284 Buenos Aires      3967 2020-12-01
+## 285 Buenos Aires       156 2020-12-01
+## 286 Buenos Aires       446 2020-12-01
+## 287 Buenos Aires       826 2020-12-01
+## 288 Buenos Aires      1252 2020-12-01
+## 289 Buenos Aires        28 2020-12-01
+## 290 Buenos Aires       369 2020-12-01
+## 291 Buenos Aires        48 2020-12-01
+## 292 Buenos Aires       117 2020-12-01
+## 293 Buenos Aires        94 2020-12-01
+## 294 Buenos Aires      3278 2020-12-01
+## 295 Buenos Aires       385 2020-12-01
+## 296 Buenos Aires       741 2020-12-01
+## 297 Buenos Aires      1172 2020-12-01
+## 298 Buenos Aires       341 2020-12-01
+## 299 Buenos Aires       254 2020-12-01
+## 300 Buenos Aires       100 2020-12-01
+## 301 Buenos Aires        50 2020-12-01
+## 302 Buenos Aires       193 2020-12-01
+## 303 Buenos Aires        69 2020-12-01
+## 304 Buenos Aires       147 2020-12-01
+## 305 Buenos Aires      3513 2020-12-01
+## 306 Buenos Aires      5420 2020-12-01
+## 307 Buenos Aires     11407 2020-12-01
+## 308 Buenos Aires       243 2020-12-01
+## 309 Buenos Aires      6871 2020-12-01
+## 310 Buenos Aires     28508 2020-12-01
+## 311 Buenos Aires       130 2020-12-01
+## 312 Buenos Aires       943 2020-12-01
+## 313 Buenos Aires        31 2020-12-01
+## 314 Buenos Aires       132 2020-12-01
+## 315 Buenos Aires       107 2020-12-01
+## 316 Buenos Aires        18 2020-12-01
+## 317 Buenos Aires       129 2020-12-01
+## 318 Buenos Aires       114 2020-12-01
+## 319 Buenos Aires       503 2020-12-01
+## 320 Buenos Aires        34 2020-12-01
+## 321 Buenos Aires       371 2020-12-01
+## 322 Buenos Aires        72 2020-12-01
+## 323 Buenos Aires     14276 2020-12-01
+## 324 Buenos Aires      3684 2020-12-01
+## 325 Buenos Aires     12008 2020-12-01
+## 326 Buenos Aires       209 2020-12-01
+## 327 Buenos Aires        65 2020-12-01
+## 328 Buenos Aires        80 2020-12-01
+## 329 Buenos Aires        77 2020-12-01
+## 330 Buenos Aires      4187 2020-12-01
+## 331 Buenos Aires      2988 2020-12-01
+## 332 Buenos Aires     15376 2020-12-01
+## 333 Buenos Aires       939 2020-12-01
+## 334 Buenos Aires      1103 2020-12-01
+## 335 Buenos Aires     50050 2020-12-01
+## 336 Buenos Aires     27855 2020-12-01
+## 337 Buenos Aires     12580 2020-12-01
+## 338 Buenos Aires        29 2020-12-01
+## 339 Buenos Aires       112 2020-12-01
+## 340 Buenos Aires       217 2020-12-01
+## 341 Buenos Aires       290 2020-12-01
+## 342 Buenos Aires       131 2020-12-01
+## 343 Buenos Aires       706 2020-12-01
+## 344 Buenos Aires     23086 2020-12-01
+## 345 Buenos Aires      2162 2020-12-01
+## 346 Buenos Aires       116 2020-12-01
+## 347 Buenos Aires        89 2020-12-01
+## 348 Buenos Aires      7224 2020-12-01
+## 349 Buenos Aires       252 2020-12-01
+## 350 Buenos Aires      2498 2020-12-01
+## 351 Buenos Aires      1282 2020-12-01
+## 352 Buenos Aires     10009 2020-12-01
+## 353 Buenos Aires       105 2020-12-01
+## 354 Buenos Aires        40 2020-12-01
+## 355 Buenos Aires     16278 2020-12-01
+## 356 Buenos Aires      4515 2020-12-01
+## 357 Buenos Aires       680 2020-12-01
+## 358 Buenos Aires      1130 2020-12-01
+## 359 Buenos Aires       581 2020-12-01
+## 360 Buenos Aires       657 2020-12-01
+## 361 Buenos Aires       170 2020-12-01
+## 362 Buenos Aires        32 2020-12-01
+## 363 Buenos Aires      1208 2020-12-01
+## 364 Buenos Aires        68 2020-12-01
+## 365 Buenos Aires      6864 2020-12-01
+## 366 Buenos Aires       222 2020-12-01
+## 367 Buenos Aires      7026 2020-12-01
+## 368 Buenos Aires       215 2020-12-01
+## 369 Buenos Aires        38 2020-12-01
+## 370 Buenos Aires     21007 2020-12-01
+## 371 Buenos Aires       336 2020-12-01
+## 372 Buenos Aires       123 2020-12-01
+## 373 Buenos Aires       326 2020-12-01
+## 374 Buenos Aires       178 2020-12-01
+## 375 Buenos Aires       199 2020-12-01
+## 376 Buenos Aires       195 2020-12-01
+## 377 Buenos Aires       107 2020-12-01
+## 378 Buenos Aires        39 2020-12-01
+## 379 Buenos Aires       187 2020-12-01
+## 380 Buenos Aires       379 2020-12-01
+## 381 Buenos Aires       125 2020-12-01
+## 382 Buenos Aires        39 2020-12-01
+## 383 Buenos Aires      3279 2020-12-01
+## 384 Buenos Aires      2744 2020-12-01
+## 385 Buenos Aires      8695 2020-12-01
+## 386 Buenos Aires      2106 2020-12-01
+## 387 Buenos Aires       961 2020-12-01
+## 388 Buenos Aires      4174 2020-12-01
+## 389 Buenos Aires       156 2020-12-01
+## 390 Buenos Aires      1821 2020-12-01
+## 391 Buenos Aires        44 2020-12-01
+## 392 Buenos Aires      7031 2020-12-01
+## 393 Buenos Aires        23 2020-12-01
+## 394 Buenos Aires        20 2020-12-01
+## 395 Buenos Aires       140 2020-12-01
+## 396 Buenos Aires       282 2020-12-01
+## 397 Buenos Aires        25 2020-12-01
+## 398 Buenos Aires      5704 2020-12-01
+## 399 Buenos Aires      1411 2020-12-01
+## 400 Buenos Aires       256 2020-12-01
+## 401 Buenos Aires      1946 2020-12-01
+## 402 Buenos Aires      1673 2020-12-01</code></pre>
+</div>
+<div id="mutate" class="section level2">
+<h2>Mutate()</h2>
+<p>Crea nuevas columnas o modifica las existentes, aplicando operaciones
+a los datos existentes. Puedes calcular nuevos valores o transformar
+columnas existentes con diferentes funciones.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" tabindex="-1"></a>buenos_aires <span class="ot">&lt;-</span> buenos_aires <span class="sc">%&gt;%</span> </span>
+<span id="cb124-2"><a href="#cb124-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porcentaje_por_provincia =</span> <span class="fu">round</span>((titulares<span class="sc">/</span><span class="fu">sum</span>(buenos_aires<span class="sc">$</span>titulares))<span class="sc">*</span><span class="dv">100</span>,<span class="dv">3</span>))</span>
+<span id="cb124-3"><a href="#cb124-3" tabindex="-1"></a></span>
+<span id="cb124-4"><a href="#cb124-4" tabindex="-1"></a><span class="co">#con round redondeo los números</span></span>
+<span id="cb124-5"><a href="#cb124-5" tabindex="-1"></a></span>
+<span id="cb124-6"><a href="#cb124-6" tabindex="-1"></a><span class="co">#muestro la nueva variable</span></span>
+<span id="cb124-7"><a href="#cb124-7" tabindex="-1"></a><span class="fu">select</span>(buenos_aires, provincia, porcentaje_por_provincia)</span></code></pre></div>
+<pre><code>##        provincia porcentaje_por_provincia
+## 1   Buenos Aires                    0.039
+## 2   Buenos Aires                    0.027
+## 3   Buenos Aires                    0.026
+## 4   Buenos Aires                    0.026
+## 5   Buenos Aires                    0.010
+## 6   Buenos Aires                    1.800
+## 7   Buenos Aires                    0.019
+## 8   Buenos Aires                    1.057
+## 9   Buenos Aires                    0.019
+## 10  Buenos Aires                    0.050
+## 11  Buenos Aires                    0.194
+## 12  Buenos Aires                    0.030
+## 13  Buenos Aires                    0.057
+## 14  Buenos Aires                    0.014
+## 15  Buenos Aires                    1.302
+## 16  Buenos Aires                    0.308
+## 17  Buenos Aires                    0.019
+## 18  Buenos Aires                    0.054
+## 19  Buenos Aires                    0.109
+## 20  Buenos Aires                    0.134
+## 21  Buenos Aires                    0.005
+## 22  Buenos Aires                    0.027
+## 23  Buenos Aires                    0.005
+## 24  Buenos Aires                    0.010
+## 25  Buenos Aires                    0.017
+## 26  Buenos Aires                    0.278
+## 27  Buenos Aires                    0.038
+## 28  Buenos Aires                    0.060
+## 29  Buenos Aires                    0.118
+## 30  Buenos Aires                    0.026
+## 31  Buenos Aires                    0.026
+## 32  Buenos Aires                    0.011
+## 33  Buenos Aires                    0.014
+## 34  Buenos Aires                    0.019
+## 35  Buenos Aires                    0.012
+## 36  Buenos Aires                    0.021
+## 37  Buenos Aires                    0.336
+## 38  Buenos Aires                    0.477
+## 39  Buenos Aires                    1.071
+## 40  Buenos Aires                    0.049
+## 41  Buenos Aires                    0.771
+## 42  Buenos Aires                    2.614
+## 43  Buenos Aires                    0.012
+## 44  Buenos Aires                    0.078
+## 45  Buenos Aires                    0.003
+## 46  Buenos Aires                    0.011
+## 47  Buenos Aires                    0.008
+## 48  Buenos Aires                    0.002
+## 49  Buenos Aires                    0.014
+## 50  Buenos Aires                    0.009
+## 51  Buenos Aires                    0.030
+## 52  Buenos Aires                    0.003
+## 53  Buenos Aires                    0.022
+## 54  Buenos Aires                    0.006
+## 55  Buenos Aires                    1.277
+## 56  Buenos Aires                    0.342
+## 57  Buenos Aires                    1.000
+## 58  Buenos Aires                    0.019
+## 59  Buenos Aires                    0.004
+## 60  Buenos Aires                    0.007
+## 61  Buenos Aires                    0.008
+## 62  Buenos Aires                    0.381
+## 63  Buenos Aires                    0.251
+## 64  Buenos Aires                    1.136
+## 65  Buenos Aires                    0.084
+## 66  Buenos Aires                    0.140
+## 67  Buenos Aires                    5.359
+## 68  Buenos Aires                    2.415
+## 69  Buenos Aires                    1.186
+## 70  Buenos Aires                    0.003
+## 71  Buenos Aires                    0.009
+## 72  Buenos Aires                    0.016
+## 73  Buenos Aires                    0.037
+## 74  Buenos Aires                    0.009
+## 75  Buenos Aires                    0.071
+## 76  Buenos Aires                    2.226
+## 77  Buenos Aires                    0.192
+## 78  Buenos Aires                    0.017
+## 79  Buenos Aires                    0.016
+## 80  Buenos Aires                    0.610
+## 81  Buenos Aires                    0.021
+## 82  Buenos Aires                    0.244
+## 83  Buenos Aires                    0.128
+## 84  Buenos Aires                    1.086
+## 85  Buenos Aires                    0.009
+## 86  Buenos Aires                    0.006
+## 87  Buenos Aires                    1.683
+## 88  Buenos Aires                    0.381
+## 89  Buenos Aires                    0.054
+## 90  Buenos Aires                    0.103
+## 91  Buenos Aires                    0.078
+## 92  Buenos Aires                    0.061
+## 93  Buenos Aires                    0.016
+## 94  Buenos Aires                    0.003
+## 95  Buenos Aires                    0.141
+## 96  Buenos Aires                    0.008
+## 97  Buenos Aires                    0.674
+## 98  Buenos Aires                    0.021
+## 99  Buenos Aires                    0.556
+## 100 Buenos Aires                    0.014
+## 101 Buenos Aires                    0.007
+## 102 Buenos Aires                    1.920
+## 103 Buenos Aires                    0.044
+## 104 Buenos Aires                    0.009
+## 105 Buenos Aires                    0.019
+## 106 Buenos Aires                    0.021
+## 107 Buenos Aires                    0.026
+## 108 Buenos Aires                    0.015
+## 109 Buenos Aires                    0.015
+## 110 Buenos Aires                    0.004
+## 111 Buenos Aires                    0.020
+## 112 Buenos Aires                    0.033
+## 113 Buenos Aires                    0.014
+## 114 Buenos Aires                    0.003
+## 115 Buenos Aires                    0.284
+## 116 Buenos Aires                    0.288
+## 117 Buenos Aires                    0.789
+## 118 Buenos Aires                    0.224
+## 119 Buenos Aires                    0.092
+## 120 Buenos Aires                    0.339
+## 121 Buenos Aires                    0.010
+## 122 Buenos Aires                    0.168
+## 123 Buenos Aires                    0.005
+## 124 Buenos Aires                    0.636
+## 125 Buenos Aires                    0.001
+## 126 Buenos Aires                    0.005
+## 127 Buenos Aires                    0.020
+## 128 Buenos Aires                    0.029
+## 129 Buenos Aires                    0.003
+## 130 Buenos Aires                    0.542
+## 131 Buenos Aires                    0.160
+## 132 Buenos Aires                    0.033
+## 133 Buenos Aires                    0.155
+## 134 Buenos Aires                    0.118
+## 135 Buenos Aires                    0.037
+## 136 Buenos Aires                    0.025
+## 137 Buenos Aires                    0.027
+## 138 Buenos Aires                    0.026
+## 139 Buenos Aires                    0.010
+## 140 Buenos Aires                    1.746
+## 141 Buenos Aires                    0.018
+## 142 Buenos Aires                    1.036
+## 143 Buenos Aires                    0.020
+## 144 Buenos Aires                    0.047
+## 145 Buenos Aires                    0.182
+## 146 Buenos Aires                    0.029
+## 147 Buenos Aires                    0.054
+## 148 Buenos Aires                    0.013
+## 149 Buenos Aires                    1.250
+## 150 Buenos Aires                    0.293
+## 151 Buenos Aires                    0.018
+## 152 Buenos Aires                    0.054
+## 153 Buenos Aires                    0.102
+## 154 Buenos Aires                    0.126
+## 155 Buenos Aires                    0.004
+## 156 Buenos Aires                    0.029
+## 157 Buenos Aires                    0.006
+## 158 Buenos Aires                    0.011
+## 159 Buenos Aires                    0.013
+## 160 Buenos Aires                    0.261
+## 161 Buenos Aires                    0.038
+## 162 Buenos Aires                    0.062
+## 163 Buenos Aires                    0.111
+## 164 Buenos Aires                    0.027
+## 165 Buenos Aires                    0.023
+## 166 Buenos Aires                    0.011
+## 167 Buenos Aires                    0.009
+## 168 Buenos Aires                    0.019
+## 169 Buenos Aires                    0.005
+## 170 Buenos Aires                    0.021
+## 171 Buenos Aires                    0.318
+## 172 Buenos Aires                    0.473
+## 173 Buenos Aires                    1.001
+## 174 Buenos Aires                    0.032
+## 175 Buenos Aires                    0.747
+## 176 Buenos Aires                    2.492
+## 177 Buenos Aires                    0.012
+## 178 Buenos Aires                    0.076
+## 179 Buenos Aires                    0.003
+## 180 Buenos Aires                    0.011
+## 181 Buenos Aires                    0.009
+## 182 Buenos Aires                    0.002
+## 183 Buenos Aires                    0.012
+## 184 Buenos Aires                    0.008
+## 185 Buenos Aires                    0.033
+## 186 Buenos Aires                    0.003
+## 187 Buenos Aires                    0.022
+## 188 Buenos Aires                    0.005
+## 189 Buenos Aires                    1.223
+## 190 Buenos Aires                    0.322
+## 191 Buenos Aires                    0.924
+## 192 Buenos Aires                    0.019
+## 193 Buenos Aires                    0.007
+## 194 Buenos Aires                    0.006
+## 195 Buenos Aires                    0.008
+## 196 Buenos Aires                    0.326
+## 197 Buenos Aires                    0.226
+## 198 Buenos Aires                    1.119
+## 199 Buenos Aires                    0.087
+## 200 Buenos Aires                    0.130
+## 201 Buenos Aires                    4.863
+## 202 Buenos Aires                    2.352
+## 203 Buenos Aires                    1.074
+## 204 Buenos Aires                    0.003
+## 205 Buenos Aires                    0.010
+## 206 Buenos Aires                    0.018
+## 207 Buenos Aires                    0.037
+## 208 Buenos Aires                    0.010
+## 209 Buenos Aires                    0.070
+## 210 Buenos Aires                    2.114
+## 211 Buenos Aires                    0.177
+## 212 Buenos Aires                    0.016
+## 213 Buenos Aires                    0.016
+## 214 Buenos Aires                    0.600
+## 215 Buenos Aires                    0.021
+## 216 Buenos Aires                    0.222
+## 217 Buenos Aires                    0.119
+## 218 Buenos Aires                    0.992
+## 219 Buenos Aires                    0.010
+## 220 Buenos Aires                    0.006
+## 221 Buenos Aires                    1.570
+## 222 Buenos Aires                    0.377
+## 223 Buenos Aires                    0.052
+## 224 Buenos Aires                    0.097
+## 225 Buenos Aires                    0.071
+## 226 Buenos Aires                    0.058
+## 227 Buenos Aires                    0.014
+## 228 Buenos Aires                    0.003
+## 229 Buenos Aires                    0.127
+## 230 Buenos Aires                    0.008
+## 231 Buenos Aires                    0.646
+## 232 Buenos Aires                    0.021
+## 233 Buenos Aires                    0.538
+## 234 Buenos Aires                    0.015
+## 235 Buenos Aires                    0.007
+## 236 Buenos Aires                    1.827
+## 237 Buenos Aires                    0.038
+## 238 Buenos Aires                    0.010
+## 239 Buenos Aires                    0.022
+## 240 Buenos Aires                    0.020
+## 241 Buenos Aires                    0.026
+## 242 Buenos Aires                    0.015
+## 243 Buenos Aires                    0.015
+## 244 Buenos Aires                    0.005
+## 245 Buenos Aires                    0.019
+## 246 Buenos Aires                    0.033
+## 247 Buenos Aires                    0.014
+## 248 Buenos Aires                    0.003
+## 249 Buenos Aires                    0.277
+## 250 Buenos Aires                    0.279
+## 251 Buenos Aires                    0.774
+## 252 Buenos Aires                    0.199
+## 253 Buenos Aires                    0.085
+## 254 Buenos Aires                    0.329
+## 255 Buenos Aires                    0.011
+## 256 Buenos Aires                    0.162
+## 257 Buenos Aires                    0.005
+## 258 Buenos Aires                    0.611
+## 259 Buenos Aires                    0.002
+## 260 Buenos Aires                    0.004
+## 261 Buenos Aires                    0.018
+## 262 Buenos Aires                    0.027
+## 263 Buenos Aires                    0.003
+## 264 Buenos Aires                    0.517
+## 265 Buenos Aires                    0.148
+## 266 Buenos Aires                    0.029
+## 267 Buenos Aires                    0.148
+## 268 Buenos Aires                    0.122
+## 269 Buenos Aires                    0.020
+## 270 Buenos Aires                    0.011
+## 271 Buenos Aires                    0.019
+## 272 Buenos Aires                    0.013
+## 273 Buenos Aires                    0.007
+## 274 Buenos Aires                    1.097
+## 275 Buenos Aires                    0.010
+## 276 Buenos Aires                    0.676
+## 277 Buenos Aires                    0.013
+## 278 Buenos Aires                    0.026
+## 279 Buenos Aires                    0.094
+## 280 Buenos Aires                    0.015
+## 281 Buenos Aires                    0.036
+## 282 Buenos Aires                    0.007
+## 283 Buenos Aires                    0.832
+## 284 Buenos Aires                    0.213
+## 285 Buenos Aires                    0.008
+## 286 Buenos Aires                    0.024
+## 287 Buenos Aires                    0.044
+## 288 Buenos Aires                    0.067
+## 289 Buenos Aires                    0.002
+## 290 Buenos Aires                    0.020
+## 291 Buenos Aires                    0.003
+## 292 Buenos Aires                    0.006
+## 293 Buenos Aires                    0.005
+## 294 Buenos Aires                    0.176
+## 295 Buenos Aires                    0.021
+## 296 Buenos Aires                    0.040
+## 297 Buenos Aires                    0.063
+## 298 Buenos Aires                    0.018
+## 299 Buenos Aires                    0.014
+## 300 Buenos Aires                    0.005
+## 301 Buenos Aires                    0.003
+## 302 Buenos Aires                    0.010
+## 303 Buenos Aires                    0.004
+## 304 Buenos Aires                    0.008
+## 305 Buenos Aires                    0.188
+## 306 Buenos Aires                    0.290
+## 307 Buenos Aires                    0.611
+## 308 Buenos Aires                    0.013
+## 309 Buenos Aires                    0.368
+## 310 Buenos Aires                    1.528
+## 311 Buenos Aires                    0.007
+## 312 Buenos Aires                    0.051
+## 313 Buenos Aires                    0.002
+## 314 Buenos Aires                    0.007
+## 315 Buenos Aires                    0.006
+## 316 Buenos Aires                    0.001
+## 317 Buenos Aires                    0.007
+## 318 Buenos Aires                    0.006
+## 319 Buenos Aires                    0.027
+## 320 Buenos Aires                    0.002
+## 321 Buenos Aires                    0.020
+## 322 Buenos Aires                    0.004
+## 323 Buenos Aires                    0.765
+## 324 Buenos Aires                    0.197
+## 325 Buenos Aires                    0.643
+## 326 Buenos Aires                    0.011
+## 327 Buenos Aires                    0.003
+## 328 Buenos Aires                    0.004
+## 329 Buenos Aires                    0.004
+## 330 Buenos Aires                    0.224
+## 331 Buenos Aires                    0.160
+## 332 Buenos Aires                    0.824
+## 333 Buenos Aires                    0.050
+## 334 Buenos Aires                    0.059
+## 335 Buenos Aires                    2.682
+## 336 Buenos Aires                    1.493
+## 337 Buenos Aires                    0.674
+## 338 Buenos Aires                    0.002
+## 339 Buenos Aires                    0.006
+## 340 Buenos Aires                    0.012
+## 341 Buenos Aires                    0.016
+## 342 Buenos Aires                    0.007
+## 343 Buenos Aires                    0.038
+## 344 Buenos Aires                    1.237
+## 345 Buenos Aires                    0.116
+## 346 Buenos Aires                    0.006
+## 347 Buenos Aires                    0.005
+## 348 Buenos Aires                    0.387
+## 349 Buenos Aires                    0.014
+## 350 Buenos Aires                    0.134
+## 351 Buenos Aires                    0.069
+## 352 Buenos Aires                    0.536
+## 353 Buenos Aires                    0.006
+## 354 Buenos Aires                    0.002
+## 355 Buenos Aires                    0.872
+## 356 Buenos Aires                    0.242
+## 357 Buenos Aires                    0.036
+## 358 Buenos Aires                    0.061
+## 359 Buenos Aires                    0.031
+## 360 Buenos Aires                    0.035
+## 361 Buenos Aires                    0.009
+## 362 Buenos Aires                    0.002
+## 363 Buenos Aires                    0.065
+## 364 Buenos Aires                    0.004
+## 365 Buenos Aires                    0.368
+## 366 Buenos Aires                    0.012
+## 367 Buenos Aires                    0.376
+## 368 Buenos Aires                    0.012
+## 369 Buenos Aires                    0.002
+## 370 Buenos Aires                    1.126
+## 371 Buenos Aires                    0.018
+## 372 Buenos Aires                    0.007
+## 373 Buenos Aires                    0.017
+## 374 Buenos Aires                    0.010
+## 375 Buenos Aires                    0.011
+## 376 Buenos Aires                    0.010
+## 377 Buenos Aires                    0.006
+## 378 Buenos Aires                    0.002
+## 379 Buenos Aires                    0.010
+## 380 Buenos Aires                    0.020
+## 381 Buenos Aires                    0.007
+## 382 Buenos Aires                    0.002
+## 383 Buenos Aires                    0.176
+## 384 Buenos Aires                    0.147
+## 385 Buenos Aires                    0.466
+## 386 Buenos Aires                    0.113
+## 387 Buenos Aires                    0.051
+## 388 Buenos Aires                    0.224
+## 389 Buenos Aires                    0.008
+## 390 Buenos Aires                    0.098
+## 391 Buenos Aires                    0.002
+## 392 Buenos Aires                    0.377
+## 393 Buenos Aires                    0.001
+## 394 Buenos Aires                    0.001
+## 395 Buenos Aires                    0.008
+## 396 Buenos Aires                    0.015
+## 397 Buenos Aires                    0.001
+## 398 Buenos Aires                    0.306
+## 399 Buenos Aires                    0.076
+## 400 Buenos Aires                    0.014
+## 401 Buenos Aires                    0.104
+## 402 Buenos Aires                    0.090</code></pre>
+</div>
+<div id="group_by-y-summarise" class="section level2">
+<h2>Group_by() y summarise()</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong><code>summarise()</code> /
+<code>summarize()</code>:</strong> Se usa para resumir datos, calcular
+estadísticas resumidas como la media, la suma, el recuento, etc., para
+grupos específicos de datos.</p></li>
+<li><p><strong><code>group_by()</code>:</strong> Se utiliza junto con
+otras funciones para realizar operaciones por grupos. Agrupa los datos
+según una o más variables para realizar cálculos y operaciones
+específicas en cada grupo.</p></li>
+</ol>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" tabindex="-1"></a><span class="co">#cantidad de filas por año</span></span>
+<span id="cb126-2"><a href="#cb126-2" tabindex="-1"></a>potenciar_por_ano <span class="ot">&lt;-</span> buenos_aires <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="fu">year</span>(periodo)) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">titulares =</span> <span class="fu">sum</span>(titulares))</span>
+<span id="cb126-3"><a href="#cb126-3" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="#cb126-4" tabindex="-1"></a>potenciar_por_ano</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   `year(periodo)` titulares
+##             &lt;dbl&gt;     &lt;int&gt;
+## 1            2020    425489
+## 2            2021    700762
+## 3            2022    739912</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" tabindex="-1"></a><span class="co">#total </span></span>
+<span id="cb128-2"><a href="#cb128-2" tabindex="-1"></a>total_por_provincia <span class="ot">&lt;-</span> titulares <span class="sc">%&gt;%</span> </span>
+<span id="cb128-3"><a href="#cb128-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ano =</span> <span class="fu">year</span>(periodo)) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(provincia, ano) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(titulares))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;provincia&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" tabindex="-1"></a>total_por_provincia</span></code></pre></div>
+<pre><code>## # A tibble: 78 × 3
+## # Groups:   provincia [27]
+##    provincia      ano  total
+##    &lt;chr&gt;        &lt;dbl&gt;  &lt;int&gt;
+##  1 Buenos Aires  2020 425489
+##  2 Buenos Aires  2021 700762
+##  3 Buenos Aires  2022 739912
+##  4 Catamarca     2020   5594
+##  5 Catamarca     2021  11652
+##  6 Catamarca     2022  12788
+##  7 Chaco         2020  26440
+##  8 Chaco         2021  49599
+##  9 Chaco         2022  55307
+## 10 Chubut        2020   4606
+## # ℹ 68 more rows</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" tabindex="-1"></a><span class="co"># n()</span></span>
+<span id="cb132-2"><a href="#cb132-2" tabindex="-1"></a>titulares <span class="sc">%&gt;%</span> </span>
+<span id="cb132-3"><a href="#cb132-3" tabindex="-1"></a>  <span class="fu">group_by</span>(periodo) <span class="sc">%&gt;%</span> </span>
+<span id="cb132-4"><a href="#cb132-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">N =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   periodo        N
+##   &lt;chr&gt;      &lt;int&gt;
+## 1 2020-12-01  1357
+## 2 2021-12-01  1681
+## 3 2022-12-01  1731</code></pre>
+<p>La función <code>n()</code> del paquere <code>dplyr</code> permite
+contar el número de observaciones en un grupo</p>
+</div>
+<div id="rename" class="section level2">
+<h2>Rename()</h2>
+<p>La función <strong><code>rename()</code></strong> en el paquete
+<strong><code>dplyr</code></strong> se utiliza para cambiar los nombres
+de las columnas de un conjunto de datos. Permite renombrar una o varias
+columnas de manera sencilla y clara.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" tabindex="-1"></a><span class="co">#nombre nuevo = nombre a cambiar</span></span>
+<span id="cb134-2"><a href="#cb134-2" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="#cb134-3" tabindex="-1"></a>buenos_aires <span class="ot">&lt;-</span> buenos_aires <span class="sc">%&gt;%</span> </span>
+<span id="cb134-4"><a href="#cb134-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">&quot;fecha&quot;</span> <span class="ot">=</span> periodo)</span></code></pre></div>
+<p><strong>Pipes <code>%&gt;%</code>:</strong> Aunque no es una función
+de <strong><code>dplyr</code></strong>, el uso de pipes es común en
+combinación con <strong><code>dplyr</code></strong>. Permiten encadenar
+operaciones de manera más legible y eficiente, facilitando la
+manipulación de datos en pasos secuenciales</p>
+</div>
+<div id="gráficos" class="section level2">
+<h2>Gráficos</h2>
+<p>El paquete “esquisse” es una herramienta diseñada para facilitar la
+exploración y visualización interactiva de conjuntos de datos en R,
+especialmente útil para usuarios que prefieren interfaces gráficas</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" tabindex="-1"></a><span class="co">#install.packages(&quot;esquisse&quot;)</span></span>
+<span id="cb135-2"><a href="#cb135-2" tabindex="-1"></a><span class="co">#esquisse::esquisser(potenciar_trabajo)</span></span>
+<span id="cb135-3"><a href="#cb135-3" tabindex="-1"></a></span>
+<span id="cb135-4"><a href="#cb135-4" tabindex="-1"></a><span class="fu">ggplot</span>(potenciar_trabajo) <span class="sc">+</span></span>
+<span id="cb135-5"><a href="#cb135-5" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> periodo, <span class="at">weight =</span> titulares) <span class="sc">+</span></span>
+<span id="cb135-6"><a href="#cb135-6" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;#FF69B4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb135-7"><a href="#cb135-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb135-8"><a href="#cb135-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Potenciar trabajo por periodo&quot;</span>,</span>
+<span id="cb135-9"><a href="#cb135-9" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Subtitulo&quot;</span>,</span>
+<span id="cb135-10"><a href="#cb135-10" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Fuente: Datos abiertos&quot;</span></span>
+<span id="cb135-11"><a href="#cb135-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb135-12"><a href="#cb135-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb135-13"><a href="#cb135-13" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_base</span>() <span class="sc">+</span></span>
+<span id="cb135-14"><a href="#cb135-14" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb135-15"><a href="#cb135-15" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> 22L,</span>
+<span id="cb135-16"><a href="#cb135-16" tabindex="-1"></a>    <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb135-17"><a href="#cb135-17" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb135-18"><a href="#cb135-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data:image/png;base64,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5m7791X2sdyzlveBFVbxbnpApVNPGyICAMA0dKxVQ90PwLb/6F25Pa9nLe8DK6zi3fQA6Z7ABACAGelYq4YIAPtG7VZZTn6tmzp8J6wlPLCsKN7NDyh16mlDRgAAmIaOtWqIALA+djtleXv9fPdfx2c30lrSA0uK4h3wALdTTxsyAgDANHSsVYPfD2DCCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDAAAwDWpljgAwCAAA06BW5ggAgwAAMA1qZY4AMAgAANOgVuYIAIMAADANamWOADAIAADToFbmCACDcQAwcwSAhHEAMHMEgIRxADBzBICEcQAwcwSA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" width="768" /></p>
+</div>
+<div id="práctica-1" class="section level2">
+<h2>Práctica</h2>
+<p>Recordá realizarlo en la carpeta prácticas!</p>
+<ol style="list-style-type: decimal">
+<li><p>Elige un dataset. Puedes elegirlo de cualquier sitio web. Por
+ejemplo: datos.gob.ar</p></li>
+<li><p>Importa el archivo y genera un objeto que lo contenga</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" tabindex="-1"></a><span class="co"># read.csv()</span></span></code></pre></div></li>
+<li><p>Crea una nueva columna o generá una sumarización agrupada</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" tabindex="-1"></a><span class="co"># mutate()</span></span>
+<span id="cb137-2"><a href="#cb137-2" tabindex="-1"></a><span class="co"># group_by() y summarise()</span></span></code></pre></div></li>
+<li><p>Con el uso de esquisse, genera un gráfico</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" tabindex="-1"></a><span class="co">#esquisse::esquisser()</span></span></code></pre></div></li>
+</ol>
+</div>
+</div>
 
    
-      <div id="rmd-source-code">LS0tDQp0aXRsZTogIkludHJvZHVjY2nDs24gYWwgdXNvIGRlIFIiDQphdXRob3I6ICJBcmlhbmEgQmFyZCINCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCmxhbmc6ICJlcyINCm91dHB1dDoNCiAgcm1kZm9ybWF0czo6cm9ib2Jvb2s6DQogICAgbGlnaHRib3g6IFRSVUUNCiAgICBoaWdobGlnaHQ6IHRhbmdvDQogICAgdG9jOiAzDQogICAgbnVtYmVyLXNlY3Rpb25zOiBUUlVFDQogICAgY29kZS1mb2xkaW5nOiBzaG93DQogICAgY29kZV9kb3dubG9hZDogVFJVRQ0KZWRpdG9yX29wdGlvbnM6IA0KICBtYXJrZG93bjogDQogICAgd3JhcDogNzINCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQoqwqFCaWVudmVuaWRvcyBhbCBDdXJzbyBkZSBSOiBBbsOhbGlzaXMgZGUgRGF0b3MgeSBWaXN1YWxpemFjacOzbiEqIFIgZXMgdW4NCmxlbmd1YWplIGRlIHByb2dyYW1hY2nDs24gYW1wbGlhbWVudGUgdXRpbGl6YWRvIGVuIGxhIGNpZW5jaWEgZGUgZGF0b3MsDQplc3RhZMOtc3RpY2FzIHkgYW7DoWxpc2lzIGRlIGRhdG9zLCB5IGEgbG8gbGFyZ28gZGUgZXN0ZSBjdXJzbywgYWRxdWlyaXLDoXMNCmxhcyBoYWJpbGlkYWRlcyBlc2VuY2lhbGVzIHBhcmEgY29udmVydGlydGUgZW4gdW4gZXhwZXJ0byBlbiBlbCBtYW5lam8geQ0KYW7DoWxpc2lzIGRlIGRhdG9zDQoNClBvZGVzIGFjY2VkZXIgYWwgcmVwb3NpdG9yaW8NClthY8OhXShodHRwczovL2dpdGh1Yi5jb20vYXJpaWJhcmQvYXByZW5kaWVuZG9SKQ0KDQojIEluc3RhbGFjacOzbiBkZSBSLCBSU3R1ZGlvIHkgR2l0DQoNCiMjIyBJbnN0YWxhY2nDs24gZGUgUg0KDQpQYXJhIGRlc2NhcmdhciBSIHkgUnN0dWRpbywgZGViZXMgYWNjZWRlciBhIGxhIHDDoWdpbmENCltQb3NpdF0oaHR0cHM6Ly9wb3NpdC5jby9kb3dubG9hZC9yc3R1ZGlvLWRlc2t0b3AvKS4NCg0KIVtdKGltYWdlbmVzLzEtaW5zdGFsYWNpb24ucG5nKQ0KDQpTZWxlY2Npb25hciBlbCBwYXNvIDEsIHF1ZSB0ZSBsbGV2YXJhIGEgbGEgW3DDoWdpbmEgZGUNCkNSQU5dKGh0dHBzOi8vY3Jhbi5yc3R1ZGlvLmNvbS8pIChDb21wcmVoZW5zaXZlIFIgQXJjaGl2ZSBOZXR3b3JrKSBxdWUNCmVzIGVsIHJlcG9zaXRvcmlvIGNlbnRyYWwgZGUgc29mdHdhcmUgZGUgUi4gQWxsw60sIGRlYmVyw6FzIHNlbGVjY2lvbmFyIGVsDQpzaXN0ZW1hIG9wZXJhdGl2byBxdWUgdXRpbGljZXMuDQoNCkx1ZWdvIGRlYmVyw6FzIHNlbGVjY2lvbmFyIGVsICJpbnN0YWxsIGZvciB0aGUgZmlyc3QgdGltZSIgKEluc3RhbGFyIHBvcg0KcHJpbWVyYSB2ZXopIGVuIGxhIHBhcnRlIHN1cGVyaW9yIGRlIGxhIHDDoWdpbmE6DQoNCiFbXShpbWFnZW5lcy8xLjEtaW5zdGFsYWNpb24ucG5nKQ0KDQojIyMgSW5zdGFsYWNpw7NuIGRlIFIgU3R1ZGlvDQoNClVuYSB2ZXogcXVlIGxvIGRlc2NhcmdhcywgZGViZXLDoXMgZWplY3V0YXIgZWwgLmV4ZSB5IHNlZ3VpciBsb3MgcGFzb3MgZGUNCmxhIGluc3RhbGFjacOzbi4gTGEgw7psdGltYSB2ZXJzacOzbiBkZSBSIGVzIGxhIDQuMi4xLiBFbiBjdWFudG8gaGF5YXMNCmRlc2NhcmdhZG8gUiwgZGViZXLDoXMgZGVzY2FyZ2FyIFJTdHVkaW8gcXVlIGVzIGVsIElERSBxdWUgZXN0YXJlbW9zDQp1c2FuZG8gYSBsbyBsYXJnbyBkZWwgY3Vyc28uDQoNClBhcmEgZWxsbyB2dWVsdmUgYSBsYSBbcMOhZ2luYSBkZQ0KcG9zaXRdKGh0dHBzOi8vcG9zaXQuY28vZG93bmxvYWQvcnN0dWRpby1kZXNrdG9wLykgeSBzZWxlY2Npb25hIGVsIFBhc28NCjIuIFRhbWJpw6luIHBvZMOpcyBzZWxlY2Npb25hciBsYSBvcGNpw7NuIGRlIGRlc2NhcmdhIHF1ZSBtZWpvciBzZSBhZGFwdGUgYQ0KdHUgc2lzdGVtYSBvcGVyYXRpdm8NCg0KIVtdKGltYWdlbmVzLzEuMi1pbnN0YWxhY2lvbi5wbmcpDQoNCiMjIyBJbnN0YWxhY2lvbiBkZSBHaXQNCg0KUGFyYSBpbnN0YWxhciBnaXQgdGVuZXMgcXVlIGluZ3Jlc2FyDQpbYWPDoV0oaHR0cHM6Ly9naXQtc2NtLmNvbS9kb3dubG9hZHMpIHkgc2VsZWNjaW9uYXIgbGEgb3BjaW9uIHF1ZSBtZWpvcg0Kc2UgYWRhcHRhIGEgdHUgc2lzdGVtYSBvcGVyYXRpdm8NCg0KIVtdKGltYWdlbmVzLzEuNCUyMEdpdC5wbmcpDQoNCsKhRmVsaWNpZGFkZXMhIEFob3JhIHRpZW5lcyBSLCBSU3R1ZGlvIHkgR2l0IGluc3RhbGFkb3MgZW4gdHUgY29tcHUuIEVuDQpjYXNvIGRlIHRlbmVyIGFsZ8O6biBpbmNvbnZlbmllbnRlIG5vIGR1ZGVzIGVuIGVzY3JpYmlybm9zLg0KDQojIENsYXNlIDEgLSBJbnRyb2R1Y2Npw7NuIGEgUg0KDQpFbiBlc3RhIHByaW1lcmEgY2xhc2UsIGV4cGxvcmFyZW1vcyBsb3MgY29uY2VwdG9zIGLDoXNpY29zIGRlIFIsIHVuDQpsZW5ndWFqZSBkZSBwcm9ncmFtYWNpw7NuIHkgZW50b3JubyBkZSBhbsOhbGlzaXMgZGUgZGF0b3MgYW1wbGlhbWVudGUNCnV0aWxpemFkbyBlbiBsYSBjaWVuY2lhIGRlIGRhdG9zIHkgbGEgZXN0YWTDrXN0aWNhLiBBcHJlbmRlcmVtb3MgY8OzbW8NCmluc3RhbGFyIFIgeSBSU3R1ZGlvLCBjbG9uYXJlbW9zIHVuIHJlcG9zaXRvcmlvIGVuIEdpdCB5IHJlYWxpemFyZW1vcw0KYWxndW5hcyBvcGVyYWNpb25lcyBiw6FzaWNhcyBlbiBSLg0KDQpBaG9yYSBxdWUgdGVuZW1vcyBSIHkgUlN0dWRpbyBpbnN0YWxhZG9zLCBwb2RlbW9zIGNvbWVuemFyIGEgZXhwbG9yYXIgUi4NCkFxdcOtIGhheSBhbGd1bm9zIGNvbmNlcHRvcyBiw6FzaWNvczoNCg0KIyMgwr9RdcOpIGVzIFI/DQoNClIgZXMgdW4gbGVuZ3VhamUgZGUgcHJvZ3JhbWFjacOzbiB5IGVudG9ybm8gZGUgYW7DoWxpc2lzIGRlIGRhdG9zDQphbXBsaWFtZW50ZSB1dGlsaXphZG8gZW4gbGEgY2llbmNpYSBkZSBkYXRvcywgbGEgZXN0YWTDrXN0aWNhIHkgbGENCmludmVzdGlnYWNpw7NuLiBFcyBkZSBjw7NkaWdvIGFiaWVydG8geSBvZnJlY2UgdW5hIGFtcGxpYSB2YXJpZWRhZCBkZQ0KcGFxdWV0ZXMgeSBiaWJsaW90ZWNhcyBxdWUgZmFjaWxpdGFuIGVsIGFuw6FsaXNpcyB5IGxhIHZpc3VhbGl6YWNpw7NuIGRlDQpkYXRvcw0KDQojIyBFbnRvcm5vIGRlIFRyYWJham8gZGUgUlN0dWRpbw0KDQpEZXNwdcOpcyBkZSBpbnN0YWxhciBSIHkgUlN0dWRpbywgYWJyaXJlbW9zIFJTdHVkaW8geSBleHBsb3JhcmVtb3Mgc3UNCmVudG9ybm8gZGUgdHJhYmFqbywgcXVlIGNvbnN0YSBkZSBjdWF0cm8gcGFuZWxlcyBwcmluY2lwYWxlczoNCg0KMS4gICoqU2NyaXB0Kio6IERvbmRlIHBvZGVzIGVzY3JpYmlyIHkgZ3VhcmRhciB0dSBjw7NkaWdvIFIuDQoyLiAgKipDb25zb2xlKio6IERvbmRlIHBvZGVzIGVqZWN1dGFyIGNvbWFuZG9zIGRlIFIgZGlyZWN0YW1lbnRlLg0KMy4gICoqRW52aXJvbm1lbnQqKjogTXVlc3RyYSBsYXMgdmFyaWFibGVzIHkgb2JqZXRvcyBlbiB0dSBlc3BhY2lvIGRlDQogICAgdHJhYmFqby4NCjQuICAqKlBsb3RzL0ZpbGVzL1BhY2thZ2VzL0hlbHAqKjogUGFuZWxlcyBwYXJhIGdlc3Rpb25hciBncsOhZmljb3MsDQogICAgYXJjaGl2b3MsIHBhcXVldGVzIHkgb2J0ZW5lciBheXVkYS4NCg0KIyMgUHJveWVjdG9zDQoNCkVuIFIsIHVuIHByb3llY3RvIGVzIHVuYSBlc3RydWN0dXJhIG9yZ2FuaXphZGEgcXVlIHBlcm1pdGUgdHJhYmFqYXIgZGUNCm1hbmVyYSBlZmljaWVudGUgcG9ycXVlIGNyZWEgdW5hIGNhcnBldGEgZG9uZGUgc2UgYWxvamFuIHRvZG9zIGxvcw0KYXJjaGl2b3MgcXVlIHZhbW9zIGEgdXRpbGl6YXIgZW4gbnVlc3RybyB0cmFiYWpvLg0KDQpQYXJhIGNyZWFyIHVuIHByb3llY3RvIGVuIFIsIHBvZGVzIHNlZ3VpciBlc3RvcyBwYXNvcyBlbiBSU3R1ZGlvOg0KDQoxLiAgQWJyZSBSU3R1ZGlvLg0KDQoyLiAgVmUgYSAiRmlsZSIgKEFyY2hpdm8pIGVuIGxhIGJhcnJhIGRlIG1lbsO6IHkgc2VsZWNjaW9uYSAiTmV3IFByb2plY3QiDQogICAgKE51ZXZvIFByb3llY3RvKS4NCg0KMy4gIEVsaWdlIGxhIG9wY2nDs24gIk5ldyBEaXJlY3RvcnkiIChOdWV2byBEaXJlY3RvcmlvKSBzaSBlc3TDoXMgY3JlYW5kbw0KICAgIHVuIG51ZXZvIHByb3llY3RvIGRlc2RlIGNlcm8gbyAiRXhpc3RpbmcgRGlyZWN0b3J5IiAoRGlyZWN0b3Jpbw0KICAgIEV4aXN0ZW50ZSkgc2kgeWEgdGllbmVzIHVuIGRpcmVjdG9yaW8gZXhpc3RlbnRlIHF1ZSBkZXNlYXMgY29udmVydGlyDQogICAgZW4gdW4gcHJveWVjdG8uDQoNCjQuICBMdWVnbywgcG9kZXMgZXNwZWNpZmljYXIgbGEgdWJpY2FjacOzbiBkZWwgZGlyZWN0b3JpbyB5IGVsIG5vbWJyZSBkZWwNCiAgICBwcm95ZWN0by4NCg0KNS4gIEhheiBjbGljIGVuICJDcmVhdGUgUHJvamVjdCIgKENyZWFyIFByb3llY3RvKSB5IHNlIGFicmlyw6EgdW5hIG51ZXZhDQogICAgaW5zdGFuY2lhIGRlIFJTdHVkaW8gY29uZmlndXJhZGEgcGFyYSB0dSBwcm95ZWN0by4NCg0KIyMjIMK/Q8OzbW8gQ2xvbmFyIHVuIFJlcG9zaXRvcmlvIGVuIEdpdD8NCg0KQ2xvbmFyIHVuIHJlcG9zaXRvcmlvIGVuIEdpdCBzaWduaWZpY2EgY29waWFyIHVuIHJlcG9zaXRvcmlvIHJlbW90bw0KKGdlbmVyYWxtZW50ZSBhbG9qYWRvIGVuIEdpdEh1YiBvIGVuIG90cm8gc2Vydmlkb3IpIGVuIHR1IGNvbXB1dGFkb3JhDQpsb2NhbC4gRXN0byB0ZSBwZXJtaXRlIHRyYWJhamFyIGVuIHVuYSBjb3BpYSBsb2NhbCBkZSBsb3MgYXJjaGl2b3MsDQpyZWFsaXphciBjYW1iaW9zIHkgY29udHJpYnVpciBhbCBwcm95ZWN0by4NCg0KUGFzb3MgcGFyYSBjbG9uYXIgdW4gcmVwb3NpdG9yaW8gZW4gR2l0Og0KDQoxLiAgVmUgYWwgbWVuw7ogIkZpbGUiIChBcmNoaXZvKSBlbiBsYSBwYXJ0ZSBzdXBlcmlvciBpenF1aWVyZGEgZGUgbGENCiAgICB2ZW50YW5hIGRlIFJTdHVkaW8uDQoNCjIuICBTZWxlY2Npb25hICJOZXcgUHJvamVjdCIgKE51ZXZvIFByb3llY3RvKS4NCg0KMy4gIEVuIGVsIGN1YWRybyBkZSBkacOhbG9nbyAiTmV3IFByb2plY3QiLCBlbGlnZSAiVmVyc2lvbiBDb250cm9sIg0KICAgIChDb250cm9sIGRlIFZlcnNpb25lcykuDQoNCjQuICBMdWVnbywgc2VsZWNjaW9uYSAiR2l0Ii4NCg0KNS4gIEEgY29udGludWFjacOzbiwgcGVnYSBsYSBVUkwgZGVsIHJlcG9zaXRvcmlvIEdpdCBxdWUgZGVzZWFzIGNsb25hciBlbg0KICAgIGVsIGNhbXBvICJSZXBvc2l0b3J5IFVSTCIgKFVSTCBkZWwgUmVwb3NpdG9yaW8pLiBFc3RhIFVSTCBzZQ0KICAgIGVuY3VlbnRyYSBlbiBsYSBww6FnaW5hIGRlbCByZXBvc2l0b3JpbyBlbiBHaXRIdWIgdSBvdHJhIHBsYXRhZm9ybWENCiAgICBkZSBhbG9qYW1pZW50byBkZSBHaXQuDQoNCjYuICBFbiBlbCBjYW1wbyAiUHJvamVjdCBkaXJlY3RvcnkgbmFtZSIgKE5vbWJyZSBkZWwgZGlyZWN0b3JpbyBkZWwNCiAgICBwcm95ZWN0byksIHBvZGVzIGVzcGVjaWZpY2FyIGVsIG5vbWJyZSBkZSBsYSBjYXJwZXRhIGxvY2FsIGRvbmRlIHNlDQogICAgY2xvbmFyw6EgZWwgcmVwb3NpdG9yaW8uIFBvciBkZWZlY3RvLCBSU3R1ZGlvIHV0aWxpemFyw6EgZWwgbm9tYnJlIGRlbA0KICAgIHJlcG9zaXRvcmlvLg0KDQo3LiAgSGF6IGNsaWMgZW4gIkNyZWF0ZSBQcm9qZWN0IiAoQ3JlYXIgUHJveWVjdG8pLg0KDQojIyBPcmllbnRhY2nDs24gYSBPYmpldG9zIGVuIFINCg0KUiBlcyB1biBsZW5ndWFqZSBvcmllbnRhZG8gYSBvYmpldG9zLCBsbyBxdWUgc2lnbmlmaWNhIHF1ZSB0b2RvIGVuIFIgZXMNCnVuIG9iamV0by4gSW5jbHVzbyBsb3MgbsO6bWVyb3MsIGxhcyBmdW5jaW9uZXMgeSBsb3MgZGF0b3Mgc29uIG9iamV0b3MgZW4NClIuDQoNCiMjIENyZWFyIHVuICJDaHVuayIgZW4gUiBNYXJrZG93bg0KDQpVbiAiY2h1bmsiIGVzIHVuIGJsb3F1ZSBkZSBjw7NkaWdvIFIgcXVlIHBvZGVzIGVqZWN1dGFyIGVuIHVuIGRvY3VtZW50byBSDQpNYXJrZG93bi4gcG9kZXMgaW5zZXJ0YXIgdW4gY2h1bmsgdXRpbGl6YW5kbyB0cmVzIGNvbWlsbGFzIGludmVydGlkYXMgeQ0KbGEgZXRpcXVldGEgYHtyfWAgbyBjb24gY3RybCthbHQraSAuIFBvciBlamVtcGxvOg0KDQpgYGB7cn0NCiMgRXN0byBlcyB1biBjaHVuayBkZSBjw7NkaWdvIFINCnggPC0gNQ0KeSA8LSAxMA0KeiA8LSB4ICsgeQ0Keg0KYGBgDQoNCiMjIE9wZXJhY2lvbmVzIELDoXNpY2FzIGVuIFINCg0KQSBjb250aW51YWNpw7NuLCByZWFsaXphcmVtb3MgYWxndW5hcyBvcGVyYWNpb25lcyBiw6FzaWNhcyBlbiBSOg0KDQojIyMgQXNpZ25hY2nDs24gZGUgVmFyaWFibGVzDQoNCmBgYHtyfQ0KIyBFc3RvIGVzIHVuIGNvbWVudGFyaW8gZW4gUg0KeCA8LSA1ICMgQXNpZ25hY2nDs24gZGUgdW4gdmFsb3IgYSB1bmEgdmFyaWFibGUNCnkgPC0gMTANCg0Kcm0oeSkgI1BhcmEgYm9ycmFyIGxvcyBvYmpldG9zIGRlbCBlbnRvcm5vDQpgYGANCg0KIyMjIE9wZXJhY2lvbmVzIG1hdGVtw6F0aWNhcw0KDQpSIGVzIGNvbW8gdW5hIGNhbGN1bGFkb3JhDQoNCmBgYHtyfQ0KeSA8LSAxMg0KIyBTdW1hIGRlIHZhcmlhYmxlcw0KeiA8LSB4ICogeQ0KcHJpbnQocGFzdGUoIkxhIHN1bWEgZGUgeCB5IHkgZXM6IiwgeikpDQpgYGANCg0KIyMjIFZlY3RvcmVzDQoNCkVuIFIsIHVuIHZlY3RvciBlcyB1bmEgZXN0cnVjdHVyYSBkZSBkYXRvcyBxdWUgYWxtYWNlbmEgdW5hIHNlY3VlbmNpYSBkZQ0KdmFsb3JlcyBkZWwgbWlzbW8gdGlwby4gcG9kZXMgY3JlYXIgdW4gdmVjdG9yIHV0aWxpemFuZG8gbGEgZnVuY2nDs24NCmBjKClgLg0KDQpgYGB7cn0NCiMgcG9kZXMgY29ycmVyIGVsIGNvZGlnbyBjb24gQ1RSTCtFTlRFUiBvIGNvbiBlbCBib3Rvbg0KIyBDcmVhciB1biB2ZWN0b3INCm1pX3ZlY3RvciA8LSBjKDEsIDIsIDMsIDQsIDUpDQoNCiMgQ2FsY3VsYXIgbGEgc3VtYSBkZSBsb3MgZWxlbWVudG9zIGVuIGVsIHZlY3Rvcg0Kc3VtYSA8LSBzdW0obWlfdmVjdG9yKQ0KDQojIENhbGN1bGFyIGxhIG1lZGlhDQptZWRpYSA8LSBtZWFuKG1pX3ZlY3RvcikNCg0KbWVkaWFuYSA8LSBtZWRpYW4obWlfdmVjdG9yKQ0KDQojY2F0IHBlcm1pdGUgaW1wcmltaXIgdmFsb3Jlcw0KY2F0KCJFbCByZXN1bHRhZG8gZXMiLCBzdW1hLCAiXG4iKQ0KY2F0KCJNZWRpYTogIiwgbWVkaWEsICJcbiIpDQoNCiMgQ3JlYXIgdW4gb2JqZXRvIHB1ZWRlIHNlciBjb24gbGEgYXNpZ25hY2lvbiA8LSBvID0gDQoNCk5vbWJyZSA8LSBjKCJBcmlhbmEiLCJNYXJ0aW5hIikNCk5vbWJyZXMgPSBjKCJBcmlhbmEiLCJNYXJ0aW5hIiwiSm9hcXVpbiIpDQoNCiNjb21wYXJhY2lvbg0KTm9tYnJlID09IE5vbWJyZXMNCmBgYA0KDQpcIyMgT3BlcmFkb3JlcyBlbiBSDQoNClIgb2ZyZWNlIHZhcmlvcyB0aXBvcyBkZSBvcGVyYWRvcmVzOg0KDQotICAgKipBc2lnbmFjacOzbioqOiBTZSB1dGlsaXphIHBhcmEgYXNpZ25hciB2YWxvcmVzIGEgdmFyaWFibGVzLiBFbA0KICAgIG9wZXJhZG9yIG3DoXMgY29tw7puIGVzIGA8LWAgbyBgPWAuDQoNCi0gICAqKk9wZXJhZG9yZXMgQXJpdG3DqXRpY29zKio6IFNlIHV0aWxpemFuIHBhcmEgcmVhbGl6YXIgb3BlcmFjaW9uZXMNCiAgICBtYXRlbcOhdGljYXMsIGNvbW8gYCtgLCBgLWAsIGAqYCwgYC9gLCBlbnRyZSBvdHJvcy4NCg0KLSAgICoqT3BlcmFkb3JlcyBMw7NnaWNvcyoqOiBTZSB1dGlsaXphbiBwYXJhIGV2YWx1YXIgY29uZGljaW9uZXMNCiAgICBsw7NnaWNhcywgY29tbyBgJiZgLCBgfHxgLCBgIWAuDQoNCi0gICAqKk9wZXJhZG9yZXMgUmVsYWNpb25hbGVzKio6IFNlIHV0aWxpemFuIHBhcmEgY29tcGFyYXIgdmFsb3JlcywgY29tbw0KICAgIGA9PWAsIGAhPWAsIGA+YCwgYDxgLg0KDQojIyBUaXBvcyBkZSBPYmpldG9zIGVuIFINCg0KUiB0aWVuZSB2YXJpb3MgdGlwb3MgZGUgb2JqZXRvcywgaW5jbHV5ZW5kbzoNCg0KLSAgICoqTnVtZXJpYyoqOiBOw7ptZXJvcywgcG9yIGVqZW1wbG8sIGAzLjE0YC4NCg0KYGBge3J9DQojIENyZWFyIHVuIG9iamV0byBudW1lcmljDQpudW1lcm8gPC0gMy4xNA0KY2xhc3MobnVtZXJvKSAgIyBWZXJpZmljYXIgZWwgdGlwbyBkZSBvYmpldG8gKG51bWVyaWMpDQpgYGANCg0KLSAgICoqQ2hhcmFjdGVyKio6IENhZGVuYXMgZGUgdGV4dG8sIHBvciBlamVtcGxvLCBgIkhvbGEsIFIiYC4NCg0KYGBge3J9DQojIENyZWFyIHVuIG9iamV0byBjaGFyYWN0ZXINCnRleHRvIDwtICJIb2xhLCBSIg0KY2xhc3ModGV4dG8pICAjIFZlcmlmaWNhciBlbCB0aXBvIGRlIG9iamV0byAoY2hhcmFjdGVyKQ0KYGBgDQoNCi0gICAqKkxvZ2ljYWwqKjogVmFsb3JlcyBsw7NnaWNvcywgYFRSVUVgIG8gYEZBTFNFYC4NCg0KYGBge3J9DQojIENyZWFyIHVuIG9iamV0byBsb2dpY2FsDQp2ZXJkYWRlcm8gPC0gVFJVRSAjVA0KZmFsc28gPC0gRkFMU0UgI0YNCmNsYXNzKHZlcmRhZGVybykgICMgVmVyaWZpY2FyIGVsIHRpcG8gZGUgb2JqZXRvIChsb2dpY2FsKQ0KYGBgDQoNCi0gICAqKkludGVnZXIqKjogTsO6bWVyb3MgZW50ZXJvcywgcG9yIGVqZW1wbG8sIGAyTGAuDQoNCmBgYHtyfQ0KIyBDcmVhciB1biBvYmpldG8gaW50ZWdlcg0KZW50ZXJvIDwtIDJMDQpjbGFzcyhlbnRlcm8pICAjIFZlcmlmaWNhciBlbCB0aXBvIGRlIG9iamV0byAoaW50ZWdlcikNCmBgYA0KDQotICAgKipUaXBvIEZlY2hhKioNCg0KYGBge3J9DQpmZWNoYSA8LSBhcy5EYXRlKCIwMS8wMS8yMDIzIikNCmNsYXNzKGZlY2hhKQ0KYGBgDQoNCkFob3JhLCBtb3N0cmFyZW1vcyBjw7NtbyBjb252ZXJ0aXIgZW50cmUgZXN0b3MgdGlwb3MgZGUgb2JqZXRvcw0KdXRpbGl6YW5kbyBsYXMgZnVuY2lvbmVzIGFzLm51bWVyaWMsIGFzLmNoYXJhY3RlciB5IGFzLmxvZ2ljYWw6DQoNCioqQ29udmVyc2nDs24gYSBOdW1lcmljKioNCg0KYGBge3J9DQojIENvbnZlcnRpciBjaGFyYWN0ZXIgYSBudW1lcmljDQp0ZXh0byA8LSAiMTIzLjQ1Ig0KY2xhc3ModGV4dG8pDQpudW1lcm8gPC0gYXMubnVtZXJpYyh0ZXh0bykNCmNsYXNzKG51bWVybykgICMgVmVyaWZpY2FyIGVsIHRpcG8gZGUgb2JqZXRvIChudW1lcmljKQ0KYGBgDQoNCioqQ29udmVyc2nDs24gYSBDaGFyYWN0ZXIqKg0KDQpgYGB7cn0NCiMgQ29udmVydGlyIG51bWVyaWMgYSBjaGFyYWN0ZXINCm51bWVybyA8LSAxMjMuNDUNCmNsYXNzKG51bWVybykgDQp0ZXh0byA8LSBhcy5jaGFyYWN0ZXIobnVtZXJvKQ0KY2xhc3ModGV4dG8pICAjIFZlcmlmaWNhciBlbCB0aXBvIGRlIG9iamV0byAoY2hhcmFjdGVyKQ0KYGBgDQoNCioqQ29udmVyc2lvbiBhIGxvZ2ljYWwqKg0KDQpgYGB7cn0NCiMgQ29udmVydGlyIG51bWVyaWMgYSBsb2dpY2FsDQpudW1lcm8gPC0gMCAgIyAwIHNlIGNvbnZpZXJ0ZSBlbiBGQUxTRSwgY3VhbHF1aWVyIG90cm8gbsO6bWVybyBzZSBjb252aWVydGUgZW4gVFJVRQ0KbG9naWNvIDwtIGFzLmxvZ2ljYWwobnVtZXJvKQ0KY2xhc3MobG9naWNvKSAgIyBWZXJpZmljYXIgZWwgdGlwbyBkZSBvYmpldG8gKGxvZ2ljYWwpDQpgYGANCg0KKipDb252ZXJzaW9uIGEgZmFjdG9yKioNCg0KYGBge3J9DQojY29udmVydGlyIGEgZmFjdG9yDQoNCmdlbmVybyA8LSBjKCJGIiwiTSIsIkYiLCJNIiwiRiIsIk0iLCJGIiwiTSIsIkYiLCJNIiwiRiIsIk0iLCJGIiwiTSIsIkYiLCJNIikNCmNsYXNzKGdlbmVybykNCmdlbmVybyA8LSBhcy5mYWN0b3IoZ2VuZXJvKQ0KY2xhc3MoZ2VuZXJvKQ0KYGBgDQoNCiMjIEZ1bmNpb25lcyBlbiBSDQoNCkxvIHF1ZSB2aW1vcyByZWNpw6luLCBgYXMuZmFjdG9yKClgIHkgYGFzLmNoYXJhY3RlcigpYCBzb24gZnVuY2lvbmVzLiBMYXMNCmZ1bmNpb25lcyBzb24gYmxvcXVlcyBkZSBjw7NkaWdvIHJldXRpbGl6YWJsZXMgcXVlIHJlYWxpemFuIHRhcmVhcw0KZXNwZWPDrWZpY2FzLiBSIHRpZW5lIG11Y2hhcyBmdW5jaW9uZXMgaW5jb3Jwb3JhZGFzIHkgdGFtYmnDqW4gcG9kZXMgY3JlYXINCmxhcyB0dXlhcyBwcm9waWFzLg0KDQojIyMjIFN1bWENCg0KYGBge3J9DQojIEZ1bmNpw7NuIHBhcmEgc3VtYXIgbsO6bWVyb3MNCnN1bWFfcmVzdWx0YWRvIDwtIHN1bSgxLCAyLCAzLCA0LCA1KQ0Kc3VtYV9yZXN1bHRhZG8NCmBgYA0KDQojIyMjIE1lZGlhDQoNCmBgYHtyfQ0KIyBGdW5jacOzbiBwYXJhIGNhbGN1bGFyIGxhIG1lZGlhDQp2ZWN0b3IgPC0gYygxLCAyLCAzLCA0LCA1KQ0KbWVkaWFfcmVzdWx0YWRvIDwtIG1lYW4odmVjdG9yKQ0KbWVkaWFfcmVzdWx0YWRvDQoNCnByaW50KHBhc3RlKCJob2xhIGNvbW8gZXN0YXMiKSkNCmBgYA0KDQojIyBMaWJyZXLDrWFzIGVuIFINCg0KTGFzIExpYnJlcsOtYXMgKG8gcGFxdWV0ZXMpIGVuIFIgc29uIGNvbmp1bnRvcyBkZSBmdW5jaW9uZXMgeSBkYXRvcw0KYWRpY2lvbmFsZXMgcXVlIGV4dGllbmRlbiBsYXMgY2FwYWNpZGFkZXMgZGUgUi4gUG9kZXMgaW5zdGFsYXIgeSBjYXJnYXINCmJpYmxpb3RlY2FzIHBhcmEgYWNjZWRlciBhIGZ1bmNpb25hbGlkYWRlcyBhZGljaW9uYWxlcy4NCg0KUGFyYSBpbnN0YWxhciB1bmEgYmlibGlvdGVjYSwgdXRpbGl6YSBsYSBmdW5jacOzbg0KYGluc3RhbGwucGFja2FnZXMoIm5vbWJyZV9kZWxfcGFxdWV0ZSIpYC4gUGFyYSBjYXJnYXIgdW5hIGJpYmxpb3RlY2EsDQp1dGlsaXphIGBsaWJyYXJ5KG5vbWJyZV9kZWxfcGFxdWV0ZSlgLg0KDQpgYGB7cn0NCiNpbnN0YWxsLnBhY2thZ2VzKCJ0aWR5dmVyc2UiKQ0KbGlicmFyeSh0aWR5dmVyc2UpDQoNCiMlPiUNCmBgYA0KDQojIyBQcsOhY3RpY2ENCg0KMS4gIENyZWFyIGRvcyBgb2JqZXRvc2AgeSBhc2lnbmFybGVzOiBhIHVubyAqKm5vbWJyZXMqKiB5IGEgb3Rybw0KICAgICoqKmN1aXQqKioNCg0KYGBge3J9DQojIGNvbnNpZ25hIDENCmVtcHJlc2FzIDwtIGMoIkNhY2hhZmF6IiwiQ29jYSIsImFkaWRkYXMiLCJQZXBzaSIsIjE2IikNCmVtcHJlc2FzDQoNCmN1aXQgPC0gYygyLDMsNCw1LDYsNykNCmN1aXQNCmBgYA0KDQoyLiAgUGFyYSBsYXMgZG9zIHZhcmlhYmxlcyBjcmVhZGFzIGVuIGVsIHB1bnRvIGFudGVyaW9yLCB2ZXJpZmljYXIgbGENCiAgICBjbGFzZSBvIGVsIHRpcG8gZGUgb2JqZXRvOg0KDQpgYGB7cn0NCiMgY29uc2lnbmEgMg0KY2xhc3MoZW1wcmVzYXMpDQpjbGFzcyhjdWl0KQ0KYGBgDQoNCjMuICBDb252ZXJ0aXIgZWwgb2JqZXRvIGVtcHJlc2FzIGVuIHVubyBkZSB0aXBvIG51bcOpcmljby4gwr9RdcOpIHN1Y2VkZT8NCg0KYGBge3J9DQojIGNvbnNpZ25hIDMNCg0KZW1wcmVzYXMgPC0gYXMubnVtZXJpYyhlbXByZXNhcykNCmVtcHJlc2FzDQoNCmN1aXQgPC0gYXMuY2hhcmFjdGVyKGN1aXQpDQpjdWl0DQpgYGANCg==</div>
+      <div id="rmd-source-code">LS0tDQp0aXRsZTogIkludHJvZHVjY2nDs24gYWwgdXNvIGRlIFIiDQphdXRob3I6ICJBcmlhbmEgQmFyZGF1aWwiDQpkYXRlOiAiYHIgU3lzLkRhdGUoKWAiDQpsYW5nOiAiZXMiDQpvdXRwdXQ6DQogIHJtZGZvcm1hdHM6OnJvYm9ib29rOg0KICAgIGxpZ2h0Ym94OiBUUlVFDQogICAgaGlnaGxpZ2h0OiB0YW5nbw0KICAgIHRvYzogMw0KICAgIG51bWJlci1zZWN0aW9uczogVFJVRQ0KICAgIGNvZGUtZm9sZGluZzogc2hvdw0KICAgIGNvZGVfZG93bmxvYWQ6IFRSVUUNCmVkaXRvcl9vcHRpb25zOiANCiAgbWFya2Rvd246IA0KICAgIHdyYXA6IDcyDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KKsKhQmllbnZlbmlkb3MgYWwgQ3Vyc28gZGUgUjogQW7DoWxpc2lzIGRlIERhdG9zIHkgVmlzdWFsaXphY2nDs24hKiBSIGVzIHVuDQpsZW5ndWFqZSBkZSBwcm9ncmFtYWNpw7NuIGFtcGxpYW1lbnRlIHV0aWxpemFkbyBlbiBsYSBjaWVuY2lhIGRlIGRhdG9zLA0KZXN0YWTDrXN0aWNhcyB5IGFuw6FsaXNpcyBkZSBkYXRvcywgeSBhIGxvIGxhcmdvIGRlIGVzdGUgY3Vyc28sIGFkcXVpcmlyw6FzDQpsYXMgaGFiaWxpZGFkZXMgZXNlbmNpYWxlcyBwYXJhIGNvbnZlcnRpcnRlIGVuIHVuIGV4cGVydG8gZW4gZWwgbWFuZWpvIHkNCmFuw6FsaXNpcyBkZSBkYXRvcw0KDQpQb2RlcyBhY2NlZGVyIGFsIHJlcG9zaXRvcmlvDQpbYWPDoV0oaHR0cHM6Ly9naXRodWIuY29tL2FyaWliYXJkL2FwcmVuZGllbmRvUikNCg0KIyBJbnN0YWxhY2nDs24gZGUgUiwgUlN0dWRpbyB5IEdpdA0KDQojIyMgSW5zdGFsYWNpw7NuIGRlIFINCg0KUGFyYSBkZXNjYXJnYXIgUiB5IFJzdHVkaW8sIGRlYmVzIGFjY2VkZXIgYSBsYSBww6FnaW5hDQpbUG9zaXRdKGh0dHBzOi8vcG9zaXQuY28vZG93bmxvYWQvcnN0dWRpby1kZXNrdG9wLykuDQoNCiFbXShpbWFnZW5lcy8xLWluc3RhbGFjaW9uLnBuZykNCg0KU2VsZWNjaW9uYXIgZWwgcGFzbyAxLCBxdWUgdGUgbGxldmFyYSBhIGxhIFtww6FnaW5hIGRlDQpDUkFOXShodHRwczovL2NyYW4ucnN0dWRpby5jb20vKSAoQ29tcHJlaGVuc2l2ZSBSIEFyY2hpdmUgTmV0d29yaykgcXVlDQplcyBlbCByZXBvc2l0b3JpbyBjZW50cmFsIGRlIHNvZnR3YXJlIGRlIFIuIEFsbMOtLCBkZWJlcsOhcyBzZWxlY2Npb25hciBlbA0Kc2lzdGVtYSBvcGVyYXRpdm8gcXVlIHV0aWxpY2VzLg0KDQpMdWVnbyBkZWJlcsOhcyBzZWxlY2Npb25hciBlbCAiaW5zdGFsbCBmb3IgdGhlIGZpcnN0IHRpbWUiIChJbnN0YWxhciBwb3INCnByaW1lcmEgdmV6KSBlbiBsYSBwYXJ0ZSBzdXBlcmlvciBkZSBsYSBww6FnaW5hOg0KDQohW10oaW1hZ2VuZXMvMS4xLWluc3RhbGFjaW9uLnBuZykNCg0KIyMjIEluc3RhbGFjacOzbiBkZSBSIFN0dWRpbw0KDQpVbmEgdmV6IHF1ZSBsbyBkZXNjYXJnYXMsIGRlYmVyw6FzIGVqZWN1dGFyIGVsIC5leGUgeSBzZWd1aXIgbG9zIHBhc29zIGRlDQpsYSBpbnN0YWxhY2nDs24uIExhIMO6bHRpbWEgdmVyc2nDs24gZGUgUiBlcyBsYSA0LjIuMS4gRW4gY3VhbnRvIGhheWFzDQpkZXNjYXJnYWRvIFIsIGRlYmVyw6FzIGRlc2NhcmdhciBSU3R1ZGlvIHF1ZSBlcyBlbCBJREUgcXVlIGVzdGFyZW1vcw0KdXNhbmRvIGEgbG8gbGFyZ28gZGVsIGN1cnNvLg0KDQpQYXJhIGVsbG8gdnVlbHZlIGEgbGEgW3DDoWdpbmEgZGUNCnBvc2l0XShodHRwczovL3Bvc2l0LmNvL2Rvd25sb2FkL3JzdHVkaW8tZGVza3RvcC8pIHkgc2VsZWNjaW9uYSBlbCBQYXNvDQoyLiBUYW1iacOpbiBwb2TDqXMgc2VsZWNjaW9uYXIgbGEgb3BjacOzbiBkZSBkZXNjYXJnYSBxdWUgbWVqb3Igc2UgYWRhcHRlIGENCnR1IHNpc3RlbWEgb3BlcmF0aXZvDQoNCiFbXShpbWFnZW5lcy8xLjItaW5zdGFsYWNpb24ucG5nKQ0KDQojIyMgSW5zdGFsYWNpb24gZGUgR2l0DQoNClBhcmEgaW5zdGFsYXIgZ2l0IHRlbmVzIHF1ZSBpbmdyZXNhcg0KW2Fjw6FdKGh0dHBzOi8vZ2l0LXNjbS5jb20vZG93bmxvYWRzKSB5IHNlbGVjY2lvbmFyIGxhIG9wY2lvbiBxdWUgbWVqb3INCnNlIGFkYXB0YSBhIHR1IHNpc3RlbWEgb3BlcmF0aXZvDQoNCiFbXShpbWFnZW5lcy8xLjQlMjBHaXQucG5nKQ0KDQrCoUZlbGljaWRhZGVzISBBaG9yYSB0aWVuZXMgUiwgUlN0dWRpbyB5IEdpdCBpbnN0YWxhZG9zIGVuIHR1IGNvbXB1LiBFbg0KY2FzbyBkZSB0ZW5lciBhbGfDum4gaW5jb252ZW5pZW50ZSBubyBkdWRlcyBlbiBlc2NyaWJpcm5vcy4NCg0KIyBDbGFzZSAxIC0gSW50cm9kdWNjacOzbiBhIFINCg0KRW4gZXN0YSBwcmltZXJhIGNsYXNlLCBleHBsb3JhcmVtb3MgbG9zIGNvbmNlcHRvcyBiw6FzaWNvcyBkZSBSLCB1bg0KbGVuZ3VhamUgZGUgcHJvZ3JhbWFjacOzbiB5IGVudG9ybm8gZGUgYW7DoWxpc2lzIGRlIGRhdG9zIGFtcGxpYW1lbnRlDQp1dGlsaXphZG8gZW4gbGEgY2llbmNpYSBkZSBkYXRvcyB5IGxhIGVzdGFkw61zdGljYS4gQXByZW5kZXJlbW9zIGPDs21vDQppbnN0YWxhciBSIHkgUlN0dWRpbywgY2xvbmFyZW1vcyB1biByZXBvc2l0b3JpbyBlbiBHaXQgeSByZWFsaXphcmVtb3MNCmFsZ3VuYXMgb3BlcmFjaW9uZXMgYsOhc2ljYXMgZW4gUi4NCg0KQWhvcmEgcXVlIHRlbmVtb3MgUiB5IFJTdHVkaW8gaW5zdGFsYWRvcywgcG9kZW1vcyBjb21lbnphciBhIGV4cGxvcmFyIFIuDQpBcXXDrSBoYXkgYWxndW5vcyBjb25jZXB0b3MgYsOhc2ljb3M6DQoNCiMjIMK/UXXDqSBlcyBSPw0KDQpSIGVzIHVuIGxlbmd1YWplIGRlIHByb2dyYW1hY2nDs24geSBlbnRvcm5vIGRlIGFuw6FsaXNpcyBkZSBkYXRvcw0KYW1wbGlhbWVudGUgdXRpbGl6YWRvIGVuIGxhIGNpZW5jaWEgZGUgZGF0b3MsIGxhIGVzdGFkw61zdGljYSB5IGxhDQppbnZlc3RpZ2FjacOzbi4gRXMgZGUgY8OzZGlnbyBhYmllcnRvIHkgb2ZyZWNlIHVuYSBhbXBsaWEgdmFyaWVkYWQgZGUNCnBhcXVldGVzIHkgYmlibGlvdGVjYXMgcXVlIGZhY2lsaXRhbiBlbCBhbsOhbGlzaXMgeSBsYSB2aXN1YWxpemFjacOzbiBkZQ0KZGF0b3MNCg0KIyMgRW50b3JubyBkZSBUcmFiYWpvIGRlIFJTdHVkaW8NCg0KRGVzcHXDqXMgZGUgaW5zdGFsYXIgUiB5IFJTdHVkaW8sIGFicmlyZW1vcyBSU3R1ZGlvIHkgZXhwbG9yYXJlbW9zIHN1DQplbnRvcm5vIGRlIHRyYWJham8sIHF1ZSBjb25zdGEgZGUgY3VhdHJvIHBhbmVsZXMgcHJpbmNpcGFsZXM6DQoNCjEuICAqKlNjcmlwdCoqOiBEb25kZSBwb2RlcyBlc2NyaWJpciB5IGd1YXJkYXIgdHUgY8OzZGlnbyBSLg0KMi4gICoqQ29uc29sZSoqOiBEb25kZSBwb2RlcyBlamVjdXRhciBjb21hbmRvcyBkZSBSIGRpcmVjdGFtZW50ZS4NCjMuICAqKkVudmlyb25tZW50Kio6IE11ZXN0cmEgbGFzIHZhcmlhYmxlcyB5IG9iamV0b3MgZW4gdHUgZXNwYWNpbyBkZQ0KICAgIHRyYWJham8uDQo0LiAgKipQbG90cy9GaWxlcy9QYWNrYWdlcy9IZWxwKio6IFBhbmVsZXMgcGFyYSBnZXN0aW9uYXIgZ3LDoWZpY29zLA0KICAgIGFyY2hpdm9zLCBwYXF1ZXRlcyB5IG9idGVuZXIgYXl1ZGEuDQoNCiMjIFByb3llY3Rvcw0KDQpFbiBSLCB1biBwcm95ZWN0byBlcyB1bmEgZXN0cnVjdHVyYSBvcmdhbml6YWRhIHF1ZSBwZXJtaXRlIHRyYWJhamFyIGRlDQptYW5lcmEgZWZpY2llbnRlIHBvcnF1ZSBjcmVhIHVuYSBjYXJwZXRhIGRvbmRlIHNlIGFsb2phbiB0b2RvcyBsb3MNCmFyY2hpdm9zIHF1ZSB2YW1vcyBhIHV0aWxpemFyIGVuIG51ZXN0cm8gdHJhYmFqby4NCg0KUGFyYSBjcmVhciB1biBwcm95ZWN0byBlbiBSLCBwb2RlcyBzZWd1aXIgZXN0b3MgcGFzb3MgZW4gUlN0dWRpbzoNCg0KMS4gIEFicmUgUlN0dWRpby4NCg0KMi4gIFZlIGEgIkZpbGUiIChBcmNoaXZvKSBlbiBsYSBiYXJyYSBkZSBtZW7DuiB5IHNlbGVjY2lvbmEgIk5ldyBQcm9qZWN0Ig0KICAgIChOdWV2byBQcm95ZWN0bykuDQoNCjMuICBFbGlnZSBsYSBvcGNpw7NuICJOZXcgRGlyZWN0b3J5IiAoTnVldm8gRGlyZWN0b3Jpbykgc2kgZXN0w6FzIGNyZWFuZG8NCiAgICB1biBudWV2byBwcm95ZWN0byBkZXNkZSBjZXJvIG8gIkV4aXN0aW5nIERpcmVjdG9yeSIgKERpcmVjdG9yaW8NCiAgICBFeGlzdGVudGUpIHNpIHlhIHRpZW5lcyB1biBkaXJlY3RvcmlvIGV4aXN0ZW50ZSBxdWUgZGVzZWFzIGNvbnZlcnRpcg0KICAgIGVuIHVuIHByb3llY3RvLg0KDQo0LiAgTHVlZ28sIHBvZGVzIGVzcGVjaWZpY2FyIGxhIHViaWNhY2nDs24gZGVsIGRpcmVjdG9yaW8geSBlbCBub21icmUgZGVsDQogICAgcHJveWVjdG8uDQoNCjUuICBIYXogY2xpYyBlbiAiQ3JlYXRlIFByb2plY3QiIChDcmVhciBQcm95ZWN0bykgeSBzZSBhYnJpcsOhIHVuYSBudWV2YQ0KICAgIGluc3RhbmNpYSBkZSBSU3R1ZGlvIGNvbmZpZ3VyYWRhIHBhcmEgdHUgcHJveWVjdG8uDQoNCiMjIyDCv0PDs21vIENsb25hciB1biBSZXBvc2l0b3JpbyBlbiBHaXQ/DQoNCkNsb25hciB1biByZXBvc2l0b3JpbyBlbiBHaXQgc2lnbmlmaWNhIGNvcGlhciB1biByZXBvc2l0b3JpbyByZW1vdG8NCihnZW5lcmFsbWVudGUgYWxvamFkbyBlbiBHaXRIdWIgbyBlbiBvdHJvIHNlcnZpZG9yKSBlbiB0dSBjb21wdXRhZG9yYQ0KbG9jYWwuIEVzdG8gdGUgcGVybWl0ZSB0cmFiYWphciBlbiB1bmEgY29waWEgbG9jYWwgZGUgbG9zIGFyY2hpdm9zLA0KcmVhbGl6YXIgY2FtYmlvcyB5IGNvbnRyaWJ1aXIgYWwgcHJveWVjdG8uDQoNClBhc29zIHBhcmEgY2xvbmFyIHVuIHJlcG9zaXRvcmlvIGVuIEdpdDoNCg0KMS4gIFZlIGFsIG1lbsO6ICJGaWxlIiAoQXJjaGl2bykgZW4gbGEgcGFydGUgc3VwZXJpb3IgaXpxdWllcmRhIGRlIGxhDQogICAgdmVudGFuYSBkZSBSU3R1ZGlvLg0KDQoyLiAgU2VsZWNjaW9uYSAiTmV3IFByb2plY3QiIChOdWV2byBQcm95ZWN0bykuDQoNCjMuICBFbiBlbCBjdWFkcm8gZGUgZGnDoWxvZ28gIk5ldyBQcm9qZWN0IiwgZWxpZ2UgIlZlcnNpb24gQ29udHJvbCINCiAgICAoQ29udHJvbCBkZSBWZXJzaW9uZXMpLg0KDQo0LiAgTHVlZ28sIHNlbGVjY2lvbmEgIkdpdCIuDQoNCjUuICBBIGNvbnRpbnVhY2nDs24sIHBlZ2EgbGEgVVJMIGRlbCByZXBvc2l0b3JpbyBHaXQgcXVlIGRlc2VhcyBjbG9uYXIgZW4NCiAgICBlbCBjYW1wbyAiUmVwb3NpdG9yeSBVUkwiIChVUkwgZGVsIFJlcG9zaXRvcmlvKS4gRXN0YSBVUkwgc2UNCiAgICBlbmN1ZW50cmEgZW4gbGEgcMOhZ2luYSBkZWwgcmVwb3NpdG9yaW8gZW4gR2l0SHViIHUgb3RyYSBwbGF0YWZvcm1hDQogICAgZGUgYWxvamFtaWVudG8gZGUgR2l0Lg0KDQo2LiAgRW4gZWwgY2FtcG8gIlByb2plY3QgZGlyZWN0b3J5IG5hbWUiIChOb21icmUgZGVsIGRpcmVjdG9yaW8gZGVsDQogICAgcHJveWVjdG8pLCBwb2RlcyBlc3BlY2lmaWNhciBlbCBub21icmUgZGUgbGEgY2FycGV0YSBsb2NhbCBkb25kZSBzZQ0KICAgIGNsb25hcsOhIGVsIHJlcG9zaXRvcmlvLiBQb3IgZGVmZWN0bywgUlN0dWRpbyB1dGlsaXphcsOhIGVsIG5vbWJyZSBkZWwNCiAgICByZXBvc2l0b3Jpby4NCg0KNy4gIEhheiBjbGljIGVuICJDcmVhdGUgUHJvamVjdCIgKENyZWFyIFByb3llY3RvKS4NCg0KIyMgT3JpZW50YWNpw7NuIGEgT2JqZXRvcyBlbiBSDQoNClIgZXMgdW4gbGVuZ3VhamUgb3JpZW50YWRvIGEgb2JqZXRvcywgbG8gcXVlIHNpZ25pZmljYSBxdWUgdG9kbyBlbiBSIGVzDQp1biBvYmpldG8uIEluY2x1c28gbG9zIG7Dum1lcm9zLCBsYXMgZnVuY2lvbmVzIHkgbG9zIGRhdG9zIHNvbiBvYmpldG9zIGVuDQpSLg0KDQojIyBDcmVhciB1biAiQ2h1bmsiIGVuIFIgTWFya2Rvd24NCg0KVW4gImNodW5rIiBlcyB1biBibG9xdWUgZGUgY8OzZGlnbyBSIHF1ZSBwb2RlcyBlamVjdXRhciBlbiB1biBkb2N1bWVudG8gUg0KTWFya2Rvd24uIHBvZGVzIGluc2VydGFyIHVuIGNodW5rIHV0aWxpemFuZG8gdHJlcyBjb21pbGxhcyBpbnZlcnRpZGFzIHkNCmxhIGV0aXF1ZXRhIGB7cn1gIG8gY29uIGN0cmwrYWx0K2kgLiBQb3IgZWplbXBsbzoNCg0KYGBge3J9DQojIEVzdG8gZXMgdW4gY2h1bmsgZGUgY8OzZGlnbyBSDQp4IDwtIDUNCnkgPC0gMTANCnogPC0geCArIHkNCnoNCmBgYA0KDQojIyBPcGVyYWNpb25lcyBCw6FzaWNhcyBlbiBSDQoNCkEgY29udGludWFjacOzbiwgcmVhbGl6YXJlbW9zIGFsZ3VuYXMgb3BlcmFjaW9uZXMgYsOhc2ljYXMgZW4gUjoNCg0KIyMjIEFzaWduYWNpw7NuIGRlIFZhcmlhYmxlcw0KDQpgYGB7cn0NCiMgRXN0byBlcyB1biBjb21lbnRhcmlvIGVuIFINCnggPC0gNSAjIEFzaWduYWNpw7NuIGRlIHVuIHZhbG9yIGEgdW5hIHZhcmlhYmxlDQp5IDwtIDEwDQoNCnJtKHkpICNQYXJhIGJvcnJhciBsb3Mgb2JqZXRvcyBkZWwgZW50b3Jubw0KYGBgDQoNCiMjIyBPcGVyYWNpb25lcyBtYXRlbcOhdGljYXMNCg0KUiBlcyBjb21vIHVuYSBjYWxjdWxhZG9yYQ0KDQpgYGB7cn0NCnkgPC0gMTINCiMgU3VtYSBkZSB2YXJpYWJsZXMNCnogPC0geCAqIHkNCnByaW50KHBhc3RlKCJMYSBzdW1hIGRlIHggeSB5IGVzOiIsIHopKQ0KYGBgDQoNCiMjIyBWZWN0b3Jlcw0KDQpFbiBSLCB1biB2ZWN0b3IgZXMgdW5hIGVzdHJ1Y3R1cmEgZGUgZGF0b3MgcXVlIGFsbWFjZW5hIHVuYSBzZWN1ZW5jaWEgZGUNCnZhbG9yZXMgZGVsIG1pc21vIHRpcG8uIHBvZGVzIGNyZWFyIHVuIHZlY3RvciB1dGlsaXphbmRvIGxhIGZ1bmNpw7NuDQpgYygpYC4NCg0KYGBge3J9DQojIHBvZGVzIGNvcnJlciBlbCBjb2RpZ28gY29uIENUUkwrRU5URVIgbyBjb24gZWwgYm90b24NCiMgQ3JlYXIgdW4gdmVjdG9yDQptaV92ZWN0b3IgPC0gYygxLCAyLCAzLCA0LCA1KQ0KDQojIENhbGN1bGFyIGxhIHN1bWEgZGUgbG9zIGVsZW1lbnRvcyBlbiBlbCB2ZWN0b3INCnN1bWEgPC0gc3VtKG1pX3ZlY3RvcikNCg0KIyBDYWxjdWxhciBsYSBtZWRpYQ0KbWVkaWEgPC0gbWVhbihtaV92ZWN0b3IpDQoNCm1lZGlhbmEgPC0gbWVkaWFuKG1pX3ZlY3RvcikNCg0KI2NhdCBwZXJtaXRlIGltcHJpbWlyIHZhbG9yZXMNCmNhdCgiRWwgcmVzdWx0YWRvIGVzIiwgc3VtYSwgIlxuIikNCmNhdCgiTWVkaWE6ICIsIG1lZGlhLCAiXG4iKQ0KDQojIENyZWFyIHVuIG9iamV0byBwdWVkZSBzZXIgY29uIGxhIGFzaWduYWNpb24gPC0gbyA9IA0KDQpOb21icmUgPC0gYygiQXJpYW5hIiwiTWFydGluYSIpDQpOb21icmVzID0gYygiQXJpYW5hIiwiTWFydGluYSIsIkpvYXF1aW4iKQ0KDQojY29tcGFyYWNpb24NCk5vbWJyZSA9PSBOb21icmVzDQpgYGANCg0KXCMjIE9wZXJhZG9yZXMgZW4gUg0KDQpSIG9mcmVjZSB2YXJpb3MgdGlwb3MgZGUgb3BlcmFkb3JlczoNCg0KLSAgICoqQXNpZ25hY2nDs24qKjogU2UgdXRpbGl6YSBwYXJhIGFzaWduYXIgdmFsb3JlcyBhIHZhcmlhYmxlcy4gRWwNCiAgICBvcGVyYWRvciBtw6FzIGNvbcO6biBlcyBgPC1gIG8gYD1gLg0KDQotICAgKipPcGVyYWRvcmVzIEFyaXRtw6l0aWNvcyoqOiBTZSB1dGlsaXphbiBwYXJhIHJlYWxpemFyIG9wZXJhY2lvbmVzDQogICAgbWF0ZW3DoXRpY2FzLCBjb21vIGArYCwgYC1gLCBgKmAsIGAvYCwgZW50cmUgb3Ryb3MuDQoNCi0gICAqKk9wZXJhZG9yZXMgTMOzZ2ljb3MqKjogU2UgdXRpbGl6YW4gcGFyYSBldmFsdWFyIGNvbmRpY2lvbmVzDQogICAgbMOzZ2ljYXMsIGNvbW8gYCYmYCwgYHx8YCwgYCFgLg0KDQotICAgKipPcGVyYWRvcmVzIFJlbGFjaW9uYWxlcyoqOiBTZSB1dGlsaXphbiBwYXJhIGNvbXBhcmFyIHZhbG9yZXMsIGNvbW8NCiAgICBgPT1gLCBgIT1gLCBgPmAsIGA8YC4NCg0KIyMgVGlwb3MgZGUgT2JqZXRvcyBlbiBSDQoNClIgdGllbmUgdmFyaW9zIHRpcG9zIGRlIG9iamV0b3MsIGluY2x1eWVuZG86DQoNCi0gICAqKk51bWVyaWMqKjogTsO6bWVyb3MsIHBvciBlamVtcGxvLCBgMy4xNGAuDQoNCmBgYHtyfQ0KIyBDcmVhciB1biBvYmpldG8gbnVtZXJpYw0KbnVtZXJvIDwtIDMuMTQNCmNsYXNzKG51bWVybykgICMgVmVyaWZpY2FyIGVsIHRpcG8gZGUgb2JqZXRvIChudW1lcmljKQ0KYGBgDQoNCi0gICAqKkNoYXJhY3RlcioqOiBDYWRlbmFzIGRlIHRleHRvLCBwb3IgZWplbXBsbywgYCJIb2xhLCBSImAuDQoNCmBgYHtyfQ0KIyBDcmVhciB1biBvYmpldG8gY2hhcmFjdGVyDQp0ZXh0byA8LSAiSG9sYSwgUiINCmNsYXNzKHRleHRvKSAgIyBWZXJpZmljYXIgZWwgdGlwbyBkZSBvYmpldG8gKGNoYXJhY3RlcikNCmBgYA0KDQotICAgKipMb2dpY2FsKio6IFZhbG9yZXMgbMOzZ2ljb3MsIGBUUlVFYCBvIGBGQUxTRWAuDQoNCmBgYHtyfQ0KIyBDcmVhciB1biBvYmpldG8gbG9naWNhbA0KdmVyZGFkZXJvIDwtIFRSVUUgI1QNCmZhbHNvIDwtIEZBTFNFICNGDQpjbGFzcyh2ZXJkYWRlcm8pICAjIFZlcmlmaWNhciBlbCB0aXBvIGRlIG9iamV0byAobG9naWNhbCkNCmBgYA0KDQotICAgKipJbnRlZ2VyKio6IE7Dum1lcm9zIGVudGVyb3MsIHBvciBlamVtcGxvLCBgMkxgLg0KDQpgYGB7cn0NCiMgQ3JlYXIgdW4gb2JqZXRvIGludGVnZXINCmVudGVybyA8LSAyTA0KY2xhc3MoZW50ZXJvKSAgIyBWZXJpZmljYXIgZWwgdGlwbyBkZSBvYmpldG8gKGludGVnZXIpDQpgYGANCg0KLSAgICoqVGlwbyBGZWNoYSoqDQoNCmBgYHtyfQ0KZmVjaGEgPC0gYXMuRGF0ZSgiMDEvMDEvMjAyMyIpDQpjbGFzcyhmZWNoYSkNCmBgYA0KDQpBaG9yYSwgbW9zdHJhcmVtb3MgY8OzbW8gY29udmVydGlyIGVudHJlIGVzdG9zIHRpcG9zIGRlIG9iamV0b3MNCnV0aWxpemFuZG8gbGFzIGZ1bmNpb25lcyBhcy5udW1lcmljLCBhcy5jaGFyYWN0ZXIgeSBhcy5sb2dpY2FsOg0KDQoqKkNvbnZlcnNpw7NuIGEgTnVtZXJpYyoqDQoNCmBgYHtyfQ0KIyBDb252ZXJ0aXIgY2hhcmFjdGVyIGEgbnVtZXJpYw0KdGV4dG8gPC0gIjEyMy40NSINCmNsYXNzKHRleHRvKQ0KbnVtZXJvIDwtIGFzLm51bWVyaWModGV4dG8pDQpjbGFzcyhudW1lcm8pICAjIFZlcmlmaWNhciBlbCB0aXBvIGRlIG9iamV0byAobnVtZXJpYykNCmBgYA0KDQoqKkNvbnZlcnNpw7NuIGEgQ2hhcmFjdGVyKioNCg0KYGBge3J9DQojIENvbnZlcnRpciBudW1lcmljIGEgY2hhcmFjdGVyDQpudW1lcm8gPC0gMTIzLjQ1DQpjbGFzcyhudW1lcm8pIA0KdGV4dG8gPC0gYXMuY2hhcmFjdGVyKG51bWVybykNCmNsYXNzKHRleHRvKSAgIyBWZXJpZmljYXIgZWwgdGlwbyBkZSBvYmpldG8gKGNoYXJhY3RlcikNCmBgYA0KDQoqKkNvbnZlcnNpb24gYSBsb2dpY2FsKioNCg0KYGBge3J9DQojIENvbnZlcnRpciBudW1lcmljIGEgbG9naWNhbA0KbnVtZXJvIDwtIDAgICMgMCBzZSBjb252aWVydGUgZW4gRkFMU0UsIGN1YWxxdWllciBvdHJvIG7Dum1lcm8gc2UgY29udmllcnRlIGVuIFRSVUUNCmxvZ2ljbyA8LSBhcy5sb2dpY2FsKG51bWVybykNCmNsYXNzKGxvZ2ljbykgICMgVmVyaWZpY2FyIGVsIHRpcG8gZGUgb2JqZXRvIChsb2dpY2FsKQ0KYGBgDQoNCioqQ29udmVyc2lvbiBhIGZhY3RvcioqDQoNCmBgYHtyfQ0KI2NvbnZlcnRpciBhIGZhY3Rvcg0KDQpnZW5lcm8gPC0gYygiRiIsIk0iLCJGIiwiTSIsIkYiLCJNIiwiRiIsIk0iLCJGIiwiTSIsIkYiLCJNIiwiRiIsIk0iLCJGIiwiTSIpDQpjbGFzcyhnZW5lcm8pDQpnZW5lcm8gPC0gYXMuZmFjdG9yKGdlbmVybykNCmNsYXNzKGdlbmVybykNCmBgYA0KDQojIyBGdW5jaW9uZXMgZW4gUg0KDQpMbyBxdWUgdmltb3MgcmVjacOpbiwgYGFzLmZhY3RvcigpYCB5IGBhcy5jaGFyYWN0ZXIoKWAgc29uIGZ1bmNpb25lcy4gTGFzDQpmdW5jaW9uZXMgc29uIGJsb3F1ZXMgZGUgY8OzZGlnbyByZXV0aWxpemFibGVzIHF1ZSByZWFsaXphbiB0YXJlYXMNCmVzcGVjw61maWNhcy4gUiB0aWVuZSBtdWNoYXMgZnVuY2lvbmVzIGluY29ycG9yYWRhcyB5IHRhbWJpw6luIHBvZGVzIGNyZWFyDQpsYXMgdHV5YXMgcHJvcGlhcy4NCg0KIyMjIyBTdW1hDQoNCmBgYHtyfQ0KIyBGdW5jacOzbiBwYXJhIHN1bWFyIG7Dum1lcm9zDQpzdW1hX3Jlc3VsdGFkbyA8LSBzdW0oMSwgMiwgMywgNCwgNSkNCnN1bWFfcmVzdWx0YWRvDQpgYGANCg0KIyMjIyBNZWRpYQ0KDQpgYGB7cn0NCiMgRnVuY2nDs24gcGFyYSBjYWxjdWxhciBsYSBtZWRpYQ0KdmVjdG9yIDwtIGMoMSwgMiwgMywgNCwgNSkNCm1lZGlhX3Jlc3VsdGFkbyA8LSBtZWFuKHZlY3RvcikNCm1lZGlhX3Jlc3VsdGFkbw0KDQpwcmludChwYXN0ZSgiaG9sYSBjb21vIGVzdGFzIikpDQpgYGANCg0KIyMgTGlicmVyw61hcyBlbiBSDQoNCkxhcyBMaWJyZXLDrWFzIChvIHBhcXVldGVzKSBlbiBSIHNvbiBjb25qdW50b3MgZGUgZnVuY2lvbmVzIHkgZGF0b3MNCmFkaWNpb25hbGVzIHF1ZSBleHRpZW5kZW4gbGFzIGNhcGFjaWRhZGVzIGRlIFIuIFBvZGVzIGluc3RhbGFyIHkgY2FyZ2FyDQpiaWJsaW90ZWNhcyBwYXJhIGFjY2VkZXIgYSBmdW5jaW9uYWxpZGFkZXMgYWRpY2lvbmFsZXMuDQoNClBhcmEgaW5zdGFsYXIgdW5hIGJpYmxpb3RlY2EsIHV0aWxpemEgbGEgZnVuY2nDs24NCmBpbnN0YWxsLnBhY2thZ2VzKCJub21icmVfZGVsX3BhcXVldGUiKWAuIFBhcmEgY2FyZ2FyIHVuYSBiaWJsaW90ZWNhLA0KdXRpbGl6YSBgbGlicmFyeShub21icmVfZGVsX3BhcXVldGUpYC4NCg0KYGBge3J9DQojaW5zdGFsbC5wYWNrYWdlcygidGlkeXZlcnNlIikNCmxpYnJhcnkodGlkeXZlcnNlKQ0KDQojJT4lDQpgYGANCg0KIyMgUHLDoWN0aWNhDQoNCjEuICBDcmVhciBkb3MgYG9iamV0b3NgIHkgYXNpZ25hcmxlczogYSB1bm8gKipub21icmVzKiogeSBhIG90cm8NCiAgICAqKipjdWl0KioqDQoNCmBgYHtyfQ0KIyBjb25zaWduYSAxDQplbXByZXNhcyA8LSBjKCJDYWNoYWZheiIsIkNvY2EiLCJhZGlkZGFzIiwiUGVwc2kiLCIxNiIpDQplbXByZXNhcw0KDQpjdWl0IDwtIGMoMiwzLDQsNSw2LDcpDQpjdWl0DQpgYGANCg0KMi4gIFBhcmEgbGFzIGRvcyB2YXJpYWJsZXMgY3JlYWRhcyBlbiBlbCBwdW50byBhbnRlcmlvciwgdmVyaWZpY2FyIGxhDQogICAgY2xhc2UgbyBlbCB0aXBvIGRlIG9iamV0bzoNCg0KYGBge3J9DQojIGNvbnNpZ25hIDINCmNsYXNzKGVtcHJlc2FzKQ0KY2xhc3MoY3VpdCkNCmBgYA0KDQozLiAgQ29udmVydGlyIGVsIG9iamV0byBlbXByZXNhcyBlbiB1bm8gZGUgdGlwbyBudW3DqXJpY28uIMK/UXXDqSBzdWNlZGU/DQoNCmBgYHtyfQ0KIyBjb25zaWduYSAzDQoNCmVtcHJlc2FzIDwtIGFzLm51bWVyaWMoZW1wcmVzYXMpDQplbXByZXNhcw0KDQpjdWl0IDwtIGFzLmNoYXJhY3RlcihjdWl0KQ0KY3VpdA0KYGBgDQoNCiMgQ2xhc2UgMiAtIEludHJvZHVjY2nDs24gYSBUaWR5dmVyc2UNCg0KRW4gZXN0YSBzZWd1bmRhIGNsYXNlLCBwcm9mdW5kaXphcmVtb3MgZW4gbGFzIGVzdHJ1Y3R1cmFzIGRlIG9iamV0b3MgZW4NClIsIGFwcmVuZGVyZW1vcyBjw7NtbyBpbXBvcnRhciB5IGV4cG9ydGFyIGRhdG9zLCB5IGV4cGxvcmFyZW1vcyBsYXMNCmNhcGFjaWRhZGVzIGRlIHRpZHl2ZXJzZSBwYXJhIGVsIGFuw6FsaXNpcyBkZSBkYXRvcy4NCg0KIyMjIEVzdHJ1Y3R1cmFzIGRlIGRhdG9zDQoNCkVuIFIsIGhheSB2YXJpYXMgZXN0cnVjdHVyYXMgZGUgb2JqZXRvcyBxdWUgcGVybWl0ZW4gYWxtYWNlbmFyIHkNCm1hbmlwdWxhciBkYXRvcyBkZSBtYW5lcmEgZWZpY2llbnRlLiBVbiB2ZWN0b3IgZXMgdW5hIHNlY3VlbmNpYSBkZQ0KdmFsb3JlcyBkZWwgbWlzbW8gdGlwby4gU2kgdmVtb3MgYG1pX3ZlY3RvcmAgeSBvYnNlcnZhbW9zIGxhIGNsYXNlLA0KdmVtb3MgcXVlIHNpIHBvbmVtb3MgbsO6bWVyb3MgeSB0ZXh0byBhZGVudHJvIHZhIGEgdG9tYXIgdG9kb3MgY29tbw0KImNhcmFjdGVyIi4gQWRlbcOhcywgZGVudHJvIGRlIHVuIHZlY3RvciBwb2RlbW9zIHBvbmVyIG9iamV0b3MgeWEgY3JlYWRvcw0KcHJldmlhbWVudGUuDQoNCk5PVEE6IFBhcmEgY29ycmVyIGRlIGEgMSBsaW5lYSBkZSBjw7NkaWdvIHBvZGVzIGFwcmV0YXIgQ1RSTCtFTlRFUg0KDQpgYGB7cn0NCiMgT2JqZXRvcw0KTm9tYnJlIDwtICJNYXJ0aW5hIg0KDQojIFZlY3RvcmVzDQptaV92ZWN0b3IgPC0gYygxLCAyLCAzLCA0LCA1LE5vbWJyZSkNCg0KIyBQYXJhIGJvcnJhciBlbCBlbnRvcm5vDQpybShOb21icmUpDQoNCiMgQ3JlYW1vcyB1biB2ZWN0b3IgY29uIGNhcmFjdGVyZXMgeSB1bm8gY29uIG7Dum1lcm9zDQpwYWlzZXMgPC0gYygiQXJnZW50aW5hIiwgIkJyYXNpbCIsICJVcnVndWF5IikNCg0KbnVtZXJvcyA8LSBjKDEsMiwzKQ0KDQpjbGFzcyhudW1lcm9zKQ0KY2xhc3MocGFpc2VzKQ0KY2xhc3MobWlfdmVjdG9yKQ0KYGBgDQoNCkxhcyAqKm1hdHJpY2VzKiogc29uIGVzdHJ1Y3R1cmFzIGJpZGltZW5zaW9uYWxlcyBkZSBlbGVtZW50b3MgZGVsIG1pc21vDQp0aXBvIG9yZ2FuaXphZG9zIGVuIGZpbGFzIHkgY29sdW1uYXMuIFRvZG9zIGxvcyBlbGVtZW50b3MgZGUgdW5hIG1hdHJpeg0KZGViZW4gc2VyIGRlbCBtaXNtbyB0aXBvIGRlIGRhdG9zIChudW3DqXJpY29zLCBjYXJhY3RlcmVzLCBldGMuKQ0KDQpgYGB7cn0NCiMgQ3JlYWNpw7NuIGRlIHVuYSBtYXRyaXoNCm1pX21hdHJpeiA8LSBtYXRyaXgoMTo2LCBucm93ID0gMiwgbmNvbCA9IDMpDQptaV9tYXRyaXoNCmBgYA0KDQoqKkRhdGEgZnJhbWUqKjogRXMgc2ltaWxhciBhIHVuYSBtYXRyaXosIHBlcm8gcHVlZGUgY29udGVuZXIgY29sdW1uYXMNCmNvbiBkaWZlcmVudGVzIHRpcG9zIGRlIGRhdG9zLiBFcyBsYSBlc3RydWN0dXJhIG3DoXMgdXRpbGl6YWRhIHBhcmENCmFsbWFjZW5hciBjb25qdW50b3MgZGUgZGF0b3MgdGFidWxhcmVzLCBjb21vIHVuYSBob2phIGRlIGPDoWxjdWxvLCBkb25kZQ0KY2FkYSBjb2x1bW5hIHB1ZWRlIHNlciBkZSB1biB0aXBvIGRpZmVyZW50ZS4NCg0KYGBge3J9DQojIENyZWFjacOzbiBkZSB1biBkYXRhIGZyYW1lDQptaV9kYXRhX2ZyYW1lIDwtIGRhdGEuZnJhbWUoDQogIE5vbWJyZSA9IGMoIkFuYSIsICJDYXJsb3MiLCAiRXZhIiksDQogIEVkYWQgPSBjKDI1LCAzMCwgMjIpDQopDQoNCiMgT3RyYSBmb3JtYSBkZSBjcmVhciBkYXRhIGZyYW1lDQpwbGFudGFzIDwtIGMoIkxhdmFuZGEiLCJNZW50YSIsIlBpbm8iLCJQb3R1cyIpDQp0aXBvIDwtIGMoIkFyb21hdGljYSIsIkRlY29yYXRpdmEiLCJBcmJvbCIsIkRlIGludGVyaW9yIikNCnRhbWFubyA8LSBjKCJHcmFuZGUiLCJDaGljYSIsIlN1cGVyIEdyYW5kZSIsICJNaW5pIikNCg0KcGxhbnRpdGFzIDwtIGRhdGEuZnJhbWUocGxhbnRhcyx0aXBvLCB0YW1hbm8pICNhcy5kYXRhLmZyYW1lDQpgYGANCg0KKipMaXN0YToqKiBFcyB1bmEgZXN0cnVjdHVyYSBxdWUgcHVlZGUgY29udGVuZXIgZWxlbWVudG9zIGRlIGRpZmVyZW50ZXMNCnRpcG9zIChuw7ptZXJvcywgY2FkZW5hcywgb3RyYXMgbGlzdGFzLCBldGMuKSBvcmdhbml6YWRvcyBlbiB1bmENCnNlY3VlbmNpYSB5IHB1ZWRlbiB0ZW5lciBkaWZlcmVudGVzIGxvbmdpdHVkZXMuDQoNCmBgYHtyfQ0KIyBDcmVhY2nDs24gZGUgdW5hIGxpc3RhDQptaV9saXN0YSA8LSBsaXN0KA0KICBOb21icmVzID0gYygiQXJpYW5hIiwgIk1hcnRpbmEiKSwNCiAgQ3VpdCA9IGMoMTIzNDUsIDY3ODkwKQ0KKQ0KYGBgDQoNCiMjIEltcG9ydGFjacOzbiB5IGV4cG9ydGFjacOzbg0KDQojIyMgSW1wb3J0YWNpw7NuDQoNCkVuIFIsIHB1ZWRlcyBpbXBvcnRhciBkYXRvcyBkZXNkZSBkaWZlcmVudGVzIHRpcG9zIGRlIGFyY2hpdm9zLCBjb21vDQpDU1YsIEV4Y2VsLCB5IG3DoXMuIFV0aWxpemFtb3MgZnVuY2lvbmVzIGRlIHBhcXVldGVzIGNvbW8gcmVhZC5jc3YsDQpyZWFkLnhsc3gNCg0KRGVzZGUgdW5hICoqdXJsKio6DQoNCmBgYHtyfQ0KDQoNCiNEZWZpbm8gdXJsDQp1cmwgPC0gKCJodHRwczovL2RhdG9zYWJpZXJ0b3MuZGVzYXJyb2xsb3NvY2lhbC5nb2IuYXIvZGF0YXNldC9kNDU2ODdjMC1mMmJhLTQxZDktOTk4OS0wYWQ5Nzk5MzA4YWUvcmVzb3VyY2UvYzVjOTI1ZTAtN2NlMC00MWU1LWIzZmYtOGViYjUxZDRiZTcyL2Rvd25sb2FkL3BvdGVuY2lhci10cmFiYWpvLXRpdHVsYXJlcy0yMDIyLTEwLTAxLmNzdiIpDQoNCnBvdGVuY2lhcl90cmFiYWpvIDwtIHJlYWQuY3N2KHVybCkNCg0KDQoNCg0KDQoNCmBgYA0KDQojIyMgUGFyYSB0cmFiYWphciBjb24gc2hlZXRzIGRlIGdvb2dsZQ0KDQpgYGB7cn0NCiMgUGFyYSB0cmFiYWphciBjb24gc2hlZXRzIGRlIGdvb2dsZSBsaWJyYXJ5KGdvb2dsZXNoZWV0czQpDQpsaWJyYXJ5KGdvb2dsZXNoZWV0czQpDQoNCiNnczRfYXV0aCgpIA0KI3JlY29tZW5kYWNpb25lcyA8LSByZWFkX3NoZWV0KCJsaW5rIGRlbCBnb29nbGUgc2hlZXQiKQ0KYGBgDQoNClNpIG5vIHNhYmVzIG8gcmVjb3JkYXMgbG9zIGFyZ3VtZW50b3MgZGUgdW5hIGZ1bmNpw7NuLCBwb2RlcyBsbGFtYXIgYSBsYQ0KZnVuY2nDs24gYGhlbHAoKWAgcXVlIHRyYWUgbGEgZG9jdW1lbnRhY2nDs24gZGUgbGEgZnVuY2nDs246DQoNCmBgYHtyfQ0KDQojaGVscChyZWFkX2NzdikNCiM/cmVhZF9jc3YNCiM/P3JlYWRfc2hlZXQNCg0KYGBgDQoNCkRlc2RlIGFyY2hpdm8gKipjc3YqKjoNCg0KYGBge3J9DQpwb3RlbmNpYXJfdHJhYmFqbyA8LSByZWFkLmNzdigiZGF0YS9wb3RlbmNpYXItdHJhYmFqby10aXR1bGFyZXMtMjAyMi0xMC0wMS5jc3YiKQ0KDQojP3JlYWRfY3N2DQpgYGANCg0KRGVzZGUgYXJjaGl2byAqKi5zYXYqKjoNCg0KYGBge3J9DQojIGluc3RhbGwucGFja2FnZXMoImhhdmVuIikNCmxpYnJhcnkoaGF2ZW4pDQoNCmJhc2UgPC0gcmVhZF9zYXYoImRhdGEvQmFzZS5zYXYiKQ0KDQpgYGANCg0KRGVzZGUgYXJjaGl2byAqKi54bHN4Kio6DQoNCmBgYHtyfQ0KIyBpbnN0YWxsLnBhY2thZ2VzKCJyZWFkeGwiKQ0KbGlicmFyeShyZWFkeGwpDQoNCg0KcHJlY2lvc19jb21idXN0aWJsZXMgPC0gIHJlYWRfZXhjZWwoImRhdGEvcHJlY2lvc19yZXMxXzIwMTgueGxzeCIpDQogDQpgYGANCg0KIyMjIEV4cG9ydGFjacOzbg0KDQpUYW1iacOpbiwgcHVlZG8gcXVlcmVyIGV4cG9ydGFyIGxvcyBkYXRvcyB0cmFiYWphZG9zIGVuIFIgYSBvdHJvcw0KZm9ybWF0bzoNCg0KQSB1biBhcmNoaXZvICoqLmNzdioqOg0KDQpgYGB7cn0NCndyaXRlLmNzdihwbGFudGl0YXMsIHBhc3RlMCgiZGF0YS9kZl9wbGFudGFzLmNzdiIpLCByb3cubmFtZXMgPSBGLCBmaWxlRW5jb2RpbmcgPSAiVVRGLTgiKQ0KYGBgDQoNCkEgdW4gYXJjaGl2byAqKi54bHN4Kio6DQoNCmBgYHtyfQ0KI2luc3RhbGwucGFja2FnZXMob3Blbnhsc3gpDQpsaWJyYXJ5KG9wZW54bHN4KQ0KDQp3cml0ZS54bHN4KHBsYW50aXRhcywiZGF0YS9wbGFudGl0YXMueGxzeCIsIHJvd05hbWVzID0gRikNCg0KDQpsaWJyYXJ5KHdyaXRleGwpDQoNCiMgUGFyYSBleHBvcnRhciBhIHVuYSBjYXJwZXRhIGFudGVyaW9yIGEgbGEgZGUgbWkgZGlyZWN0b3JpbyANCiN3cml0ZV94bHN4KHBsYW50aXRhcywgIn4vR2l0aHViL2FwcmVuZGllbmRvUi9wcmFjdGljYS9wbGFudGl0YXMueGxzeCIpDQpgYGANCg0KQSB1biBhcmNoaXZvICoqLnNhdioqOg0KDQpgYGB7cn0NCg0KIyBPdHJhIGZvcm1hIGRlIGFybWFyIGVsIHBhdGggDQoNCmNhcnBldGEgPC0gImRhdGEvIg0Kbm9tYnJlX2FyY2hpdm8gPC0gIm1pX2RhdGFfZnJhbWUuc2F2Ig0KDQojcGFzdGUwKCkNCiNsaWJyYXJ5KGhhdmVuKQ0Kd3JpdGVfc2F2KG1pX2RhdGFfZnJhbWUsIHBhc3RlMChjYXJwZXRhLG5vbWJyZV9hcmNoaXZvKSkNCg0KYGBgDQoNCk90cmFzIGZvcm1hcyBkZSBleHBvcnRhciBwb2RlcyBlbmNvbnRyYXJsYXMNClthcXXDrV0oaHR0cHM6Ly9yLWNvZGVyLmNvbS9leHBvcnRhci1kYXRvcy1yLykgbw0KW2FxdcOtXShodHRwczovL215cmJvb2tzcC5uZXRsaWZ5LmFwcC9pbXBvcnQuaHRtbCkuDQoNCiMjIFJlc3VtZW4gZGUgbG9zIGRhdG9zDQoNCkVzIHVuYSBidWVuYSBwcsOhY3RpY2EgYW50ZXMgZGUgY29tZW56YXIgYSBhbmFsaXphciwgZ3JhZmljYXIsIGV0YywgdmVyDQpsYSBlc3RydWN0dXJhIGRlIGxvcyBkYXRvcw0KDQpQYXJhIGNvbm9jZXJsYSBwb2RlbW9zIHVzYXIgYHN0cigpYDoNCg0KYGBge3J9DQojZGYNCnN0cihwb3RlbmNpYXJfdHJhYmFqbykNCg0KI3ZlY3Rvcg0Kc3RyKHBhaXNlcykNCg0KYGBgDQoNClBvZGVzIGFjY2VkZXIgYSBsb3Mgbm9tYnJlcyBkZSBsb3MgZWxlbWVudG9zIGNvbiBgbmFtZXMoKWA6DQoNCmBgYHtyfQ0KDQojREYNCm5hbWVzKG1pX2RhdGFfZnJhbWUpDQoNCiNTZSBwdWVkZSBtb2RpZmljYXIgZWwgbm9tYnJlIGRlIGxhcyBjb2x1bW5hcyBjb24gbGEgbWlzbWEgZnVuY2nDs246IA0KDQpuYW1lcyhtaV9kYXRhX2ZyYW1lKSA8LSBjKCJOb21icmVzIiwgIkVkYWRlcyIpDQoNCg0KYGBgDQoNCkFjY2VkZXIgYSBsYXMgcHJpbWVyYXMgeSDDumx0aW1hcyBmaWxhcyBjb24gYGhlYWQoKWB5IGB0YWlsKClgOg0KDQpgYGB7cn0NCiNwcmltZXJhcyBmaWxhcw0KaGVhZChwb3RlbmNpYXJfdHJhYmFqbykNCg0KI3VsdGltYXMgZmlsYXMNCnRhaWwocG90ZW5jaWFyX3RyYWJham8pDQoNCmBgYA0KDQpPYnRlbmVyIHVuIHJlc3VtZW4gY29uIGBzdW1tYXJ5KClgOg0KDQpgYGB7cn0NCnN1bW1hcnkocG90ZW5jaWFyX3RyYWJham8pDQpgYGANCg0KWSBhY2NlZGVyIGEgbG9zIHZhbG9yZXMgw7puaWNvcyBvIGRpc3RpbnRvcyBjb24gYHVuaXF1ZSgpYDoNCg0KYGBge3J9DQp1bmlxdWUocG90ZW5jaWFyX3RyYWJham8kcHJvdmluY2lhKQ0KDQoNCmR1cGxpY2F0ZWQobWlfZGF0YV9mcmFtZSROb21icmVzKQ0KYGBgDQoNCkVsIGAkYCBwZXJtaXRlIGFjY2VkZXIgYSB1biBzdWJjb25qdW50byBvIGVsZW1lbnRvIGRlIHVuIGRmIG8gZGUgdW5hDQpsaXN0YS4gVGFtYmnDqW4gc2UgcHVlZGVuIGFjY2VkZXIgYSB0cmF2w6lzIGRlIGBbW11dYC4NCg0KYGBge3J9DQoNCnVuaXF1ZShwb3RlbmNpYXJfdHJhYmFqb1tbInByb3ZpbmNpYSJdXSkNCg0KYGBgDQoNClBvciDDumx0aW1vLCBzZSBwdWVkZW4gdmVyIGxhIGNhbnRpZGFkIGRlIGNhdGVnb3LDrWFzIGRlIHVuYSB2YXJpYWJsZSBjb24NCmBsZW5naHQoKWAgbyBgZGlzdGluY3QoKWANCg0KYGBge3J9DQoNCmxpYnJhcnkoZHBseXIpDQoNCmxlbmd0aCh1bmlxdWUocG90ZW5jaWFyX3RyYWJham8kcHJvdmluY2lhKSkgDQpkaXN0aW5jdChwb3RlbmNpYXJfdHJhYmFqbywgcHJvdmluY2lhKQ0KDQoNCmBgYA0KDQojIyBUaWR5dmVyc2UNCg0KVGlkeXZlcnNlIGVzIHVuIGNvbmp1bnRvIGRlIHBhcXVldGVzIGVuIFIgZGlzZcOxYWRvcyBwYXJhIGZhY2lsaXRhciBsYQ0KbWFuaXB1bGFjacOzbiwgdmlzdWFsaXphY2nDs24geSBhbsOhbGlzaXMgZGUgZGF0b3MuIEVzdMOhIGJhc2FkbyBlbiB1bg0KZW5mb3F1ZSBjb2hlcmVudGUgeSBzZSBjZW50cmEgZW4gbGEgY3JlYWNpw7NuIGRlIGPDs2RpZ28gY2xhcm8geSBsZWdpYmxlDQoNCkluY2x1eWUgdmFyaW9zIHBhcXVldGVzIGNsYXZlLCBjb21vIGRwbHlyLCBnZ3Bsb3QyLCB0aWR5ciwgcmVhZHIsIGVudHJlDQpvdHJvcy4gQ2FkYSB1bm8gZGUgZXN0b3MgcGFxdWV0ZXMgc2UgY2VudHJhIGVuIHVuYSB0YXJlYSBlc3BlY8OtZmljYSwNCmNvbW8gbWFuaXB1bGFjacOzbiBkZSBkYXRvcywgdmlzdWFsaXphY2nDs24sIGxlY3R1cmEgZGUgZGF0b3MgeSBtw6FzLg0KW2RvY3VtZW50YWNpw7NuXShodHRwczovL3d3dy50aWR5dmVyc2Uub3JnL3BhY2thZ2VzLykuDQoNCmBgYHtyfQ0KI2luc3RhbGwucGFja2FnZXMoInRpZHl2ZXJzZSIpDQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCg0KYGBgDQoNClZhbW9zIGEgc2VndWlyIHRyYWJhamFuZG8gY29uIGVsIGRhdGFmcmFtZSBkZWwgcG90ZW5jaWFyIHRyYWJham8uDQoNCkVsIHBhcXVldGUgYEphbml0b3JgIGVzIHVuYSBoZXJyYW1pZW50YSDDunRpbCBlbiBSIHF1ZSBzZSB1dGlsaXphIHBhcmENCmxpbXBpYXIgeSBwcmVwcm9jZXNhciBkYXRvcyBkZSB1bmEgbWFuZXJhIGVmZWN0aXZhLiBTdSBwcmluY2lwYWwNCm9iamV0aXZvIGVzIGZhY2lsaXRhciBsYSBsaW1waWV6YSB5IG9yZ2FuaXphY2nDs24gZGUgY29uanVudG9zIGRlIGRhdG9zDQpkZSB1bmEgbWFuZXJhIG3DoXMgcsOhcGlkYSB5IHNlbmNpbGxhLiBNdWNoYXMgdmVjZXMgbG9zIGZvcm11bGFyaW9zIG8gZGYNCnZpZW5lbiBjb24gbm9tYnJlcyBkZSBjb2x1bW5hcyBjb24gY2FyYWN0ZXJlcyBlc3BlY2lhbGVzIG8gZXNwYWNpb3MgbG8NCnF1ZSBkaWZpY3VsdGEgdW4gcG9jbyBzdSBtYW5pcHVsYWNpw7NuLiBMYSBmdW5jacOzbiBgY2xlYW5fbmFtZXMoKWAgZGUNCmVzdGUgcGFxdWV0ZSBwZXJtaXRlIHJlc29sdmVyIGVzZSBwcm9ibGVtYS4NCg0KYGBge3J9DQojaW5zdGFsbC5wYWNrYWdlKCJqYW5pdG9yIikNCmxpYnJhcnkoamFuaXRvcikgICNKYW5pdG9yIG5vcyBwZXJtaXRlIGxpbXBpYXIgbG9zIG5vbWJyZXMgZGUgbGFzIHZhcmlhYmxlcw0KDQojIEVqZW1wbG8gZGUgamFuaXRvcg0KIk5vbWJyZXMgREUgcGVyc2/DsWFzPz8gIiA8LSBjKCJBcmlhbmEiLCJNYXJ0aW5hIikNCiJDYW50aWRhZCBkZSBjb21wdXRhRE9SQVM/IiA8LSBjKCIxIiwiMyIpDQoNCmRmX2NvbXB1cyA8LSBkYXRhLmZyYW1lKGBDYW50aWRhZCBkZSBjb21wdXRhRE9SQVM/YCxgTm9tYnJlcyBERSBwZXJzb8OxYXM/PyBgKQ0KDQojT2JzZXJ2YW1vcyBlbCBhbnRlcw0KZGZfY29tcHVzDQoNCg0KZGZfY29tcHVzIDwtIGRmX2NvbXB1cyAlPiUgDQogIGNsZWFuX25hbWVzKCkNCg0KIyBPYnNlcnZhbW9zIGVsIGRlc3B1ZXMNCmRmX2NvbXB1cw0KDQoNCg0KcG90ZW5jaWFyX3RyYWJham9fY2xlYW4gPC1wb3RlbmNpYXJfdHJhYmFqbyU+JSANCiAgY2xlYW5fbmFtZXMoKSAjbGltcGlhbW9zIGxvcyBub21icmVzIHBhcmEgbm8gdGVuZXIgZXJyb3JlcyBwb3IgbG9zIGNhcmFjdGVyZXMNCg0KYGBgDQoNClBvZGVtb3MgdmVyIGxhcyBjb2x1bW5hcyBjb21vIGFwcmVuZGltb3M6DQoNCmBgYHtyfQ0KY29sbmFtZXMocG90ZW5jaWFyX3RyYWJham8pDQojbmFtZXMoYmFycmlvc19wb3B1bGFyZXMpDQoNCmBgYA0KDQojIyMgU2VsZWN0KCkNCg0KUGVybWl0ZSBzZWxlY2Npb25hciBjb2x1bW5hcyBlc3BlY8OtZmljYXMgZGUgdW4gY29uanVudG8gZGUgZGF0b3MuIFB1ZWRlcw0KZXNwZWNpZmljYXIgbGFzIGNvbHVtbmFzIHF1ZSBxdWllcmVzIG1hbnRlbmVyIHVzYW5kbyBzdXMgbm9tYnJlcyBvDQp1dGlsaXphbmRvIGZ1bmNpb25lcyBjb21vICoqYHN0YXJ0c193aXRoKClgKiosICoqYGVuZHNfd2l0aCgpYCoqLA0KKipgY29udGFpbnMoKWAqKiwgZW50cmUgb3RyYXMNCg0KYGBge3J9DQp0aXR1bGFyZXMgPC0gcG90ZW5jaWFyX3RyYWJham8gJT4lIA0KICBzZWxlY3QocHJvdmluY2lhLCB0aXR1bGFyZXMsIHBlcmlvZG8pDQoNCg0KdGl0dWxhcmVzIDwtIHBvdGVuY2lhcl90cmFiYWpvICU+JSANCiAgc2VsZWN0KHN0YXJ0c193aXRoKCJwcm92IiksICMgZW1waWV6YSBjb24NCiAgICAgICAgIGNvbnRhaW5zKCJ0aXR1bGFyZXMiKSwgIyBjb250aWVuZQ0KICAgICAgICAgZW5kc193aXRoKCJyaW9kbyIpKSAlPiUgIyB0ZXJtaW5hIGNvbg0KICAjIFNpIG9ic2VydmFtb3MgbWUgdHJham8gdGFtYmllbiBwcm92aW5jaWFfaWQgDQogICNFc3RvIHNlIGRlYmUgYSBxdWUgYnVzY8OzIHRvZGFzIGxhcyB2YXJpYWJsZXMgcXVlIGNvbWllbnphbiBjb24gcHJvdg0KICBzZWxlY3QoLXByb3ZpbmNpYV9pZCkgIyBjb24gZWwgc2ltYm9sbyAtIGRlc2VsZWNpb25hbW9zIHZhcmlhYmxlcw0KDQojdGFtYmnDqW4gcG9kcsOtYW1vcyBhY2NlZGVyIG1lZGlhbnRlIGVsIMOtbmRpY2UsIGVsIG9yZGVuIGRlIGVzYXMgY29sdW1uYXM6IA0KDQp0aXR1bGFyZXNfZG9zIDwtIHBvdGVuY2lhcl90cmFiYWpvICU+JSBzZWxlY3QoNzo4KQ0KDQpybSh0aXR1bGFyZXNfZG9zKQ0KDQpnYygpICNsaW1waWEgbGEgbWVtb3JpYQ0KDQojcm0obGlzdD1scygpKQ0KYGBgDQoNCiMjIyBGaWx0ZXIoKQ0KDQpTZSB1c2EgcGFyYSBzZWxlY2Npb25hciBmaWxhcyBlc3BlY8OtZmljYXMgZGUgdW4gY29uanVudG8gZGUgZGF0b3Mgc2Vnw7puDQpjaWVydG9zIGNyaXRlcmlvcyBvIGNvbmRpY2lvbmVzLiBQb3IgZWplbXBsbywgcHVlZGVzIGZpbHRyYXIgZmlsYXMgZG9uZGUNCnVuYSB2YXJpYWJsZSBzZWEgbWF5b3IgcXVlIGNpZXJ0byB2YWxvciBvIGN1bXBsYSB1bmEgY29uZGljacOzbiBsw7NnaWNhLg0KDQpgYGB7cn0NCg0KYnVlbm9zX2FpcmVzIDwtIHRpdHVsYXJlcyAlPiUgZmlsdGVyKHByb3ZpbmNpYSA9PSAiQnVlbm9zIEFpcmVzIikNCg0Kc2luX2J1ZW5vc19haXJlcyA8LSB0aXR1bGFyZXMgJT4lIGZpbHRlcighc3RyX2RldGVjdChwcm92aW5jaWEsIkJ1ZW5vcyBBaXJlc3xbQ2Ndb3J8IGVzdGVyIikpICNzdHJpbmdyDQoNCiNyZWdleCANCg0KIz9zdHJfZGV0ZWN0DQoNCndyaXRlLnhsc3goYnVlbm9zX2FpcmVzLCAiZGF0YS9idWVub3NfYWlyZXNfcG90ZW5jaWFyLnhsc3giKQ0KYGBgDQoNCmAlaW4lYCBTZSB1dGlsaXphIHBhcmEgYnVzY2FyIHRvZG8gbG8gcXVlIGNvaW5jaWRlIGNvbiBsbyBxdWUgZXN0w6ENCmRlbnRybyBkZQ0KDQpgYGB7cn0NCg0KcHJvdmluY2lhc19ub2EgPC0gYygiSnVqdXkiLCAiU2FsdGEiLCAiVHVjdW3DoW4iLCAiQ2F0YW1hcmNhIiwgIkxhIFJpb2phIiwgIlNhbnRpYWdvIGRlbCBFc3Rlcm8iKQ0KDQpub2EgPC0gdGl0dWxhcmVzICU+JSBmaWx0ZXIocHJvdmluY2lhJWluJXByb3ZpbmNpYXNfbm9hKQ0KDQojdGl0dWxhcmVzICU+JSBmaWx0ZXIobW9udGgocGVyaW9kbykgPT0gMDMgKQ0KI3RpdHVsYXJlcyAlPiUgZmlsdGVyKHRpdHVsYXJlcyA+IDEwMCApDQpoZWFkKG5vYSkNCmBgYA0KDQojIyBBcnJhbmdlKCkNCg0KT3JkZW5hIGxhcyBmaWxhcyBkZSB1biBjb25qdW50byBkZSBkYXRvcyBiYXPDoW5kb3NlIGVuIHVuYSBvIG3DoXMNCmNvbHVtbmFzLiBQdWVkZXMgb3JkZW5hciBkZSBmb3JtYSBhc2NlbmRlbnRlIG8gZGVzY2VuZGVudGUgdXNhbmRvIGVsDQphcmd1bWVudG8gKipgZGVzYygpYCoqLg0KDQpgYGB7cn0NCiNvcmRlbiBhc2NlbmRlbnRlDQpidWVub3NfYWlyZXMgPC0gYnVlbm9zX2FpcmVzICU+JSBhcnJhbmdlKHBlcmlvZG8pDQpoZWFkKGJ1ZW5vc19haXJlcykNCg0KDQojb3JkZW4gZGVzY2VuZGVudGUNCmJ1ZW5vc19haXJlcyA8LSBidWVub3NfYWlyZXMgJT4lIGFycmFuZ2UoZGVzYyhwZXJpb2RvKSkNCmJ1ZW5vc19haXJlcw0KDQpgYGANCg0KIyMgTXV0YXRlKCkNCg0KQ3JlYSBudWV2YXMgY29sdW1uYXMgbyBtb2RpZmljYSBsYXMgZXhpc3RlbnRlcywgYXBsaWNhbmRvIG9wZXJhY2lvbmVzIGENCmxvcyBkYXRvcyBleGlzdGVudGVzLiBQdWVkZXMgY2FsY3VsYXIgbnVldm9zIHZhbG9yZXMgbyB0cmFuc2Zvcm1hcg0KY29sdW1uYXMgZXhpc3RlbnRlcyBjb24gZGlmZXJlbnRlcyBmdW5jaW9uZXMuDQoNCmBgYHtyfQ0KYnVlbm9zX2FpcmVzIDwtIGJ1ZW5vc19haXJlcyAlPiUgDQogIG11dGF0ZShwb3JjZW50YWplX3Bvcl9wcm92aW5jaWEgPSByb3VuZCgodGl0dWxhcmVzL3N1bShidWVub3NfYWlyZXMkdGl0dWxhcmVzKSkqMTAwLDMpKQ0KDQojY29uIHJvdW5kIHJlZG9uZGVvIGxvcyBuw7ptZXJvcw0KDQojbXVlc3RybyBsYSBudWV2YSB2YXJpYWJsZQ0Kc2VsZWN0KGJ1ZW5vc19haXJlcywgcHJvdmluY2lhLCBwb3JjZW50YWplX3Bvcl9wcm92aW5jaWEpDQoNCmBgYA0KDQojIyBHcm91cF9ieSgpIHkgc3VtbWFyaXNlKCkNCg0KMS4gICoqYHN1bW1hcmlzZSgpYCAvIGBzdW1tYXJpemUoKWA6KiogU2UgdXNhIHBhcmEgcmVzdW1pciBkYXRvcywNCiAgICBjYWxjdWxhciBlc3RhZMOtc3RpY2FzIHJlc3VtaWRhcyBjb21vIGxhIG1lZGlhLCBsYSBzdW1hLCBlbCByZWN1ZW50bywNCiAgICBldGMuLCBwYXJhIGdydXBvcyBlc3BlY8OtZmljb3MgZGUgZGF0b3MuDQoNCjIuICAqKmBncm91cF9ieSgpYDoqKiBTZSB1dGlsaXphIGp1bnRvIGNvbiBvdHJhcyBmdW5jaW9uZXMgcGFyYSByZWFsaXphcg0KICAgIG9wZXJhY2lvbmVzIHBvciBncnVwb3MuIEFncnVwYSBsb3MgZGF0b3Mgc2Vnw7puIHVuYSBvIG3DoXMgdmFyaWFibGVzDQogICAgcGFyYSByZWFsaXphciBjw6FsY3Vsb3MgeSBvcGVyYWNpb25lcyBlc3BlY8OtZmljYXMgZW4gY2FkYSBncnVwby4NCg0KYGBge3J9DQojY2FudGlkYWQgZGUgZmlsYXMgcG9yIGHDsW8NCnBvdGVuY2lhcl9wb3JfYW5vIDwtIGJ1ZW5vc19haXJlcyAlPiUgZ3JvdXBfYnkoeWVhcihwZXJpb2RvKSkgJT4lIHN1bW1hcmlzZSh0aXR1bGFyZXMgPSBzdW0odGl0dWxhcmVzKSkNCg0KcG90ZW5jaWFyX3Bvcl9hbm8NCiN0b3RhbCANCnRvdGFsX3Bvcl9wcm92aW5jaWEgPC0gdGl0dWxhcmVzICU+JSANCiAgbXV0YXRlKGFubyA9IHllYXIocGVyaW9kbykpICU+JSBncm91cF9ieShwcm92aW5jaWEsIGFubykgJT4lIHN1bW1hcmlzZSh0b3RhbCA9IHN1bSh0aXR1bGFyZXMpKQ0KDQp0b3RhbF9wb3JfcHJvdmluY2lhDQoNCiMgbigpDQp0aXR1bGFyZXMgJT4lIA0KICBncm91cF9ieShwZXJpb2RvKSAlPiUgDQogIHN1bW1hcmlzZShOID0gbigpKQ0KYGBgDQoNCkxhIGZ1bmNpw7NuIGBuKClgIGRlbCBwYXF1ZXJlIGBkcGx5cmAgcGVybWl0ZSBjb250YXIgZWwgbsO6bWVybyBkZQ0Kb2JzZXJ2YWNpb25lcyBlbiB1biBncnVwbw0KDQojIyBSZW5hbWUoKQ0KDQpMYSBmdW5jacOzbiAqKmByZW5hbWUoKWAqKiBlbiBlbCBwYXF1ZXRlICoqYGRwbHlyYCoqIHNlIHV0aWxpemEgcGFyYQ0KY2FtYmlhciBsb3Mgbm9tYnJlcyBkZSBsYXMgY29sdW1uYXMgZGUgdW4gY29uanVudG8gZGUgZGF0b3MuIFBlcm1pdGUNCnJlbm9tYnJhciB1bmEgbyB2YXJpYXMgY29sdW1uYXMgZGUgbWFuZXJhIHNlbmNpbGxhIHkgY2xhcmEuDQoNCmBgYHtyfQ0KI25vbWJyZSBudWV2byA9IG5vbWJyZSBhIGNhbWJpYXINCg0KYnVlbm9zX2FpcmVzIDwtIGJ1ZW5vc19haXJlcyAlPiUgDQogIHJlbmFtZSgiZmVjaGEiID0gcGVyaW9kbykNCg0KYGBgDQoNCioqUGlwZXMgYCU+JWA6KiogQXVucXVlIG5vIGVzIHVuYSBmdW5jacOzbiBkZSAqKmBkcGx5cmAqKiwgZWwgdXNvIGRlDQpwaXBlcyBlcyBjb23Dum4gZW4gY29tYmluYWNpw7NuIGNvbiAqKmBkcGx5cmAqKi4gUGVybWl0ZW4gZW5jYWRlbmFyDQpvcGVyYWNpb25lcyBkZSBtYW5lcmEgbcOhcyBsZWdpYmxlIHkgZWZpY2llbnRlLCBmYWNpbGl0YW5kbyBsYQ0KbWFuaXB1bGFjacOzbiBkZSBkYXRvcyBlbiBwYXNvcyBzZWN1ZW5jaWFsZXMNCg0KIyMgR3LDoWZpY29zDQoNCkVsIHBhcXVldGUgImVzcXVpc3NlIiBlcyB1bmEgaGVycmFtaWVudGEgZGlzZcOxYWRhIHBhcmEgZmFjaWxpdGFyIGxhDQpleHBsb3JhY2nDs24geSB2aXN1YWxpemFjacOzbiBpbnRlcmFjdGl2YSBkZSBjb25qdW50b3MgZGUgZGF0b3MgZW4gUiwNCmVzcGVjaWFsbWVudGUgw7p0aWwgcGFyYSB1c3VhcmlvcyBxdWUgcHJlZmllcmVuIGludGVyZmFjZXMgZ3LDoWZpY2FzDQoNCmBgYHtyfQ0KDQojaW5zdGFsbC5wYWNrYWdlcygiZXNxdWlzc2UiKQ0KI2VzcXVpc3NlOjplc3F1aXNzZXIocG90ZW5jaWFyX3RyYWJham8pDQoNCmdncGxvdChwb3RlbmNpYXJfdHJhYmFqbykgKw0KICBhZXMoeCA9IHBlcmlvZG8sIHdlaWdodCA9IHRpdHVsYXJlcykgKw0KICBnZW9tX2JhcihmaWxsID0gIiNGRjY5QjQiKSArDQogIGxhYnMoDQogICAgdGl0bGUgPSAiUG90ZW5jaWFyIHRyYWJham8gcG9yIHBlcmlvZG8iLA0KICAgIHN1YnRpdGxlID0gIlN1YnRpdHVsbyIsDQogICAgY2FwdGlvbiA9ICJGdWVudGU6IERhdG9zIGFiaWVydG9zIg0KICApICsNCiAgY29vcmRfZmxpcCgpICsNCiAgZ2d0aGVtZXM6OnRoZW1lX2Jhc2UoKSArDQogIHRoZW1lKA0KICAgIHBsb3QudGl0bGUgPSBlbGVtZW50X3RleHQoc2l6ZSA9IDIyTCwNCiAgICBmYWNlID0gImJvbGQiLA0KICAgIGhqdXN0ID0gMC41KQ0KICApDQpgYGANCg0KIyMgUHLDoWN0aWNhDQoNClJlY29yZMOhIHJlYWxpemFybG8gZW4gbGEgY2FycGV0YSBwcsOhY3RpY2FzIQ0KDQoxLiAgIEVsaWdlIHVuIGRhdGFzZXQuIFB1ZWRlcyBlbGVnaXJsbyBkZSBjdWFscXVpZXIgc2l0aW8gd2ViLiBQb3INCiAgICBlamVtcGxvOiBkYXRvcy5nb2IuYXINCg0KMi4gIEltcG9ydGEgZWwgYXJjaGl2byB5IGdlbmVyYSB1biBvYmpldG8gcXVlIGxvIGNvbnRlbmdhDQoNCiAgICBgYGB7cn0NCiAgICAjIHJlYWQuY3N2KCkNCg0KDQogICAgYGBgDQoNCjMuICBDcmVhIHVuYSBudWV2YSBjb2x1bW5hIG8gZ2VuZXLDoSB1bmEgc3VtYXJpemFjacOzbiBhZ3J1cGFkYQ0KDQogICAgYGBge3J9DQogICAgIyBtdXRhdGUoKQ0KICAgICMgZ3JvdXBfYnkoKSB5IHN1bW1hcmlzZSgpDQoNCiAgICBgYGANCg0KNC4gIENvbiBlbCB1c28gZGUgZXNxdWlzc2UsIGdlbmVyYSB1biBncsOhZmljbw0KDQogICAgYGBge3J9DQogICAgI2VzcXVpc3NlOjplc3F1aXNzZXIoKQ0KICAgIGBgYA0K</div>
    
            </section>
   </div>
